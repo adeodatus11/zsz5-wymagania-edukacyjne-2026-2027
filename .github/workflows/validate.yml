@@ -1,0 +1,43 @@
+name: Validate static site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install pypdf
+
+      - name: Compile generators
+        run: |
+          python -m py_compile generuj_kompletne_wymagania_ogolne.py
+          python -m py_compile generuj_wymagania_edukacyjne_ZSZ5.py
+          python -m py_compile scripts/validate_site.py
+
+      - name: Validate generated static site
+        run: python scripts/validate_site.py
+
+      - name: Check embedded JavaScript
+        run: |
+          python - <<'PY' > /tmp/site.js
+          from pathlib import Path
+          import re
+          html = Path("wymagania_edukacyjne_ZSZ5_2026_2027.html").read_text(encoding="utf-8")
+          match = re.search(r"<script>([\s\S]*)</script>", html)
+          print(match.group(1) if match else "")
+          PY
+          node --check /tmp/site.js

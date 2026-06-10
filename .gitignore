@@ -1,0 +1,14 @@
+.DS_Store
+**/.DS_Store
+.~lock.*
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+node_modules/
+dist/
+build/
+*.tmp
+*.bak
