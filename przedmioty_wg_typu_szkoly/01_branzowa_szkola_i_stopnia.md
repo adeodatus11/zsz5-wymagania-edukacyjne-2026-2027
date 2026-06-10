@@ -8,7 +8,7 @@ Zakres opracowania:
 - Przedmioty powtarzajace sie w kilku klasach lub zawodach zostaly ujednolicone i wpisane raz.
 - Sekcje podsumowan godzinowych nie sa traktowane jako przedmioty.
 
-Liczba unikalnych przedmiotow: 38.
+Liczba unikalnych przedmiotow: 37.
 
 ## Lista
 
@@ -26,27 +26,26 @@ Liczba unikalnych przedmiotow: 38.
 12. Zajęcia z wychowawcą
 13. Rozwój kompetencji zawodowych
 14. Religia
-15. Edukacja zdrowotna
-16. Doradztwo zawodowe
-17. Język angielski zawodowy
-18. Technika w produkcji cukierniczej
-19. Technologie produkcji cukierniczej
-20. Podstawy fryzjerstwa
-21. Techniki fryzjerskie
-22. Technika w produkcji gastronomicznej
-23. Technologia gastronomiczna z towaroznawstwem
-24. Obsługa klientów
-25. Organizacja sprzedaży
-26. Towar jako przedmiot handlu
-27. Język niemiecki
-28. Geografia
-29. Fizyka
-30. Rozwój zainteresowań i kreatywności
-31. Obsługa klienta
-32. Towaroznawstwo
-33. Historia i teraźniejszość
-34. Język niemiecki zawodowy
-35. Budowa i naprawa pojazdów samochodowych
-36. Diagnostyka pojazdów samochodowych
-37. Przepisy ruchu drogowego
-38. Technologia mechaniczna
+15. Doradztwo zawodowe
+16. Język angielski zawodowy
+17. Technika w produkcji cukierniczej
+18. Technologie produkcji cukierniczej
+19. Podstawy fryzjerstwa
+20. Techniki fryzjerskie
+21. Technika w produkcji gastronomicznej
+22. Technologia gastronomiczna z towaroznawstwem
+23. Obsługa klientów
+24. Organizacja sprzedaży
+25. Towar jako przedmiot handlu
+26. Język niemiecki
+27. Geografia
+28. Fizyka
+29. Rozwój zainteresowań i kreatywności
+30. Obsługa klienta
+31. Towaroznawstwo
+32. Historia i teraźniejszość
+33. Język niemiecki zawodowy
+34. Budowa i naprawa pojazdów samochodowych
+35. Diagnostyka pojazdów samochodowych
+36. Przepisy ruchu drogowego
+37. Technologia mechaniczna

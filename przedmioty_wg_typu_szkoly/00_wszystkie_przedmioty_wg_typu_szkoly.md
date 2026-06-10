@@ -12,12 +12,12 @@ Zasady opracowania:
 
 - Lista obejmuje pozycje z tabel `Przedmioty`.
 - W kazdym typie szkoly przedmiot powtarzajacy sie w wielu klasach lub zawodach zostal wpisany tylko raz.
-- Uwzgledniono przedmioty ogolne, zawodowe, zajecia z wychowawca, religie, edukacje zdrowotna, doradztwo zawodowe oraz przedmioty/zajecia wynikajace z godzin dyrektorskich, jezeli wystepuja jako pozycje w tabeli `Przedmioty`.
+- Uwzgledniono przedmioty ogolne, zawodowe, zajecia z wychowawca, religie, doradztwo zawodowe oraz przedmioty/zajecia wynikajace z godzin dyrektorskich, jezeli wystepuja jako pozycje w tabeli `Przedmioty`.
 - Nie uwzgledniono technicznych pozycji z sekcji `Podsumowanie`, np. `Ogolem`, `Ksztalcenie zawodowe teoretyczne`, `Minimalna liczba godzin ksztalcenia zawodowego`, `Praktyka zawodowa (liczba tygodni)`.
 
 ## Branżowa szkoła I stopnia
 
-Liczba unikalnych przedmiotow: 38.
+Liczba unikalnych przedmiotow: 37.
 
 1. Język polski
 2. Język angielski
@@ -33,30 +33,29 @@ Liczba unikalnych przedmiotow: 38.
 12. Zajęcia z wychowawcą
 13. Rozwój kompetencji zawodowych
 14. Religia
-15. Edukacja zdrowotna
-16. Doradztwo zawodowe
-17. Język angielski zawodowy
-18. Technika w produkcji cukierniczej
-19. Technologie produkcji cukierniczej
-20. Podstawy fryzjerstwa
-21. Techniki fryzjerskie
-22. Technika w produkcji gastronomicznej
-23. Technologia gastronomiczna z towaroznawstwem
-24. Obsługa klientów
-25. Organizacja sprzedaży
-26. Towar jako przedmiot handlu
-27. Język niemiecki
-28. Geografia
-29. Fizyka
-30. Rozwój zainteresowań i kreatywności
-31. Obsługa klienta
-32. Towaroznawstwo
-33. Historia i teraźniejszość
-34. Język niemiecki zawodowy
-35. Budowa i naprawa pojazdów samochodowych
-36. Diagnostyka pojazdów samochodowych
-37. Przepisy ruchu drogowego
-38. Technologia mechaniczna
+15. Doradztwo zawodowe
+16. Język angielski zawodowy
+17. Technika w produkcji cukierniczej
+18. Technologie produkcji cukierniczej
+19. Podstawy fryzjerstwa
+20. Techniki fryzjerskie
+21. Technika w produkcji gastronomicznej
+22. Technologia gastronomiczna z towaroznawstwem
+23. Obsługa klientów
+24. Organizacja sprzedaży
+25. Towar jako przedmiot handlu
+26. Język niemiecki
+27. Geografia
+28. Fizyka
+29. Rozwój zainteresowań i kreatywności
+30. Obsługa klienta
+31. Towaroznawstwo
+32. Historia i teraźniejszość
+33. Język niemiecki zawodowy
+34. Budowa i naprawa pojazdów samochodowych
+35. Diagnostyka pojazdów samochodowych
+36. Przepisy ruchu drogowego
+37. Technologia mechaniczna
 
 ## Branżowa szkoła II stopnia
 
@@ -70,7 +69,7 @@ Liczba unikalnych przedmiotow: 5.
 
 ## Technikum
 
-Liczba unikalnych przedmiotow: 38.
+Liczba unikalnych przedmiotow: 34.
 
 1. Język polski
 2. Język angielski
@@ -89,24 +88,20 @@ Liczba unikalnych przedmiotow: 38.
 15. Zajęcia z wychowawcą
 16. Rozwój kompetencji zawodowych
 17. Religia
-18. Edukacja zdrowotna
-19. Doradztwo zawodowe
-20. Język angielski zawodowy
-21. Podstawy fryzjerstwa
-22. Projektowanie fryzur
-23. Techniki fryzjerskie
-24. Zajęcia praktyczne 1
-25. Zajęcia praktyczne 2
-26. Marketing w działalności handlowej
-27. Obsługa klientów
-28. Organizacja sprzedaży
-29. Przedsiębiorca w handlu
-30. Towar jako przedmiot handlu
-31. Pracownia sprzedaży
-32. Symulacyjna firma handlowa
-33. Plastyka
-34. Organizacja i technika sprzedaży
-35. Historia i teraźniejszość
-36. Podstawy przedsiębiorczości
-37. Wychowanie do życia w rodzinie
-38. Wiedza o społeczeństwie
+18. Doradztwo zawodowe
+19. Język angielski zawodowy
+20. Podstawy fryzjerstwa
+21. Projektowanie fryzur
+22. Techniki fryzjerskie
+23. Zajęcia praktyczne 1
+24. Zajęcia praktyczne 2
+25. Marketing w działalności handlowej
+26. Obsługa klientów
+27. Organizacja sprzedaży
+28. Przedsiębiorca w handlu
+29. Towar jako przedmiot handlu
+30. Pracownia sprzedaży
+31. Symulacyjna firma handlowa
+32. Organizacja i technika sprzedaży
+33. Historia i teraźniejszość
+34. Wiedza o społeczeństwie

@@ -8,7 +8,7 @@ Zakres opracowania:
 - Przedmioty powtarzajace sie w kilku klasach lub zawodach zostaly ujednolicone i wpisane raz.
 - Sekcje podsumowan godzinowych nie sa traktowane jako przedmioty.
 
-Liczba unikalnych przedmiotow: 38.
+Liczba unikalnych przedmiotow: 34.
 
 ## Lista
 
@@ -29,24 +29,20 @@ Liczba unikalnych przedmiotow: 38.
 15. Zajęcia z wychowawcą
 16. Rozwój kompetencji zawodowych
 17. Religia
-18. Edukacja zdrowotna
-19. Doradztwo zawodowe
-20. Język angielski zawodowy
-21. Podstawy fryzjerstwa
-22. Projektowanie fryzur
-23. Techniki fryzjerskie
-24. Zajęcia praktyczne 1
-25. Zajęcia praktyczne 2
-26. Marketing w działalności handlowej
-27. Obsługa klientów
-28. Organizacja sprzedaży
-29. Przedsiębiorca w handlu
-30. Towar jako przedmiot handlu
-31. Pracownia sprzedaży
-32. Symulacyjna firma handlowa
-33. Plastyka
-34. Organizacja i technika sprzedaży
-35. Historia i teraźniejszość
-36. Podstawy przedsiębiorczości
-37. Wychowanie do życia w rodzinie
-38. Wiedza o społeczeństwie
+18. Doradztwo zawodowe
+19. Język angielski zawodowy
+20. Podstawy fryzjerstwa
+21. Projektowanie fryzur
+22. Techniki fryzjerskie
+23. Zajęcia praktyczne 1
+24. Zajęcia praktyczne 2
+25. Marketing w działalności handlowej
+26. Obsługa klientów
+27. Organizacja sprzedaży
+28. Przedsiębiorca w handlu
+29. Towar jako przedmiot handlu
+30. Pracownia sprzedaży
+31. Symulacyjna firma handlowa
+32. Organizacja i technika sprzedaży
+33. Historia i teraźniejszość
+34. Wiedza o społeczeństwie

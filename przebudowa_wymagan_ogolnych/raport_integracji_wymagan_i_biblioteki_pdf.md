@@ -5,11 +5,11 @@ Data: 2026-06-10.
 - Plik strony: `wymagania_edukacyjne_ZSZ5_2026_2027.html`.
 - Plik startowy GitHub Pages: `index.html`.
 - Manifest PDF: `data/podstawy_programowe.json`.
-- Przedmioty ogólnokształcące: 40.
+- Przedmioty ogólnokształcące: 35.
 - Kierunki zawodowe: 10.
-- Działy/jednostki: 709.
-- Wymagania/kryteria: 7689.
-- Pliki PDF w bibliotece: 43.
+- Działy/jednostki: 675.
+- Wymagania/kryteria: 7414.
+- Pliki PDF w bibliotece: 38.
 
 ## Status
 

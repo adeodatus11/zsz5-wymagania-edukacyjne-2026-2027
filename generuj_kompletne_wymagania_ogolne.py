@@ -696,7 +696,7 @@ def specs() -> list[SubjectSpec]:
         SubjectSpec("technikum", "Język angielski", "03_Technikum/ogolne/PP_jezyk_obcy_nowozytny.pdf", "ORE / język obcy nowożytny, technikum 2018"),
         SubjectSpec("technikum", "Język niemiecki", "03_Technikum/ogolne/PP_jezyk_obcy_nowozytny.pdf", "ORE / język obcy nowożytny, technikum 2018"),
         SubjectSpec("technikum", "Historia", "03_Technikum/ogolne/PP_historia.pdf", "ORE / historia, technikum 2018"),
-        SubjectSpec("technikum", "Edukacja obywatelska", "03_Technikum/ogolne/PP_edukacja_zdrowotna_Rozp_ME_06_03_2025.pdf", "Dz.U. 2025 poz. 382, edukacja obywatelska", start_anchor="Dział I. Ja i społeczeństwo", max_sections=7),
+        SubjectSpec("technikum", "Edukacja obywatelska", "03_Technikum/ogolne/PP_edukacja_obywatelska_Rozp_ME_06_03_2025.pdf", "Dz.U. 2025 poz. 382, edukacja obywatelska", start_anchor="Dział I. Ja i społeczeństwo", max_sections=7),
         SubjectSpec("technikum", "Biznes i zarządzanie", biz, "Dz.U. 2023 poz. 314, biznes i zarządzanie", start_anchor="BIZNES I ZARZĄDZANIE \nZAKRES PODSTAWOWY", end_anchor="ZAKRES ROZSZERZONY"),
         SubjectSpec("technikum", "Geografia", "03_Technikum/ogolne/PP_geografia.pdf", "ORE / geografia, technikum 2018"),
         SubjectSpec("technikum", "Biologia", "03_Technikum/ogolne/PP_biologia.pdf", "ORE / biologia, technikum 2018"),
@@ -706,11 +706,7 @@ def specs() -> list[SubjectSpec]:
         SubjectSpec("technikum", "Informatyka", "03_Technikum/ogolne/PP_informatyka.pdf", "ORE / informatyka, technikum 2018"),
         SubjectSpec("technikum", "Wychowanie fizyczne", "01_BSI_stopnia/ogolne/PP_BSI_wychowanie_fizyczne_nowe_DzU_2025_poz1035.pdf", "Dz.U. 2025 poz. 1035, WF dla LO/technikum/BS II", start_anchor="Dział I. Ćwiczenia ogólnorozwojowe", max_sections=9, note="Źródło jest w folderze BSI, ale treść aktu dotyczy LO/technikum/BS II."),
         SubjectSpec("technikum", "Edukacja dla bezpieczeństwa", "03_Technikum/ogolne/PP_historia_i_terazniejszosc_DzU_2022_poz1705.pdf", "Dz.U. 2022 poz. 1705, aktualizacja EDB dla LO/technikum/BS II", start_anchor="Treści nauczania", max_sections=4),
-        SubjectSpec("technikum", "Edukacja zdrowotna", "03_Technikum/ogolne/PP_edukacja_zdrowotna_Rozp_ME_06_03_2025.pdf", "Dz.U. 2025 poz. 382, edukacja zdrowotna", start_anchor="Dział I. Wartości i postawy", max_sections=10),
-        SubjectSpec("technikum", "Plastyka", "03_Technikum/ogolne/PP_plastyka.pdf", "ORE / plastyka, technikum 2018"),
         SubjectSpec("technikum", "Historia i teraźniejszość", tech_2024, "Dz.U. 2024 poz. 1019, HiT dla uczniów rozpoczynających przed 1.09.2024", start_anchor="HISTORIA I TERAŹNIEJSZOŚĆ \nZAKRES PODSTAWOWY", status=transitional, note="Przedmiot przejściowy dla wskazanych roczników; nie dotyczy nowych klas po zmianach 2024/2025."),
-        SubjectSpec("technikum", "Podstawy przedsiębiorczości", "03_Technikum/ogolne/PP_podstawy_przedsiebiorczosci_Rozp2018.pdf", "ORE / podstawy przedsiębiorczości 2018", status=transitional, note="Przedmiot przejściowy dla starszych roczników."),
-        SubjectSpec("technikum", "Wychowanie do życia w rodzinie", "03_Technikum/ogolne/PP_wychowanie_do_zycia_w_rodzinie.pdf", "ORE / WDŻwR 2018", status=transitional, note="Po zmianach 2025 wymaga potwierdzenia dla konkretnego rocznika."),
         SubjectSpec("technikum", "Wiedza o społeczeństwie", "03_Technikum/ogolne/PP_wiedza_o_spoleczenstwie_Rozp2018.pdf", "ORE / WOS 2018", status=transitional, note="Przedmiot przejściowy dla starszych roczników; w nowych rocznikach zastępowany edukacją obywatelską."),
         # BS II
         SubjectSpec("bsii", "Język polski", "02_BSII_stopnia/ogolne/PP_jezyk_polski.pdf", "ORE / język polski, BS II 2018"),
@@ -733,7 +729,6 @@ def specs() -> list[SubjectSpec]:
         SubjectSpec("bsi", "Informatyka", bsi_full, "Dz.U. 2017 poz. 356, informatyka BS I", mode="bsi_full", start_anchor="INFORMATYKA", start_occurrence="after:PODSTAWA PROGRAMOWA KSZTAŁCENIA OGÓLNEGO DLA BRANŻOWEJ SZKOŁY I STOPNIA"),
         SubjectSpec("bsi", "Wychowanie fizyczne", "03_Technikum/ogolne/PP_wychowanie_fizyczne_nowe_DzU_2025_poz1052.pdf", "Dz.U. 2025 poz. 1052, WF dla SP/BS I", start_anchor="branżowej szkoły I stopnia", max_sections=9, note="Źródło jest w folderze technikum, ale treść aktu obejmuje BS I."),
         SubjectSpec("bsi", "Edukacja dla bezpieczeństwa", "01_BSI_stopnia/ogolne/PP_BSI_nowelizacja_28_06_2024_HiT_EdObyw_BizZarz_EdZdrow.pdf", "Dz.U. 2024 poz. 996, EDB BS I", start_anchor="Edukacja dla bezpieczeństwa", start_occurrence="last", max_sections=4),
-        SubjectSpec("bsi", "Edukacja zdrowotna", "01_BSI_stopnia/ogolne/PP_BSI_edukacja_zdrowotna_Rozp_ME_06_03_2025.pdf", "Dz.U. 2025 poz. 378, edukacja zdrowotna BS I", start_anchor="Dział I. Wartości i postawy", max_sections=10),
     ]
 
 
@@ -1102,7 +1097,7 @@ def main() -> None:
         "- BS I / Edukacja dla bezpieczeństwa: zastąpiono błędnie wyekstrahowane treści WDŻ czterema działami EDB na podstawie lokalnego aktu `01_BSI_stopnia/ogolne/PP_BSI_nowelizacja_28_06_2024_HiT_EdObyw_BizZarz_EdZdrow.pdf` (Dz.U. 2024 poz. 996).",
         "- BS I / Wychowanie fizyczne: zastąpiono sklejone fragmenty biologii, informatyki, EDB i edukacji obywatelskiej czystymi dziewięcioma działami WF na podstawie `03_Technikum/ogolne/PP_wychowanie_fizyczne_nowe_DzU_2025_poz1052.pdf` (Dz.U. 2025 poz. 1052).",
         "- Technikum / Edukacja dla bezpieczeństwa: zastąpiono ekstrakcję ręcznie oczyszczonymi czterema działami, bez oderwanych cytatów prawnych i bez sklejonych poddziałów.",
-        "- Edukacja obywatelska i edukacja zdrowotna: ekstraktor odcina bloki `Wymagania fakultatywne` od wymagań obowiązkowych, aby nie mieszać ich bez oznaczenia.",
+        "- Edukacja obywatelska: ekstraktor odcina bloki `Wymagania fakultatywne` od wymagań obowiązkowych, aby nie mieszać ich bez oznaczenia.",
         "",
         "## Naprawy mechanizmów czyszczenia",
         "",

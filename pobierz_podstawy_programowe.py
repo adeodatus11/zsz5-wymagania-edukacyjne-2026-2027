@@ -76,11 +76,6 @@ PLIKI = [
         "nazwa": "PP BS I - nowelizacja 28.06.2024 (HiT, Ed.obywatelska, Biznes i zarządzanie, Ed.zdrowotna) [Dz.U. 2024 poz. 996]"
     },
     {
-        "url": ORE + "89037",
-        "sciezka": "01_BSI_stopnia/ogolne/PP_BSI_edukacja_zdrowotna_Rozp_ME_06_03_2025.pdf",
-        "nazwa": "PP BS I - Edukacja zdrowotna (Rozp. ME 06.03.2025)"
-    },
-    {
         "url": ORE + "89116",
         "sciezka": "01_BSI_stopnia/ogolne/PP_edukacja_obywatelska_BSI_Tech_LO_Rozp_ME_06_03_2025.pdf",
         "nazwa": "PP Edukacja obywatelska (BS I + Technikum + LO, Rozp. ME 06.03.2025)"
@@ -207,29 +202,9 @@ PLIKI = [
         "nazwa": "PP Edukacja dla bezpieczeństwa (Technikum, Rozp. 2018)"
     },
     {
-        "url": ORE + "23139",
-        "sciezka": "03_Technikum/ogolne/PP_plastyka.pdf",
-        "nazwa": "PP Plastyka (Technikum, Rozp. 2018)"
-    },
-    {
-        "url": ORE + "23140",
-        "sciezka": "03_Technikum/ogolne/PP_podstawy_przedsiebiorczosci_Rozp2018.pdf",
-        "nazwa": "PP Podstawy przedsiębiorczości – stare (Technikum, Rozp. 2018)"
-    },
-    {
         "url": ORE + "23141",
         "sciezka": "03_Technikum/ogolne/PP_wiedza_o_spoleczenstwie_Rozp2018.pdf",
         "nazwa": "PP Wiedza o społeczeństwie – stare (Technikum, Rozp. 2018)"
-    },
-    {
-        "url": ORE + "23142",
-        "sciezka": "03_Technikum/ogolne/PP_wychowanie_do_zycia_w_rodzinie.pdf",
-        "nazwa": "PP Wychowanie do życia w rodzinie (Technikum, Rozp. 2018)"
-    },
-    {
-        "url": ORE + "89038",
-        "sciezka": "03_Technikum/ogolne/PP_edukacja_zdrowotna_Rozp_ME_06_03_2025.pdf",
-        "nazwa": "PP Edukacja zdrowotna (Technikum, Rozp. ME 06.03.2025)"
     },
     {
         "url": ORE + "89116",
