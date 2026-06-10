@@ -395,6 +395,20 @@ def render_pdf_library(items: list[dict]) -> str:
     return f'<div class="pdf-grid">{"".join(cards)}</div>'
 
 
+CARD_ID_RE = re.compile(r'id="([^"]+)"')
+CARD_NAME_RE = re.compile(r'<span class="card-name">(.*?)</span>')
+
+
+def render_quick_index(cards: list[str]) -> str:
+    links = []
+    for card in cards:
+        id_match = CARD_ID_RE.search(card)
+        name_match = CARD_NAME_RE.search(card)
+        if id_match and name_match:
+            links.append(f'<a href="#{id_match.group(1)}">{name_match.group(1)}</a>')
+    return "".join(links)
+
+
 def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict], pdf_items: list[dict]) -> tuple[str, list[dict]]:
     grouped_general = {key: [] for key in SCHOOL_LABELS}
     grouped_voc = {key: [] for key in SCHOOL_LABELS}
@@ -431,8 +445,8 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
 
     page_sections = []
     for school in ["technikum", "bsi", "bsii"]:
-        general_index = "".join(f'<a href="#{re.search(r"id=\"([^\"]+)\"", card).group(1)}">{re.search(r"<span class=\"card-name\">(.*?)</span>", card).group(1)}</a>' for card in grouped_general[school])
-        voc_index = "".join(f'<a href="#{re.search(r"id=\"([^\"]+)\"", card).group(1)}">{re.search(r"<span class=\"card-name\">(.*?)</span>", card).group(1)}</a>' for card in grouped_voc[school])
+        general_index = render_quick_index(grouped_general[school])
+        voc_index = render_quick_index(grouped_voc[school])
         page_sections.append(
             f"""
 <main class="content-page" id="page_{school}_ogolne" data-school="{school}" data-mode="ogolne">
