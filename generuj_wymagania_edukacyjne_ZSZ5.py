@@ -645,28 +645,6 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
   </section>
 
   <section class="home-section">
-    <h3>Podstawy prawne i źródła</h3>
-    <div class="home-cards">
-      <div class="home-card">
-        <h4>Ustawa o systemie oświaty, art. 22a</h4>
-        <p>Reguluje przedstawianie i dopuszczanie programów nauczania do użytku w szkole. To podstawa dla szkolnej pracy nad programem, z którego wynikają wymagania.</p>
-      </div>
-      <div class="home-card">
-        <h4>Ustawa o systemie oświaty, art. 44b</h4>
-        <p>Łączy ocenianie z wymaganiami edukacyjnymi wynikającymi z realizowanego programu nauczania i nakłada obowiązek poinformowania uczniów oraz rodziców.</p>
-      </div>
-      <div class="home-card">
-        <h4>Rozporządzenie MEN z 22 lutego 2019 r.</h4>
-        <p>Określa szczegółowe warunki i sposób oceniania, klasyfikowania i promowania uczniów oraz słuchaczy w szkołach publicznych.</p>
-      </div>
-      <div class="home-card">
-        <h4>Rozporządzenie ME z 28 czerwca 2024 r.</h4>
-        <p>Zmienia podstawę programową kształcenia ogólnego dla liceum ogólnokształcącego, technikum oraz branżowej szkoły II stopnia. Nie jest jedynym źródłem dla całej strony: część przedmiotów i kwalifikacji korzysta z innych aktów wskazanych w kartach źródłowych.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="home-section">
     <h3>Rozkład materiału - po co jest potrzebny</h3>
     <p>Rozkład materiału to praktyczny plan pracy nauczyciela na rok, semestr lub dział. Nie zastępuje podstawy programowej, programu nauczania ani wymagań edukacyjnych. Pokazuje natomiast, jak nauczyciel rozkłada treści programu w czasie i jak łączy je z lekcjami, ćwiczeniami, sprawdzaniem osiągnięć oraz możliwościami konkretnej klasy.</p>
     <div class="home-cards">
@@ -728,6 +706,28 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
       <div class="home-card">
         <h4>Sprawdź źródło</h4>
         <p>Każda karta ma informację o podstawie lub PDF-ie źródłowym. Pozycje zawodowe są oznaczone jako wymagające recenzji nauczycieli zawodu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h3>Podstawy prawne i źródła</h3>
+    <div class="home-cards">
+      <div class="home-card">
+        <h4>Ustawa o systemie oświaty, art. 22a</h4>
+        <p>Reguluje przedstawianie i dopuszczanie programów nauczania do użytku w szkole. To podstawa dla szkolnej pracy nad programem, z którego wynikają wymagania.</p>
+      </div>
+      <div class="home-card">
+        <h4>Ustawa o systemie oświaty, art. 44b</h4>
+        <p>Łączy ocenianie z wymaganiami edukacyjnymi wynikającymi z realizowanego programu nauczania i nakłada obowiązek poinformowania uczniów oraz rodziców.</p>
+      </div>
+      <div class="home-card">
+        <h4>Rozporządzenie MEN z 22 lutego 2019 r.</h4>
+        <p>Określa szczegółowe warunki i sposób oceniania, klasyfikowania i promowania uczniów oraz słuchaczy w szkołach publicznych.</p>
+      </div>
+      <div class="home-card">
+        <h4>Rozporządzenie ME z 28 czerwca 2024 r.</h4>
+        <p>Zmienia podstawę programową kształcenia ogólnego dla liceum ogólnokształcącego, technikum oraz branżowej szkoły II stopnia. Nie jest jedynym źródłem dla całej strony: część przedmiotów i kwalifikacji korzysta z innych aktów wskazanych w kartach źródłowych.</p>
       </div>
     </div>
   </section>
