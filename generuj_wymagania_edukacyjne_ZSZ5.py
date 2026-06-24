@@ -545,7 +545,7 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
 
   <section class="home-section">
     <h3>Przydatne materiały i linki</h3>
-    <p>Poniższe linki prowadzą do materiałów, które warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i planowaniu dostosowań. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
+    <p>Poniższe linki prowadzą do materiałów, które warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i adaptowaniu programu do realnej pracy z klasą. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
     <div class="home-cards resource-grid">
       <div class="home-card">
         <h4>MEN - materiały dla nauczycieli szkół ponadpodstawowych</h4>
@@ -561,16 +561,6 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
         <h4>ORE - programy nauczania do szkoły ponadpodstawowej</h4>
         <p>Przykładowe programy nauczania pokazujące, jak przejść od podstawy programowej do realnej organizacji pracy w szkole.</p>
         <a class="resource-link" href="https://ore.edu.pl/2020/04/programy-nauczania-programy-do-szkoly-ponadpodstawowej/" target="_blank" rel="noopener">Otwórz materiał</a>
-      </div>
-      <div class="home-card">
-        <h4>ORE - dostosowanie wymagań edukacyjnych</h4>
-        <p>Praktyczny materiał o dostosowaniu wymagań wobec uczniów ze specyficznymi trudnościami w uczeniu się, z przykładami pracy nauczyciela.</p>
-        <a class="resource-link" href="https://ore.edu.pl/wp-content/uploads/2015/03/dostosowanie-wymagan-edukacyjnych-wobec-uczniow-ze-specyficznymi-trudnosciami-w-uczeniu-sie.pdf" target="_blank" rel="noopener">Otwórz PDF</a>
-      </div>
-      <div class="home-card">
-        <h4>ORE - podstawa prawna indywidualizacji nauczania</h4>
-        <p>Omówienie przepisów i praktycznych konsekwencji indywidualizacji pracy z uczniem oraz dostosowywania wymagań.</p>
-        <a class="resource-link" href="https://ore.edu.pl/2025/10/podstawa-prawna-indywidualizacji-nauczania/" target="_blank" rel="noopener">Otwórz materiał</a>
       </div>
       <div class="home-card">
         <h4>IBE PIB - podstawy programowe i kierunki zmian</h4>
@@ -613,7 +603,7 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
       <div class="flow-step">
         <div class="step-num">6</div>
         <h4>Ocena ucznia</h4>
-        <p>Ocena jest wynikiem porównania osiągnięć ucznia z wymaganiami edukacyjnymi, z uwzględnieniem zasad oceniania i ewentualnych dostosowań.</p>
+        <p>Ocena jest wynikiem porównania osiągnięć ucznia z wymaganiami edukacyjnymi, z uwzględnieniem zasad oceniania oraz realnego sposobu pracy w danym oddziale.</p>
       </div>
     </div>
     <div class="law-callout">
@@ -645,18 +635,6 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
         <p>Na początku roku nauczyciel informuje o wymaganiach edukacyjnych potrzebnych do uzyskania poszczególnych ocen oraz o sposobach sprawdzania osiągnięć edukacyjnych uczniów.</p>
         <a class="resource-link" href="https://dziennikustaw.gov.pl/D2025000088101.pdf" target="_blank" rel="noopener">Otwórz Dz.U. 2025 poz. 881</a>
       </div>
-      <div class="home-card">
-        <h4>Praca ma być indywidualizowana</h4>
-        <span class="legal-ref">Ustawa o systemie oświaty, art. 44c ust. 1-2</span>
-        <p>Nauczyciel ma obowiązek indywidualizować pracę z uczniem odpowiednio do jego potrzeb rozwojowych, edukacyjnych i możliwości psychofizycznych oraz dostosować wymagania w przypadkach określonych w przepisach.</p>
-        <a class="resource-link" href="https://dziennikustaw.gov.pl/D2025000088101.pdf" target="_blank" rel="noopener">Otwórz Dz.U. 2025 poz. 881</a>
-      </div>
-      <div class="home-card">
-        <h4>Kiedy dostosowanie wymagań jest wymagane</h4>
-        <span class="legal-ref">Rozporządzenie MEN z 22.02.2019 r., § 2</span>
-        <p>Rozporządzenie wskazuje m.in. orzeczenie o potrzebie kształcenia specjalnego, orzeczenie o indywidualnym nauczaniu, opinię poradni, objęcie pomocą psychologiczno-pedagogiczną w szkole oraz opinię lekarza dla WF.</p>
-        <a class="resource-link" href="https://dziennikustaw.gov.pl/D2023000257201.pdf" target="_blank" rel="noopener">Otwórz Dz.U. 2023 poz. 2572</a>
-      </div>
     </div>
   </section>
 
@@ -683,41 +661,6 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
   </section>
 
   <section class="home-section">
-    <h3>Dostosowanie wymagań do uczniów - konkretne przepisy</h3>
-    <p>Wymagania edukacyjne nie są jedną sztywną tabelą dla wszystkich uczniów. Prawo rozdziela trzy sprawy: informowanie o wymaganiach, indywidualizowanie pracy oraz dostosowanie wymagań w określonych przypadkach.</p>
-    <div class="home-cards">
-      <div class="home-card">
-        <h4>Co trzeba przekazać uczniom i rodzicom</h4>
-        <span class="legal-ref">Ustawa o systemie oświaty, art. 44b ust. 8 pkt 1</span>
-        <p>Nauczyciel na początku roku informuje o wymaganiach edukacyjnych niezbędnych do otrzymania poszczególnych śródrocznych i rocznych ocen klasyfikacyjnych, wynikających z realizowanego programu nauczania.</p>
-      </div>
-      <div class="home-card">
-        <h4>Indywidualizacja pracy na lekcji</h4>
-        <span class="legal-ref">Ustawa o systemie oświaty, art. 44c ust. 1</span>
-        <p>Nauczyciel ma obowiązek indywidualizować pracę z uczniem na zajęciach edukacyjnych odpowiednio do potrzeb rozwojowych i edukacyjnych oraz możliwości psychofizycznych ucznia.</p>
-      </div>
-      <div class="home-card">
-        <h4>Dostosowanie wymagań edukacyjnych</h4>
-        <span class="legal-ref">Ustawa o systemie oświaty, art. 44c ust. 2</span>
-        <p>Nauczyciel dostosowuje wymagania, o których mowa w art. 44b ust. 8 pkt 1, do indywidualnych potrzeb rozwojowych i edukacyjnych oraz możliwości psychofizycznych ucznia w przypadkach wskazanych w przepisach o ocenianiu.</p>
-      </div>
-      <div class="home-card">
-        <h4>Kiedy dostosowanie jest wymagane</h4>
-        <span class="legal-ref">Rozporządzenie MEN z 22.02.2019 r., § 2</span>
-        <p>§ 2 rozporządzenia wskazuje, że wymagania dostosowuje się m.in. dla ucznia:</p>
-        <ul>
-          <li>z orzeczeniem o potrzebie kształcenia specjalnego - na podstawie orzeczenia i IPET,</li>
-          <li>z orzeczeniem o potrzebie indywidualnego nauczania,</li>
-          <li>z opinią poradni psychologiczno-pedagogicznej, w tym o specyficznych trudnościach w uczeniu się,</li>
-          <li>objętego pomocą psychologiczno-pedagogiczną w szkole na podstawie rozpoznania nauczycieli i specjalistów,</li>
-          <li>z opinią lekarza o ograniczonych możliwościach wykonywania określonych ćwiczeń fizycznych na WF.</li>
-        </ul>
-      </div>
-    </div>
-    <p class="home-warning"><strong>Wniosek dla tej strony:</strong> publikowana tabela może być wspólnym punktem wyjścia, ale nauczyciel musi mieć możliwość dopisania dostosowań dla konkretnego ucznia lub oddziału. Dlatego status materiału pozostaje roboczy do zatwierdzenia przez nauczyciela.</p>
-  </section>
-
-  <section class="home-section">
     <h3>Rozkład materiału - po co jest potrzebny</h3>
     <p>Rozkład materiału to praktyczny plan pracy nauczyciela na rok, semestr lub dział. Nie zastępuje podstawy programowej, programu nauczania ani wymagań edukacyjnych. Pokazuje natomiast, jak nauczyciel rozkłada treści programu w czasie i jak łączy je z lekcjami, ćwiczeniami, sprawdzaniem osiągnięć oraz możliwościami konkretnej klasy.</p>
     <div class="home-cards">
@@ -736,15 +679,15 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
         <p>Bez rozkładu materiału łatwo mieć tabelę wymagań, która wygląda kompletnie, ale nie wynika z realnego tempa pracy klasy. Rozkład pozwala sprawdzić, czy wszystkie treści da się zrealizować w kalendarzu roku szkolnego i czy ocenianie jest zaplanowane w sensownych momentach.</p>
       </div>
       <div class="home-card">
-        <h4>Jak łączy się z dostosowaniami</h4>
-        <p>Dostosowania wymagań nie polegają wyłącznie na zmianie tabeli ocen. W praktyce wpływają także na tempo, formy pracy, liczbę ćwiczeń, sposób sprawdzania wiedzy i dobór materiałów. To właśnie rozkład materiału pomaga przełożyć dostosowania na codzienną pracę z klasą.</p>
+        <h4>Jak łączy się z adaptacją programu</h4>
+        <p>Adaptacja programu nie polega wyłącznie na zmianie tabeli ocen. W praktyce wpływa na tempo, formy pracy, liczbę ćwiczeń, sposób sprawdzania wiedzy i dobór materiałów. To właśnie rozkład materiału pomaga przełożyć decyzje nauczyciela na codzienną pracę z klasą.</p>
       </div>
     </div>
   </section>
 
   <section class="home-section">
-    <h3>Co znaczy dostosować podstawę w praktyce</h3>
-    <p>Nie dostosowuje się samej podstawy programowej jako aktu prawnego: jej wymagania pozostają punktem odniesienia. Dostosowuje się sposób realizacji podstawy w szkolnym programie, rozkładzie materiału, metodach pracy, formach sprawdzania osiągnięć i wymaganiach edukacyjnych dla konkretnych uczniów. W praktyce oznacza to decyzje o tempie, kolejności, przykładach, ćwiczeniach, sposobach odpowiedzi, kryteriach oceniania i wsparciu, przy zachowaniu obowiązkowych celów i treści.</p>
+    <h3>Co znaczy adaptować program w praktyce</h3>
+    <p>Nie zmienia się samej podstawy programowej jako aktu prawnego: jej wymagania pozostają punktem odniesienia. Adaptuje się sposób realizacji programu: kolejność tematów, tempo, przykłady, ćwiczenia, materiały, formy pracy i sposoby sprawdzania wiedzy. W praktyce oznacza to, że nauczyciel może odejść od gotowej propozycji wydawnictwa, jeśli widzi, że w danej klasie lepiej zadziała inna kolejność, więcej ćwiczeń, wolniejsze tempo albo inny sposób sprawdzenia umiejętności.</p>
     <div class="home-cards">
       <div class="home-card">
         <h4>1. Od podstawy do programu</h4>
@@ -755,12 +698,12 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
         <p>Rozkład materiału przekłada program na kalendarz pracy. To w nim widać, czy tempo jest realne, gdzie są powtórzenia, kiedy uczniowie ćwiczą umiejętności i kiedy nauczyciel sprawdza osiągnięcia.</p>
       </div>
       <div class="home-card">
-        <h4>3. Od wymagań do dostosowań</h4>
-        <p>Wymagania na oceny powinny być zrozumiałe dla ucznia, ale mogą wymagać dostosowania formy, czasu pracy, sposobu odpowiedzi, liczby przykładów lub poziomu wsparcia, jeżeli wynika to z potrzeb i możliwości ucznia.</p>
+        <h4>3. Od wymagań do pracy na lekcji</h4>
+        <p>Wymagania na oceny powinny być zrozumiałe dla ucznia, a sposób dochodzenia do tych wymagań może być różny: przez więcej przykładów, inne ćwiczenia, pracę praktyczną, projekty, rozmowę albo zadania stopniowane trudnością.</p>
       </div>
       <div class="home-card">
         <h4>4. Co nie powinno się wydarzyć</h4>
-        <p>Dostosowanie nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu. Powinno być udokumentowaną decyzją nauczyciela, zespołu lub szkoły, zgodną z podstawą i przepisami o ocenianiu.</p>
+        <p>Adaptacja nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu. Powinna być świadomą decyzją nauczyciela, zespołu lub szkoły, zgodną z podstawą i realnym planem pracy.</p>
       </div>
     </div>
   </section>
