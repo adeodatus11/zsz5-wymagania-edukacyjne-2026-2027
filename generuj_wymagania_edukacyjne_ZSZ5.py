@@ -41,6 +41,49 @@ SCHOOL_COLORS = {
 
 GRADE_ORDER = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
 
+ORE_VADEMECUM = [
+    {
+        "subjects": ["Biologia"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/07/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-biologia.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+    {
+        "subjects": ["Chemia"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/07/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-chemia.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+    {
+        "subjects": ["Fizyka"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/07/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-fizyka.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+    {
+        "subjects": ["Historia"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/07/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-historia.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+    {
+        "subjects": ["Język polski"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/07/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-jezyk-polski-wyd.elektroniczne.pdf",
+        "schools": ["technikum", "bsi", "bsii"],
+    },
+    {
+        "subjects": ["Geografia"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/11/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-geografia.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+    {
+        "subjects": ["Wiedza o społeczeństwie"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/12/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-wos.pdf",
+        "schools": ["technikum"],
+    },
+    {
+        "subjects": ["Wychowanie fizyczne"],
+        "url": "https://ore.edu.pl/wp-content/uploads/2019/12/vademecum-nauczyciela.-wdrazanie-podstawy-programowej-w-szkole-ponadpodstawowej.-wychowanie-fizyczne.pdf",
+        "schools": ["technikum", "bsi"],
+    },
+]
+
 
 @dataclass(frozen=True)
 class VocationalSpec:
@@ -76,8 +119,26 @@ def read_pdf(path: str) -> str:
 def clean_text(value: str) -> str:
     value = value.replace("\u00ad", "")
     value = re.sub(r"(\w)-\s+(\w)", r"\1\2", value)
+    replacements = {
+        "e -mail": "e-mail",
+        "e -maile": "e-maile",
+        "informacyjno - -komunikacyjnych": "informacyjno-komunikacyjnych",
+        "klim at": "klimat",
+        "za wody": "zawody",
+        "r eaguje": "reaguje",
+    }
+    for bad, good in replacements.items():
+        value = value.replace(bad, good)
     value = re.sub(r"\s+", " ", value).strip()
     value = re.sub(r"\s+([,.;:])", r"\1", value)
+    return value
+
+
+def clean_unit_title(value: str) -> str:
+    value = clean_text(value)
+    value = re.sub(r"\s*\d+\)\s*$", "", value).strip()
+    value = re.sub(r"\s+\d{2,4}\s*$", "", value).strip()
+    value = re.sub(r"\s+\d+\)\s+\d{2,4}\s*$", "", value).strip()
     return value
 
 
@@ -90,6 +151,10 @@ def slug(value: str) -> str:
 
 def safe_id(*parts: str) -> str:
     return "_".join(slug(p) for p in parts if p)
+
+
+def status_class(status: str) -> str:
+    return "status-ok" if status in {"podstawa dostępna", "ORE"} else "status-review"
 
 
 def extract_qualifications(text: str) -> list[str]:
@@ -152,7 +217,7 @@ def extract_vocational_units(spec: VocationalSpec) -> dict:
     units = []
     for idx, match in enumerate(unit_matches):
         code = match.group(1)
-        title = clean_text(match.group(2))
+        title = clean_unit_title(match.group(2))
         if title.lower().startswith(("efekty", "kryteria")):
             continue
         start = match.end()
@@ -213,7 +278,7 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
         "</button>",
         f'<div class="card-body" id="{body_id}">',
         '<details class="source-box"><summary>Źródło, status i uwagi</summary>',
-        f'<p><span class="status status-ok">{h(spec.status)}</span><strong>Źródło:</strong> {h(spec.source_label)}</p>',
+        f'<p><span class="status {status_class(spec.status)}">{h(spec.status)}</span><strong>Źródło:</strong> {h(spec.source_label)}</p>',
         f'<code>{h(spec.path)}</code>',
     ]
     if spec.note:
@@ -326,7 +391,7 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
 def pdf_label_from_path(path: Path, general_specs_by_path: dict[str, list[str]], vocational_specs_by_path: dict[str, VocationalSpec]) -> tuple[str, str, str]:
     rel = path.as_posix()
     if rel in general_specs_by_path:
-        return ", ".join(general_specs_by_path[rel]), "", "gotowe"
+        return ", ".join(general_specs_by_path[rel]), "", "podstawa dostępna"
     if rel in vocational_specs_by_path:
         spec = vocational_specs_by_path[rel]
         quals = ", ".join(re.findall(r"[A-Z]{3}\.\d{2}", spec.source_label))
@@ -370,7 +435,7 @@ def build_pdf_manifest(general_specs: list[og.SubjectSpec]) -> list[dict]:
     return items
 
 
-def render_pdf_library(items: list[dict]) -> str:
+def render_pdf_library(items: list[dict], school: str) -> str:
     cards = []
     for idx, item in enumerate(items):
         card_id = f"pdf_{item['school']}_{idx}"
@@ -379,7 +444,7 @@ def render_pdf_library(items: list[dict]) -> str:
             f"""
 <article class="pdf-card" id="{card_id}" data-category="{h(item['category'])}" data-search="{h(search)}">
   <div>
-    <span class="status {'status-ok' if item['status'] == 'gotowe' else 'status-review'}">{h(item['status'])}</span>
+    <span class="status {status_class(item['status'])}">{h(item['status'])}</span>
     <strong>{h(item['title'])}</strong>
     <p>{h(item['category_label'])}{' · ' + h(item['qualification']) if item['qualification'] else ''}</p>
     <code>{h(item['path'])}</code>
@@ -392,7 +457,7 @@ def render_pdf_library(items: list[dict]) -> str:
 </article>
 """
         )
-    return f'<div class="pdf-grid">{"".join(cards)}</div>'
+    return f'<div class="pdf-grid">{"".join(cards)}{render_ore_cards(school)}</div>'
 
 
 CARD_ID_RE = re.compile(r'id="([^"]+)"')
@@ -407,6 +472,137 @@ def render_quick_index(cards: list[str]) -> str:
         if id_match and name_match:
             links.append(f'<a href="#{id_match.group(1)}">{name_match.group(1)}</a>')
     return "".join(links)
+
+
+def render_ore_cards(school: str) -> str:
+    cards = []
+    for idx, item in enumerate(entry for entry in ORE_VADEMECUM if school in entry["schools"]):
+        title = " / ".join(item["subjects"])
+        search = f"{title} Vademecum ORE opracowanie metodyczne podstawa programowa"
+        card_id = f"pdf_{school}_ore_{idx}"
+        cards.append(
+            f"""
+<article class="pdf-card" id="{card_id}" data-category="opracowania" data-search="{h(search)}">
+  <div>
+    <span class="status status-ore">ORE</span>
+    <strong>{h(title)} - Vademecum nauczyciela</strong>
+    <p>Opracowanie metodyczne ORE do wdrażania podstawy programowej w szkole ponadpodstawowej.</p>
+    <code>{h(item['url'])}</code>
+  </div>
+  <div class="pdf-actions">
+    <span>ore.edu.pl</span>
+    <a href="{h(item['url'])}" target="_blank" rel="noopener">Otwórz PDF</a>
+  </div>
+</article>
+"""
+        )
+    if not cards:
+        return ""
+    intro = """
+<div class="ore-note">
+  <strong>Opracowania ORE - Vademecum nauczyciela</strong>
+  <span>To materiały pomocnicze do wdrażania podstawy programowej. Nie zastępują podstaw programowych ani szkolnej recenzji wymagań.</span>
+</div>
+"""
+    return intro + "".join(cards)
+
+
+def render_home_page(total_general: int, total_vocational: int, total_tables: int, total_items: int, total_pdf: int) -> str:
+    return f"""
+<main class="content-page" id="page_home" data-school="home" data-mode="home">
+  <section class="home-hero">
+    <div class="home-hero-text">
+      <p class="eyebrow">Zespół Szkół Zawodowych nr 5 we Wrocławiu</p>
+      <h2>Wymagania edukacyjne i biblioteka podstaw programowych 2026/2027</h2>
+      <p>Strona porządkuje wymagania dla przedmiotów ogólnokształcących i zawodowych oraz daje szybki dostęp do lokalnych PDF-ów podstaw programowych. Materiał jest roboczym opracowaniem ZSZ5: przed publikacją szkolną wymaga sprawdzenia przez nauczycieli przedmiotów i zawodów.</p>
+      <div class="home-nav-hint">
+        <a href="#technikum_ogolne" onclick="setSchool('technikum');setMode('ogolne')">Technikum - ogólne</a>
+        <a href="#technikum_zawodowe" onclick="setSchool('technikum');setMode('zawodowe')">Technikum - zawodowe</a>
+        <a href="#bsi_ogolne" onclick="setSchool('bsi');setMode('ogolne')">BS I - ogólne</a>
+        <a href="#bsii_ogolne" onclick="setSchool('bsii');setMode('ogolne')">BS II - ogólne</a>
+        <a href="#technikum_pdf" onclick="setSchool('technikum');setMode('pdf')">Biblioteka PDF</a>
+      </div>
+    </div>
+    <div class="home-logo-card">
+      <img src="assets/logo-zsz5.jpg" alt="Logotyp ZSZ5 we Wrocławiu">
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h3>Stan opracowania</h3>
+    <div class="home-stats">
+      <div class="stat-box"><div class="stat-num">{total_general}</div><div class="stat-label">przedmiotów ogólnokształcących</div></div>
+      <div class="stat-box"><div class="stat-num">{total_vocational}</div><div class="stat-label">kierunków zawodowych</div></div>
+      <div class="stat-box"><div class="stat-num">{total_tables}</div><div class="stat-label">działów i jednostek</div></div>
+      <div class="stat-box"><div class="stat-num">{total_items}</div><div class="stat-label">wymagań i kryteriów</div></div>
+      <div class="stat-box"><div class="stat-num">{total_pdf}</div><div class="stat-label">plików PDF</div></div>
+    </div>
+    <p class="home-warning"><strong>Status roboczy:</strong> wymagania na oceny są opracowaniem szkolnym. Podstawy programowe w bibliotece są źródłami, natomiast podział na oceny trzeba zatwierdzić w pracy zespołów przedmiotowych i zawodowych.</p>
+  </section>
+
+  <section class="home-section">
+    <h3>Od podstawy programowej do wymagań na oceny</h3>
+    <p>Podstawa programowa wskazuje obowiązkowe cele i treści kształcenia. Program nauczania porządkuje sposób realizacji tych treści w szkole, a wymagania edukacyjne przekładają je na kryteria oceniania. Dlatego ta strona nie zastępuje decyzji nauczyciela: ma być punktem startowym do recenzji, ujednolicenia i publikacji wymagań.</p>
+    <div class="flow-diagram">
+      <div class="flow-step">
+        <div class="step-num">1</div>
+        <h4>Podstawa programowa</h4>
+        <p>Źródło prawne dla celów i treści nauczania. W bibliotece PDF można otworzyć lub pobrać dokumenty przypisane do typów szkół i zawodów.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">2</div>
+        <h4>Program nauczania</h4>
+        <p>Nauczyciel lub zespół nauczycieli dobiera kolejność, metody, materiały i zakres poszerzeń, zachowując wymagania podstawy.</p>
+      </div>
+      <div class="flow-step">
+        <div class="step-num">3</div>
+        <h4>Wymagania edukacyjne</h4>
+        <p>Kryteria na oceny powinny wynikać z realizowanego programu nauczania i być przedstawione uczniom oraz rodzicom na początku roku.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h3>Podstawy prawne i źródła</h3>
+    <div class="home-cards">
+      <div class="home-card">
+        <h4>Ustawa o systemie oświaty, art. 22a</h4>
+        <p>Reguluje przedstawianie i dopuszczanie programów nauczania do użytku w szkole. To podstawa dla szkolnej pracy nad programem, z którego wynikają wymagania.</p>
+      </div>
+      <div class="home-card">
+        <h4>Ustawa o systemie oświaty, art. 44b</h4>
+        <p>Łączy ocenianie z wymaganiami edukacyjnymi wynikającymi z realizowanego programu nauczania i nakłada obowiązek poinformowania uczniów oraz rodziców.</p>
+      </div>
+      <div class="home-card">
+        <h4>Rozporządzenie MEN z 22 lutego 2019 r.</h4>
+        <p>Określa szczegółowe warunki i sposób oceniania, klasyfikowania i promowania uczniów oraz słuchaczy w szkołach publicznych.</p>
+      </div>
+      <div class="home-card">
+        <h4>Rozporządzenie ME z 28 czerwca 2024 r.</h4>
+        <p>Zmienia podstawę programową kształcenia ogólnego dla liceum ogólnokształcącego, technikum oraz branżowej szkoły II stopnia. Nie jest jedynym źródłem dla całej strony: część przedmiotów i kwalifikacji korzysta z innych aktów wskazanych w kartach źródłowych.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h3>Jak korzystać ze strony</h3>
+    <div class="home-cards">
+      <div class="home-card">
+        <h4>Wybierz typ szkoły</h4>
+        <p>Górne zakładki prowadzą do technikum, branżowej szkoły I stopnia i branżowej szkoły II stopnia.</p>
+      </div>
+      <div class="home-card">
+        <h4>Przełącz typ treści</h4>
+        <p>Można osobno przeglądać przedmioty ogólnokształcące, zawodowe oraz bibliotekę PDF.</p>
+      </div>
+      <div class="home-card">
+        <h4>Sprawdź źródło</h4>
+        <p>Każda karta ma informację o podstawie lub PDF-ie źródłowym. Pozycje zawodowe są oznaczone jako wymagające recenzji nauczycieli zawodu.</p>
+      </div>
+    </div>
+  </section>
+</main>
+"""
 
 
 def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict], pdf_items: list[dict]) -> tuple[str, list[dict]]:
@@ -430,7 +626,7 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
     total_items = sum(stat["items"] for stat in stats)
     total_pdf = len(pdf_items)
 
-    school_tabs = "\n".join(
+    school_tabs = '<button class="tab-btn active" type="button" id="school_home" onclick="setHome()" data-color="#f59e0b" aria-selected="true">Start</button>\n' + "\n".join(
         f'<button class="tab-btn" type="button" id="school_{key}" onclick="setSchool(\'{key}\')" data-color="{SCHOOL_COLORS[key]}" aria-selected="false">{SCHOOL_SHORT[key]}</button>'
         for key in ["technikum", "bsi", "bsii"]
     )
@@ -443,7 +639,15 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
         ]
     )
 
-    page_sections = []
+    page_sections = [
+        render_home_page(
+            len([s for s in stats if s["type"] == "ogolne"]),
+            len([s for s in stats if s["type"] == "zawodowe"]),
+            total_tables,
+            total_items,
+            total_pdf,
+        )
+    ]
     for school in ["technikum", "bsi", "bsii"]:
         general_index = render_quick_index(grouped_general[school])
         voc_index = render_quick_index(grouped_voc[school])
@@ -471,9 +675,10 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
       <button type="button" onclick="setPdfCategory('all')" class="pdf-filter active" data-pdf-filter="all">Wszystkie</button>
       <button type="button" onclick="setPdfCategory('ogolne')" class="pdf-filter" data-pdf-filter="ogolne">Ogólnokształcące</button>
       <button type="button" onclick="setPdfCategory('zawodowe')" class="pdf-filter" data-pdf-filter="zawodowe">Zawodowe</button>
+      <button type="button" onclick="setPdfCategory('opracowania')" class="pdf-filter" data-pdf-filter="opracowania">Opracowania ORE</button>
     </div>
   </div>
-  {render_pdf_library([item for item in pdf_items if item['school'] == school])}
+  {render_pdf_library([item for item in pdf_items if item['school'] == school], school)}
 </main>
 """
         )
@@ -484,6 +689,7 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wymagania edukacyjne ZSZ5 2026/2027</title>
+<link rel="icon" href="assets/logo-zsz5.jpg">
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 body{{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#f3f4f6;color:#111827;min-height:100vh}}
@@ -491,6 +697,8 @@ a{{color:inherit}}
 .skip-link{{position:absolute;left:12px;top:-48px;background:#111827;color:#fff;padding:8px 12px;border-radius:4px;z-index:200;text-decoration:none}}
 .skip-link:focus{{top:12px}}
 header{{background:#111827;color:#fff;padding:18px 24px}}
+.brand{{display:flex;align-items:center;gap:14px;max-width:1180px;margin:0 auto}}
+.brand-logo{{width:74px;height:52px;object-fit:contain;background:#fff;border-radius:6px;padding:3px;flex-shrink:0}}
 header h1{{font-size:1.25rem}}
 header p{{font-size:.86rem;color:#cbd5e1;margin-top:5px;line-height:1.45}}
 .summary{{background:#fff7ed;border-bottom:1px solid #fed7aa;color:#7c2d12;padding:12px 24px;font-size:.88rem;line-height:1.45}}
@@ -526,6 +734,34 @@ header p{{font-size:.86rem;color:#cbd5e1;margin-top:5px;line-height:1.45}}
 .status{{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:999px;font-size:.72rem;font-weight:800;text-transform:uppercase}}
 .status-ok{{background:#dcfce7;color:#166534}}
 .status-review{{background:#fef3c7;color:#92400e}}
+.status-ore{{background:#e0e7ff;color:#3730a3}}
+.home-hero{{display:grid;grid-template-columns:minmax(0,1fr) 180px;gap:24px;align-items:center;padding:30px 24px;background:#1e293b;color:#fff}}
+.home-hero h2{{font-size:1.55rem;line-height:1.18;margin:4px 0 10px;max-width:780px}}
+.home-hero p{{color:#dbeafe;font-size:.94rem;line-height:1.55;max-width:850px}}
+.eyebrow{{font-size:.76rem;text-transform:uppercase;letter-spacing:0;color:#fde68a;font-weight:800}}
+.home-logo-card{{display:flex;justify-content:center;align-items:center;background:#fff;border-radius:8px;padding:12px;min-height:130px}}
+.home-logo-card img{{width:100%;max-width:160px;height:auto;display:block}}
+.home-section{{padding:20px 24px 4px}}
+.home-section h3{{font-size:1rem;font-weight:800;color:#1f2937;margin-bottom:10px;padding-bottom:8px;border-bottom:2px solid #e5e7eb}}
+.home-section>p{{font-size:.88rem;color:#374151;line-height:1.6;margin-bottom:14px}}
+.home-cards{{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:14px}}
+.home-card{{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px;box-shadow:0 1px 2px rgba(0,0,0,.05)}}
+.home-card h4{{font-size:.9rem;font-weight:800;color:#1e40af;margin-bottom:6px}}
+.home-card p{{font-size:.84rem;color:#374151;line-height:1.5}}
+.flow-diagram{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 14px}}
+.flow-step{{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px}}
+.flow-step .step-num{{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#1e293b;color:#fff;font-size:.78rem;font-weight:800;margin-bottom:8px}}
+.flow-step h4{{font-size:.9rem;color:#111827;margin-bottom:6px}}
+.flow-step p{{font-size:.82rem;color:#4b5563;line-height:1.5}}
+.home-warning{{background:#fef3c7;border:1px solid #fde68a;border-radius:8px;padding:12px 14px;color:#92400e}}
+.home-stats{{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-bottom:14px}}
+.stat-box{{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.05)}}
+.stat-num{{font-size:1.55rem;font-weight:800;color:#1e40af;line-height:1}}
+.stat-label{{font-size:.72rem;color:#6b7280;margin-top:5px;line-height:1.25}}
+.home-nav-hint{{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}}
+.home-nav-hint a{{display:inline-flex;align-items:center;min-height:32px;color:#fff;text-decoration:none;padding:6px 10px;border-radius:4px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);font-size:.8rem;font-weight:700}}
+.ore-note{{margin:0 0 2px;padding:10px 12px;background:#eef2ff;border:1px solid #c7d2fe;border-radius:8px;font-size:.82rem;color:#3730a3;line-height:1.45}}
+.ore-note strong{{display:block;margin-bottom:2px}}
 .chips{{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0 8px}}
 .chips span{{background:#eef2ff;color:#3730a3;border:1px solid #c7d2fe;border-radius:999px;padding:3px 8px;font-size:.76rem;font-weight:700}}
 .unit{{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;margin-bottom:7px}}
@@ -559,7 +795,7 @@ td li{{margin-bottom:5px}}
 [hidden]{{display:none!important}}
 button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59e0b;outline-offset:2px}}
 .back-top{{position:fixed;right:16px;bottom:16px;z-index:50;width:42px;height:42px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#1f2937;box-shadow:0 2px 8px rgba(0,0,0,.16);cursor:pointer;font-size:1.1rem}}
-@media (max-width:900px){{.tools{{grid-template-columns:1fr;padding:12px 16px}}.card-toggle,.unit-toggle{{align-items:flex-start}}.card-meta,.unit-count{{display:none}}.pdf-card{{flex-direction:column}}.pdf-actions{{justify-content:flex-start;min-width:0}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:16px;padding-right:16px}}}}
+@media (max-width:900px){{.tools{{grid-template-columns:1fr;padding:12px 16px}}.card-toggle,.unit-toggle{{align-items:flex-start}}.card-meta,.unit-count{{display:none}}.pdf-card{{flex-direction:column}}.pdf-actions{{justify-content:flex-start;min-width:0}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:16px;padding-right:16px}}.home-hero{{grid-template-columns:1fr;padding:22px 16px}}.home-logo-card{{justify-content:flex-start;min-height:0;max-width:190px}}.home-section{{padding:16px 16px 4px}}.flow-diagram{{grid-template-columns:1fr}}.home-stats{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
 @media (max-width:640px){{.table-wrap{{overflow-x:visible}}table{{min-width:0;table-layout:auto}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:800;color:#374151;margin-bottom:5px}}}}
 @media print{{.skip-link,.top-tabs,.tools,.quick-index,.card-actions,.back-top{{display:none}}.content-page{{display:block!important}}.card-body,.unit-body{{display:block!important}}body{{background:#fff}}.content-card,.unit,.pdf-card{{break-inside:avoid}}.table-wrap{{overflow:visible}}table{{min-width:700px}}}}
 </style>
@@ -567,11 +803,16 @@ button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59
 <body>
 <a class="skip-link" href="#main_content">Przejdź do treści</a>
 <header>
-  <h1>Wymagania edukacyjne ZSZ5 2026/2027</h1>
-  <p>Jedna strona do przeglądania wymagań ogólnokształcących, zawodowych oraz lokalnej biblioteki PDF podstaw programowych.</p>
+  <div class="brand">
+    <img class="brand-logo" src="assets/logo-zsz5.jpg" alt="Logotyp ZSZ5 we Wrocławiu">
+    <div>
+      <h1>Wymagania edukacyjne ZSZ5 2026/2027</h1>
+      <p>Jedna strona do przeglądania wymagań ogólnokształcących, zawodowych oraz lokalnej biblioteki PDF podstaw programowych.</p>
+    </div>
+  </div>
 </header>
 <div class="summary">
-  <strong>Status:</strong> {len([s for s in stats if s['type'] == 'ogolne'])} przedmiotów ogólnokształcących, {len([s for s in stats if s['type'] == 'zawodowe'])} kierunków zawodowych, {total_tables} działów/jednostek, {total_items} wymagań/kryteriów, {total_pdf} plików PDF. Wymagania na oceny są opracowaniem ZSZ5 i wymagają recenzji nauczycieli przed publikacją.
+  <strong>Status:</strong> {len([s for s in stats if s['type'] == 'ogolne'])} przedmiotów ogólnokształcących, {len([s for s in stats if s['type'] == 'zawodowe'])} kierunków zawodowych, {total_tables} działów/jednostek, {total_items} wymagań/kryteriów, {total_pdf} plików PDF. To robocze opracowanie ZSZ5; przed udostępnieniem uczniom i rodzicom każde wymaganie powinno zostać sprawdzone przez nauczyciela przedmiotu lub zawodu i dostosowane do programu nauczania w danym oddziale.
 </div>
 <nav class="top-tabs" aria-label="Nawigacja główna">
   <div class="tab-row" role="tablist" aria-label="Typ szkoły">{school_tabs}</div>
@@ -587,8 +828,8 @@ button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59
 </div>
 <button class="back-top" type="button" onclick="window.scrollTo({{top:0,behavior:'smooth'}})" aria-label="Wróć na górę">↑</button>
 <script>
-let activeSchool='technikum';
-let activeMode='ogolne';
+let activeSchool='home';
+let activeMode='home';
 let activePdfCategory='all';
 function normalizeText(value){{
   return (value || '').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');
@@ -603,8 +844,27 @@ function setSchool(school, updateHash=true){{
   showActivePage();
   if(updateHash) history.replaceState(null,'','#'+activeSchool+'_'+activeMode);
 }}
+function setHome(updateHash=true){{
+  activeSchool='home';
+  activeMode='home';
+  document.querySelectorAll('.tab-btn').forEach(btn=>{{
+    btn.classList.toggle('active', btn.id==='school_home');
+    btn.setAttribute('aria-selected', btn.id==='school_home' ? 'true' : 'false');
+  }});
+  document.querySelectorAll('.mode-btn').forEach(btn=>{{
+    btn.classList.remove('active');
+    btn.setAttribute('aria-selected','false');
+  }});
+  showActivePage();
+  if(updateHash) history.replaceState(null,'','#home');
+}}
 function setMode(mode, updateHash=true){{
+  if(activeSchool==='home') activeSchool='technikum';
   activeMode=mode;
+  document.querySelectorAll('.tab-btn').forEach(btn=>{{
+    btn.classList.toggle('active', btn.id==='school_'+activeSchool);
+    btn.setAttribute('aria-selected', btn.id==='school_'+activeSchool ? 'true' : 'false');
+  }});
   document.querySelectorAll('.mode-btn').forEach(btn=>{{
     btn.classList.toggle('active', btn.id==='mode_'+mode);
     btn.setAttribute('aria-selected', btn.id==='mode_'+mode ? 'true' : 'false');
@@ -614,7 +874,8 @@ function setMode(mode, updateHash=true){{
 }}
 function showActivePage(){{
   document.querySelectorAll('.content-page').forEach(page=>page.style.display='none');
-  const page=document.getElementById('page_'+activeSchool+'_'+activeMode);
+  const pageId=activeSchool==='home' ? 'page_home' : 'page_'+activeSchool+'_'+activeMode;
+  const page=document.getElementById(pageId);
   if(page) page.style.display='block';
   filterCurrentPage();
 }}
@@ -653,7 +914,8 @@ function expandSections(cardId, open){{
   card.querySelectorAll('.unit').forEach(unit=>setUnitState(unit,open));
 }}
 function filterCurrentPage(){{
-  const page=document.getElementById('page_'+activeSchool+'_'+activeMode);
+  const pageId=activeSchool==='home' ? 'page_home' : 'page_'+activeSchool+'_'+activeMode;
+  const page=document.getElementById(pageId);
   const input=document.getElementById('global_search');
   const status=document.getElementById('filter_status');
   const query=normalizeText(input ? input.value.trim() : '');
@@ -681,8 +943,11 @@ function setPdfCategory(category){{
 function openFromHash(){{
   const raw=decodeURIComponent(location.hash || '').replace(/^#/,'');
   if(!raw){{
-    setSchool('technikum', false);
-    setMode('ogolne', false);
+    setHome(false);
+    return;
+  }}
+  if(raw==='home'){{
+    setHome(false);
     return;
   }}
   const pageMatch=raw.match(/^(technikum|bsi|bsii)_(ogolne|zawodowe|pdf)$/);

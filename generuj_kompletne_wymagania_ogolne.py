@@ -41,7 +41,7 @@ class SubjectSpec:
     start_occurrence: str = "first"
     end_anchor: str | None = None
     max_sections: int | None = None
-    status: str = "gotowe"
+    status: str = "projekt do zatwierdzenia"
     note: str = ""
 
 
@@ -63,6 +63,16 @@ def clean(s: str) -> str:
     s = s.replace("\u00ad", "")
     s = re.sub(r"(\w)-\s+(\w)", r"\1\2", s)
     s = re.sub(r"\b([A-Za-ząćęłńóśźżĄĆĘŁŃÓŚŹŻ]{1,5})\s+([a-ząćęłńóśźż]{1,5})\b", _join_split_word, s)
+    replacements = {
+        "e -mail": "e-mail",
+        "e -maile": "e-maile",
+        "informacyjno - -komunikacyjnych": "informacyjno-komunikacyjnych",
+        "klim at": "klimat",
+        "za wody": "zawody",
+        "r eaguje": "reaguje",
+    }
+    for bad, good in replacements.items():
+        s = s.replace(bad, good)
     s = re.sub(r"\s+", " ", s).strip()
     s = re.sub(r"\s+([,.;:])", r"\1", s)
     s = re.sub(r"\s+([)])", r"\1", s)
@@ -98,6 +108,8 @@ def _join_split_word(match: re.Match) -> str:
 def clean_title(title: str) -> str:
     title = clean(title)
     title = SCOPE_EXPANDED_RE.sub("", title).strip()
+    title = re.sub(r"\s*\d+\)\s*$", "", title).strip()
+    title = re.sub(r"\s+\d{2,4}\s*$", "", title).strip()
     title = re.sub(r"\s*Cele\s+\d+(?:\s+\d+)*.*$", "", title).strip()
     title = re.sub(r"\s*Umiejętności\s+\d+(?:\s+\d+)*.*$", "", title).strip()
     title = re.sub(r"\s+[,;:-]\s*$", "", title).strip()
@@ -567,7 +579,7 @@ def split_requirements(items: list[str], title: str) -> dict[str, list[str]]:
             chunks[grades[min(idx, 4)]].append(item)
     if not chunks["Celująca"]:
         chunks["Celująca"].append(
-            f"samodzielnie analizuje problemy z działu „{title}”, uzasadnia rozwiązania i stosuje wiedzę w sytuacjach nietypowych lub projektowych."
+            f"samodzielnie wykonuje zadanie problemowe lub projektowe związane z działem „{title}”, dobierając właściwe pojęcia, procedury i argumenty."
         )
     if not chunks["Bardzo dobra"]:
         chunks["Bardzo dobra"].append(
