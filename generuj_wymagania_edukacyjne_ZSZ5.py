@@ -247,8 +247,8 @@ def extract_vocational_units(spec: VocationalSpec) -> dict:
     }
 
 
-def render_table(items: list[str], vocational: bool = False) -> str:
-    return og.render_requirement_matrix(items, vocational=vocational)
+def render_table(items: list[str], subject_name: str = "", vocational: bool = False) -> str:
+    return og.render_requirement_matrix(items, subject_name=subject_name, vocational=vocational)
 
 
 def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
@@ -293,7 +293,7 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(section["items"]),
+                render_table(section["items"], subject_name=spec.name),
                 "</div></section>",
             ]
         )
@@ -357,7 +357,7 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(unit["items"]), "kryterium", "kryteria", "kryteriów")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(unit["items"], vocational=True),
+                render_table(unit["items"], subject_name=item["name"], vocational=True),
                 "</div></section>",
             ]
         )
@@ -844,6 +844,7 @@ header p{{font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.45;ma
 .source-box code{{display:block;margin-top:6px;color:#4b5563;word-break:break-all}}
 .note{{margin-top:6px;color:#92400e}}
 .cumulative{{font-size:.82rem;color:#4b5563;margin:4px 0 8px;line-height:1.45}}
+.draft-note{{font-size:.8rem;line-height:1.45;color:#6d5828;background:#fff7df;border:1px solid #ecd6a4;border-radius:6px;padding:8px 10px;margin:4px 0 8px}}
 .status{{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:999px;font-size:.72rem;font-weight:800;text-transform:uppercase}}
 .status-ok{{background:#dcfce7;color:#166534}}
 .status-review{{background:#fef3c7;color:#92400e}}

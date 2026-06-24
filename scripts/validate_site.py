@@ -62,6 +62,12 @@ def main() -> None:
         fail("At least one requirement table lacks a source-requirement header")
     if "Nie przypisujemy kolejnych punktów podstawy do kolejnych ocen" not in html:
         fail("Source-safe grading model note not found")
+    if "Wersja robocza" not in html or "weryfikacji nauczyciela i akceptacji" not in html:
+        fail("Draft verification and acceptance notice not found")
+    if "Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę" not in html:
+        fail("Concrete vocational grade descriptions not found")
+    if "Uczeń podaje podstawowy przykład, definicję albo element związany z wymaganiem" not in html:
+        fail("Concrete general grade descriptions not found")
     for marker in ["X X X", "Cele 1 2", "Wymagania fakultatywne", "Zakres rozszerzony"]:
         if marker in html:
             fail(f"Forbidden extraction marker found: {marker}")

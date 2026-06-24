@@ -34,6 +34,106 @@ VOCATIONAL_GRADE_DESCRIPTORS = {
 }
 
 
+def clean_source_requirement(value: str) -> str:
+    value = clean(value)
+    value = re.sub(r"^\s*\d+\)\s*", "", value).strip()
+    return value
+
+
+def short_focus(value: str, limit: int = 220) -> str:
+    value = clean_source_requirement(value)
+    if len(value) <= limit:
+        return value
+    cut = value[:limit].rsplit(" ", 1)[0].rstrip(" ,;:")
+    return cut + "..."
+
+
+def detect_requirement_domain(name: str, vocational: bool = False) -> str:
+    low = name.lower()
+    if vocational:
+        return "vocational"
+    if "język polski" in low:
+        return "polish"
+    if "język angielski" in low or "język niemiecki" in low or "język obcy" in low:
+        return "foreign_language"
+    if "matematyka" in low:
+        return "math"
+    if any(word in low for word in ["fizyka", "chemia", "biologia", "geografia"]):
+        return "science"
+    if any(word in low for word in ["historia", "obywatelska", "społeczeństwie", "teraźniejszość", "biznes"]):
+        return "social"
+    if "informatyka" in low:
+        return "it"
+    if "wychowanie fizyczne" in low:
+        return "pe"
+    if "bezpieczeństwa" in low:
+        return "safety"
+    return "general"
+
+
+def detect_action(source: str) -> str:
+    text = clean_source_requirement(source).lower()
+    verbs = [
+        "analizuje", "interpretuje", "uzasadnia", "porównuje", "charakteryzuje",
+        "wyjaśnia", "opisuje", "wskazuje", "rozpoznaje", "rozróżnia",
+        "identyfikuje", "klasyfikuje", "określa", "wymienia", "stosuje",
+        "wykonuje", "oblicza", "rozwiązuje", "projektuje", "ocenia",
+        "przedstawia", "omawia", "tworzy", "posługuje się", "korzysta",
+        "planuje", "dobiera", "sporządza", "przygotowuje", "kontroluje",
+        "organizuje", "przestrzega", "prowadzi", "obsługuje", "rozlicza",
+        "przechowuje", "montuje", "demontuje", "diagnozuje", "naprawia",
+        "wyznacza",
+    ]
+    for verb in verbs:
+        if re.search(rf"\b{re.escape(verb)}\b", text):
+            return verb
+    return "realizuje"
+
+
+def concrete_grade_requirements(source: str, domain: str, vocational: bool = False) -> dict[str, str]:
+    focus = short_focus(source)
+    action = detect_action(source)
+    if domain == "vocational" or vocational:
+        return {
+            "Dopuszczająca": f"Uczeń rozpoznaje, czego dotyczy kryterium: „{focus}”. Z pomocą nauczyciela lub instruktora wykonuje najprostszy element czynności albo wskazuje podstawową zasadę jej wykonania.",
+            "Dostateczna": f"Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę związaną z kryterium: „{focus}”, korzystając z instrukcji, wzoru albo przykładu.",
+            "Dobra": f"Uczeń samodzielnie stosuje kryterium: „{focus}” w typowym zadaniu zawodowym, dobiera podstawowe narzędzia, materiały lub informacje i koryguje oczywiste błędy.",
+            "Bardzo dobra": f"Uczeń planuje i wykonuje działanie zgodne z kryterium: „{focus}”, kontroluje jakość efektu, uzasadnia dobór sposobu pracy i reaguje na typowe problemy.",
+            "Celująca": f"Uczeń wykorzystuje kryterium: „{focus}” w sytuacji nietypowej lub problemowej, proponuje usprawnienie działania i potrafi powiązać je z szerszym procesem zawodowym.",
+        }
+    if domain == "math":
+        return {
+            "Dopuszczająca": f"Uczeń rozpoznaje typ zadania związany z wymaganiem: „{focus}” i z pomocą wykonuje najprostszy rachunek, przekształcenie albo odczyt danych.",
+            "Dostateczna": f"Uczeń wykonuje typowe zadanie dotyczące wymagania: „{focus}” według znanego algorytmu, wzoru lub przykładu.",
+            "Dobra": f"Uczeń samodzielnie dobiera metodę i poprawnie rozwiązuje typowe zadania realizujące wymaganie: „{focus}”.",
+            "Bardzo dobra": f"Uczeń rozwiązuje zadania złożone dotyczące wymagania: „{focus}”, zapisuje pełny tok rozumowania i uzasadnia wybór metody.",
+            "Celująca": f"Uczeń stosuje wymaganie: „{focus}” w zadaniu nietypowym, problemowym lub wieloetapowym oraz potrafi przedstawić alternatywne rozwiązanie albo uogólnienie.",
+        }
+    if domain == "foreign_language":
+        return {
+            "Dopuszczająca": f"Uczeń rozpoznaje podstawowe słowa, struktury lub intencje komunikacyjne związane z wymaganiem: „{focus}” i wykonuje proste polecenie z pomocą.",
+            "Dostateczna": f"Uczeń realizuje proste, typowe zadanie komunikacyjne dotyczące wymagania: „{focus}”, korzystając ze znanych zwrotów i wzorów wypowiedzi.",
+            "Dobra": f"Uczeń samodzielnie stosuje słownictwo, struktury lub strategie komunikacyjne potrzebne do realizacji wymagania: „{focus}” w typowej sytuacji.",
+            "Bardzo dobra": f"Uczeń płynnie i poprawnie realizuje wymaganie: „{focus}”, dobiera środki językowe do sytuacji i uzasadnia sens wypowiedzi lub reakcji.",
+            "Celująca": f"Uczeń wykorzystuje wymaganie: „{focus}” w nowej sytuacji komunikacyjnej, tworzy bardziej rozbudowaną wypowiedź i reaguje elastycznie na kontekst.",
+        }
+    if domain == "pe":
+        return {
+            "Dopuszczająca": f"Uczeń uczestniczy w aktywności związanej z wymaganiem: „{focus}”, zna podstawową zasadę bezpieczeństwa i wykonuje ćwiczenie na miarę możliwości.",
+            "Dostateczna": f"Uczeń wykonuje typowe ćwiczenie lub zadanie dotyczące wymagania: „{focus}”, przestrzegając podstawowych zasad organizacji i bezpieczeństwa.",
+            "Dobra": f"Uczeń systematycznie stosuje wymaganie: „{focus}” podczas zajęć, poprawia technikę wykonania i współpracuje z grupą.",
+            "Bardzo dobra": f"Uczeń świadomie dobiera sposób działania do wymagania: „{focus}”, monitoruje własny postęp i dba o bezpieczeństwo swoje oraz innych.",
+            "Celująca": f"Uczeń samodzielnie planuje lub inicjuje aktywność związaną z wymaganiem: „{focus}”, wspiera innych i proponuje bezpieczne rozwiązania organizacyjne.",
+        }
+    return {
+        "Dopuszczająca": f"Uczeń podaje podstawowy przykład, definicję albo element związany z wymaganiem: „{focus}” i wykonuje najprostsze polecenie z pomocą nauczyciela.",
+        "Dostateczna": f"Uczeń opisuje wymaganie: „{focus}” własnymi słowami lub według wzoru oraz wykonuje typowe zadanie sprawdzające jego podstawowy zakres.",
+        "Dobra": f"Uczeń samodzielnie {action} wymaganie: „{focus}” w typowym zadaniu, dobiera właściwy przykład i wyjaśnia podstawową zależność.",
+        "Bardzo dobra": f"Uczeń porównuje lub analizuje przykłady związane z wymaganiem: „{focus}”, łączy je z innymi treściami działu i uzasadnia odpowiedź.",
+        "Celująca": f"Uczeń wykorzystuje wymaganie: „{focus}” w nowym, problemowym albo projektowym kontekście oraz formułuje samodzielny wniosek lub propozycję rozwiązania.",
+    }
+
+
 ROMAN_RE = re.compile(r"(?m)^(?:Dział\s+)?([IVXLCDM]+)\.\s+([^\n]{3,320})")
 PAGE_NOISE_RE = re.compile(
     r"^(Dziennik Ustaw|Szkoła ponadpodstawowa|Podstawa programowa|Poz\.|"
@@ -584,11 +684,12 @@ def grade_descriptors(vocational: bool = False) -> dict[str, str]:
     return VOCATIONAL_GRADE_DESCRIPTORS if vocational else GENERAL_GRADE_DESCRIPTORS
 
 
-def render_requirement_matrix(items: list[str], vocational: bool = False) -> str:
-    descriptors = grade_descriptors(vocational)
+def render_requirement_matrix(items: list[str], subject_name: str = "", vocational: bool = False) -> str:
+    domain = detect_requirement_domain(subject_name, vocational)
     source_label = "Kryterium z podstawy programowej" if vocational else "Wymaganie źródłowe z podstawy programowej"
     table_label = "Tabela poziomów opanowania kryteriów zawodowych" if vocational else "Tabela poziomów opanowania wymagań źródłowych"
     parts = [
+        '<p class="draft-note"><strong>Wersja robocza:</strong> konkretne wymagania na oceny są opracowaniem ZSZ5 na podstawie punktu źródłowego. Wymagają weryfikacji nauczyciela i akceptacji przed użyciem jako finalne wymagania edukacyjne.</p>',
         f'<div class="table-wrap" role="region" aria-label="{h(table_label)}"><table class="req-table source-matrix">',
         "<thead><tr>",
         f"<th>{h(source_label)}</th>",
@@ -597,10 +698,11 @@ def render_requirement_matrix(items: list[str], vocational: bool = False) -> str
         parts.append(f"<th>{h(grade)}</th>")
     parts.append("</tr></thead><tbody>")
     for item in items:
+        concrete = concrete_grade_requirements(item, domain, vocational)
         parts.append("<tr>")
         parts.append(f'<td data-label="{h(source_label)}" class="source-requirement">{h(item)}</td>')
         for grade in GRADE_ORDER:
-            parts.append(f'<td data-label="{h(grade)}">{h(descriptors[grade])}</td>')
+            parts.append(f'<td data-label="{h(grade)}">{h(concrete[grade])}</td>')
         parts.append("</tr>")
     parts.append("</tbody></table></div>")
     return "\n".join(parts)
@@ -673,7 +775,7 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="dzial-count">{polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="dzial-body" id="{dz_body_id}">',
-                render_requirement_matrix(section["items"]),
+                render_requirement_matrix(section["items"], subject_name=spec.name),
             ]
         )
         parts.extend(["</div>", "</section>"])
@@ -857,6 +959,7 @@ header p{{font-size:.82rem;color:#cbd5e1;margin-top:4px}}
 .status-review{{background:#fef3c7;color:#92400e}}
 .note{{margin-top:5px;color:#92400e}}
 .cumulative{{font-size:.82rem;color:#4b5563;margin:4px 0 8px;line-height:1.45}}
+.draft-note{{font-size:.8rem;line-height:1.45;color:#6d5828;background:#fff7df;border:1px solid #ecd6a4;border-radius:6px;padding:8px 10px;margin:4px 0 8px}}
 .dzial{{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;margin-bottom:7px}}
 .dzial-toggle{{width:100%;display:flex;align-items:center;gap:8px;padding:10px 14px;border:none;background:#f9fafb;cursor:pointer;text-align:left}}
 .dzial-toggle:hover{{background:#f3f4f6}}
