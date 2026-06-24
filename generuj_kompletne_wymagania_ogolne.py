@@ -267,7 +267,10 @@ def extract_sections(spec: SubjectSpec) -> list[dict]:
         body = text[start:end]
         items = extract_items(body)
         if not items:
-            items = [generic_requirement(title)]
+            if title.lower().startswith(("uczeń", "słuchacz")):
+                items = [title if title.endswith(".") else f"{title}."]
+            else:
+                continue
         sections.append(
             {
                 "number": number,
@@ -561,14 +564,8 @@ def fixed_sections(spec: SubjectSpec) -> list[dict] | None:
     return None
 
 
-def generic_requirement(title: str) -> str:
-    return f"Uczeń omawia najważniejsze zagadnienia działu: {title}"
-
-
 def split_requirements(items: list[str], title: str) -> dict[str, list[str]]:
     grades = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
-    if not items:
-        items = [generic_requirement(title)]
     chunks: dict[str, list[str]] = {g: [] for g in grades}
     if len(items) >= 5:
         size = math.ceil(len(items) / 5)
@@ -577,26 +574,6 @@ def split_requirements(items: list[str], title: str) -> dict[str, list[str]]:
     else:
         for idx, item in enumerate(items):
             chunks[grades[min(idx, 4)]].append(item)
-    if not chunks["Celująca"]:
-        chunks["Celująca"].append(
-            f"samodzielnie wykonuje zadanie problemowe lub projektowe związane z działem „{title}”, dobierając właściwe pojęcia, procedury i argumenty."
-        )
-    if not chunks["Bardzo dobra"]:
-        chunks["Bardzo dobra"].append(
-            f"łączy wiadomości z działu „{title}”, wyjaśnia zależności i rozwiązuje zadania złożone."
-        )
-    if not chunks["Dobra"]:
-        chunks["Dobra"].append(
-            f"stosuje wiadomości z działu „{title}” w typowych sytuacjach i poprawnie wyjaśnia podstawowe zależności."
-        )
-    if not chunks["Dostateczna"]:
-        chunks["Dostateczna"].append(
-            f"opisuje podstawowe pojęcia i przykłady z działu „{title}”."
-        )
-    if not chunks["Dopuszczająca"]:
-        chunks["Dopuszczająca"].append(
-            f"rozpoznaje podstawowe pojęcia i przykłady z działu „{title}” z pomocą nauczyciela."
-        )
     return chunks
 
 
@@ -676,6 +653,8 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
         )
         for grade in ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]:
             parts.append(f'<td data-label="{h(grade)}"><ul>')
+            if not chunks[grade]:
+                parts.append('<li class="review-note">Próg do określenia przez nauczyciela na podstawie programu nauczania.</li>')
             for item in chunks[grade]:
                 parts.append(f"<li>{h(item)}</li>")
             parts.append("</ul></td>")
@@ -883,6 +862,7 @@ th:nth-child(4),td:nth-child(4){{border-color:#e9d5ff}}
 th:nth-child(5),td:nth-child(5){{border-color:#fde68a}}
 td ul{{padding-left:16px}}
 td li{{margin-bottom:5px}}
+.review-note{{color:#92400e;font-style:italic}}
 [hidden]{{display:none!important}}
 button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59e0b;outline-offset:2px}}
 .back-top{{position:fixed;right:16px;bottom:16px;z-index:30;width:42px;height:42px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#1f2937;box-shadow:0 2px 8px rgba(0,0,0,.16);cursor:pointer;font-size:1.1rem}}

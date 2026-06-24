@@ -7,8 +7,8 @@ Data: 2026-06-10.
 - Manifest PDF: `data/podstawy_programowe.json`.
 - Przedmioty ogólnokształcące: 35.
 - Kierunki zawodowe: 10.
-- Działy/jednostki: 675.
-- Wymagania/kryteria: 7414.
+- Działy/jednostki: 584.
+- Wymagania/kryteria: 7323.
 - Pliki PDF w bibliotece: 38.
 
 ## Status

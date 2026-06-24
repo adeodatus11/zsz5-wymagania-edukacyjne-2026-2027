@@ -225,7 +225,7 @@ def extract_vocational_units(spec: VocationalSpec) -> dict:
         body = text[start:end]
         items = extract_numbered_items(body)
         if not items:
-            items = [f"omawia podstawowe zagadnienia jednostki {code} {title}."]
+            continue
         units.append(
             {
                 "code": code,
@@ -257,7 +257,10 @@ def render_table(chunks: dict[str, list[str]]) -> str:
     parts.append("</tr></thead><tbody><tr>")
     for grade in GRADE_ORDER:
         parts.append(f'<td data-label="{h(grade)}"><ul>')
-        for item in chunks.get(grade, []):
+        grade_items = chunks.get(grade, [])
+        if not grade_items:
+            parts.append('<li class="review-note">Próg do określenia przez nauczyciela na podstawie programu nauczania.</li>')
+        for item in grade_items:
             parts.append(f"<li>{h(item)}</li>")
         parts.append("</ul></td>")
     parts.append("</tr></tbody></table></div>")
@@ -910,6 +913,7 @@ th:nth-child(4),td:nth-child(4){{background:#faf5ff;border-color:#e9d5ff}}
 th:nth-child(5),td:nth-child(5){{background:#fefce8;border-color:#fde68a}}
 td ul{{padding-left:16px}}
 td li{{margin-bottom:5px}}
+.review-note{{color:#92400e;font-style:italic}}
 .category-filter{{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}}
 .category-filter button.active{{background:#1e293b;color:#fff;border-color:#1e293b}}
 .pdf-grid{{padding:12px 16px;display:grid;gap:10px}}
