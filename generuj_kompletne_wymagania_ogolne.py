@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import html
-import math
 import re
 import shutil
 from dataclasses import dataclass
@@ -16,6 +15,23 @@ OUT = ROOT / "wymagania_ogolne_ZSZ5_2026_2027.html"
 BACKUP = ROOT / "wymagania_ogolne_ZSZ5_2026_2027__przed_przebudowa.html"
 REPORT = ROOT / "przebudowa_wymagan_ogolnych" / "raport_generowania_kompletnej_strony.md"
 FIX_REPORT = ROOT / "przebudowa_wymagan_ogolnych" / "raport_napraw_tresci_wymagan.md"
+GRADE_ORDER = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
+
+GENERAL_GRADE_DESCRIPTORS = {
+    "Dopuszczająca": "z pomocą nauczyciela rozpoznaje wymaganie źródłowe i wykonuje najprostsze zadania odtwórcze dotyczące tego wymagania.",
+    "Dostateczna": "samodzielnie odtwarza podstawowe wiadomości i wykonuje typowe zadania bez rozbudowanego uzasadnienia.",
+    "Dobra": "poprawnie stosuje wiadomości i umiejętności w typowych sytuacjach oraz wyjaśnia podstawowe zależności.",
+    "Bardzo dobra": "sprawnie analizuje, porównuje, dobiera sposób działania i uzasadnia rozwiązania w pełnym zakresie realizowanego materiału.",
+    "Celująca": "samodzielnie i twórczo wykorzystuje wymaganie w nowym kontekście, łączy je z innymi treściami i rozwiązuje zadania problemowe.",
+}
+
+VOCATIONAL_GRADE_DESCRIPTORS = {
+    "Dopuszczająca": "z pomocą nauczyciela lub instruktora rozpoznaje kryterium i wykonuje podstawowe czynności zgodnie z instrukcją.",
+    "Dostateczna": "wykonuje typowe czynności zawodowe według procedury, z zachowaniem podstawowych zasad jakości i bezpieczeństwa.",
+    "Dobra": "samodzielnie stosuje kryterium w typowych zadaniach zawodowych, dobiera narzędzia lub informacje i koryguje proste błędy.",
+    "Bardzo dobra": "sprawnie planuje, wykonuje i kontroluje jakość działania, uzasadnia dobór metod oraz reaguje na typowe problemy.",
+    "Celująca": "samodzielnie rozwiązuje nietypowe problemy zawodowe, proponuje usprawnienia i łączy kryterium z szerszym procesem pracy.",
+}
 
 
 ROMAN_RE = re.compile(r"(?m)^(?:Dział\s+)?([IVXLCDM]+)\.\s+([^\n]{3,320})")
@@ -564,17 +580,30 @@ def fixed_sections(spec: SubjectSpec) -> list[dict] | None:
     return None
 
 
-def split_requirements(items: list[str], title: str) -> dict[str, list[str]]:
-    grades = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
-    chunks: dict[str, list[str]] = {g: [] for g in grades}
-    if len(items) >= 5:
-        size = math.ceil(len(items) / 5)
-        for idx, grade in enumerate(grades):
-            chunks[grade] = items[idx * size : (idx + 1) * size]
-    else:
-        for idx, item in enumerate(items):
-            chunks[grades[min(idx, 4)]].append(item)
-    return chunks
+def grade_descriptors(vocational: bool = False) -> dict[str, str]:
+    return VOCATIONAL_GRADE_DESCRIPTORS if vocational else GENERAL_GRADE_DESCRIPTORS
+
+
+def render_requirement_matrix(items: list[str], vocational: bool = False) -> str:
+    descriptors = grade_descriptors(vocational)
+    source_label = "Kryterium z podstawy programowej" if vocational else "Wymaganie źródłowe z podstawy programowej"
+    table_label = "Tabela poziomów opanowania kryteriów zawodowych" if vocational else "Tabela poziomów opanowania wymagań źródłowych"
+    parts = [
+        f'<div class="table-wrap" role="region" aria-label="{h(table_label)}"><table class="req-table source-matrix">',
+        "<thead><tr>",
+        f"<th>{h(source_label)}</th>",
+    ]
+    for grade in GRADE_ORDER:
+        parts.append(f"<th>{h(grade)}</th>")
+    parts.append("</tr></thead><tbody>")
+    for item in items:
+        parts.append("<tr>")
+        parts.append(f'<td data-label="{h(source_label)}" class="source-requirement">{h(item)}</td>')
+        for grade in GRADE_ORDER:
+            parts.append(f'<td data-label="{h(grade)}">{h(descriptors[grade])}</td>')
+        parts.append("</tr>")
+    parts.append("</tbody></table></div>")
+    return "\n".join(parts)
 
 
 def h(text: str) -> str:
@@ -622,7 +651,7 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
     parts.extend(
         [
             "</details>",
-            '<p class="cumulative">Wymagania mają charakter kumulatywny: ocena wyższa obejmuje wymagania na oceny niższe. Podział na oceny jest opracowaniem ZSZ5 na podstawie treści podstawy programowej i wymaga recenzji nauczyciela przedmiotu.</p>',
+            '<p class="cumulative"><strong>Model bezpieczny źródłowo:</strong> każdy wiersz pokazuje jedno wymaganie z podstawy programowej, a kolumny ocen opisują poziom opanowania tego samego wymagania. Ocena wyższa obejmuje wymagania ocen niższych i wymaga większej samodzielności, poprawności, złożoności oraz uzasadnienia działania.</p>',
             '<div class="subject-actions">',
             f'<button type="button" onclick="expandSubjectDzials(\'{subject_id}\', true)">Rozwiń działy przedmiotu</button>',
             f'<button type="button" onclick="expandSubjectDzials(\'{subject_id}\', false)">Zwiń działy przedmiotu</button>',
@@ -633,7 +662,6 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
         dz_id = f"{spec.school}_{idx}_{sidx}"
         dz_body_id = f"{dz_id}_body"
         dz_search = f'{section["number"]} {section["title"]}'
-        chunks = split_requirements(section["items"], section["title"])
         parts.extend(
             [
                 f'<section class="dzial" id="{dz_id}" data-search="{h(dz_search)}">',
@@ -645,20 +673,10 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="dzial-count">{polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="dzial-body" id="{dz_body_id}">',
-                '<div class="table-wrap" role="region" aria-label="Tabela wymagań na oceny"><table class="req-table">',
-                "<thead><tr>"
-                "<th>Dopuszczająca</th><th>Dostateczna</th><th>Dobra</th><th>Bardzo dobra</th><th>Celująca</th>"
-                "</tr></thead><tbody><tr>",
+                render_requirement_matrix(section["items"]),
             ]
         )
-        for grade in ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]:
-            parts.append(f'<td data-label="{h(grade)}"><ul>')
-            if not chunks[grade]:
-                parts.append('<li class="review-note">Próg do określenia przez nauczyciela na podstawie programu nauczania.</li>')
-            for item in chunks[grade]:
-                parts.append(f"<li>{h(item)}</li>")
-            parts.append("</ul></td>")
-        parts.extend(["</tr></tbody></table></div>", "</div>", "</section>"])
+        parts.extend(["</div>", "</section>"])
     parts.extend(["</div>", "</article>"])
     return "\n".join(parts), {
         "school": spec.school,
@@ -847,27 +865,21 @@ header p{{font-size:.82rem;color:#cbd5e1;margin-top:4px}}
 .dzial-count{{font-size:.75rem;color:#9ca3af;flex-shrink:0}}
 .dzial-body{{display:none;padding:8px;border-top:1px solid #e5e7eb;background:#fff}}
 .table-wrap{{overflow-x:auto;scrollbar-gutter:stable;background:linear-gradient(90deg,#fff 30%,rgba(255,255,255,0)),linear-gradient(90deg,rgba(255,255,255,0),#fff 70%) 100% 0,linear-gradient(90deg,rgba(0,0,0,.08),rgba(255,255,255,0)),linear-gradient(270deg,rgba(0,0,0,.08),rgba(255,255,255,0)) 100% 0;background-repeat:no-repeat;background-size:24px 100%,24px 100%,10px 100%,10px 100%;background-attachment:local,local,scroll,scroll}}
-table{{width:100%;border-collapse:collapse;table-layout:fixed;min-width:980px}}
+table{{width:100%;border-collapse:collapse;table-layout:fixed;min-width:1120px}}
+th:first-child,td:first-child{{width:28%}}
 th{{padding:8px 6px;border:1px solid #d1d5db;background:#f3f4f6;font-size:.78rem;color:#374151;text-align:left}}
 td{{vertical-align:top;padding:8px 10px;border:1px solid #e5e7eb;font-size:.78rem;line-height:1.38}}
-th:nth-child(1),td:nth-child(1){{background:#fff7ed}}
-th:nth-child(2),td:nth-child(2){{background:#f0fdf4}}
-th:nth-child(3),td:nth-child(3){{background:#eff6ff}}
-th:nth-child(4),td:nth-child(4){{background:#faf5ff}}
-th:nth-child(5),td:nth-child(5){{background:#fefce8}}
-th:nth-child(1),td:nth-child(1){{border-color:#fed7aa}}
-th:nth-child(2),td:nth-child(2){{border-color:#bbf7d0}}
-th:nth-child(3),td:nth-child(3){{border-color:#bfdbfe}}
-th:nth-child(4),td:nth-child(4){{border-color:#e9d5ff}}
-th:nth-child(5),td:nth-child(5){{border-color:#fde68a}}
-td ul{{padding-left:16px}}
-td li{{margin-bottom:5px}}
-.review-note{{color:#92400e;font-style:italic}}
+th:nth-child(1),td:nth-child(1){{background:#fff;border-color:#d1d5db;font-weight:650}}
+th:nth-child(2),td:nth-child(2){{background:#fff7ed;border-color:#fed7aa}}
+th:nth-child(3),td:nth-child(3){{background:#f0fdf4;border-color:#bbf7d0}}
+th:nth-child(4),td:nth-child(4){{background:#eff6ff;border-color:#bfdbfe}}
+th:nth-child(5),td:nth-child(5){{background:#faf5ff;border-color:#e9d5ff}}
+th:nth-child(6),td:nth-child(6){{background:#fefce8;border-color:#fde68a}}
 [hidden]{{display:none!important}}
 button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59e0b;outline-offset:2px}}
 .back-top{{position:fixed;right:16px;bottom:16px;z-index:30;width:42px;height:42px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#1f2937;box-shadow:0 2px 8px rgba(0,0,0,.16);cursor:pointer;font-size:1.1rem}}
 @media (max-width:900px){{.page-tools{{grid-template-columns:1fr}}.legend{{grid-template-columns:1fr}}.subject-toggle,.dzial-toggle{{align-items:flex-start}}.subject-meta,.dzial-count{{display:none}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:16px;padding-right:16px}}}}
-@media (max-width:640px){{.table-wrap{{overflow-x:visible;background:none}}table{{min-width:0;table-layout:auto}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:700;color:#374151;margin-bottom:5px}}}}
+@media (max-width:640px){{.table-wrap{{overflow-x:visible;background:none}}table{{min-width:0;table-layout:auto}}th:first-child,td:first-child{{width:100%}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:700;color:#374151;margin-bottom:5px}}}}
 @media print{{.skip-link,.tabs,.actions,.subject-actions,.page-tools,.subject-index,.back-top{{display:none}}.page{{display:block!important}}.subject-body,.dzial-body{{display:block!important}}body{{background:#fff}}.subject-card,.dzial{{break-inside:avoid}}.table-wrap{{overflow:visible;background:none}}table{{min-width:700px}}body[data-print-page="technikum"] .page:not(#page_technikum),body[data-print-page="bsii"] .page:not(#page_bsii),body[data-print-page="bsi"] .page:not(#page_bsi){{display:none!important}}}}
 </style>
 </head>
@@ -878,7 +890,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid #f59
   <p>ZSZ5 Wrocław · rok szkolny 2026/2027 · kompletna wersja wygenerowana na podstawie lokalnych PDF-ów podstaw programowych</p>
 </header>
 <div class="summary">
-  <strong>Status:</strong> komplet techniczny strony: {total_subjects} przedmiotów, {total_sections} działów, {total_items} wymagań źródłowych. Podział na oceny jest opracowaniem ZSZ5 i wymaga końcowej recenzji nauczycieli przed publikacją.
+  <strong>Status:</strong> komplet techniczny strony: {total_subjects} przedmiotów, {total_sections} działów, {total_items} wymagań źródłowych. Każdy punkt podstawy jest teraz pokazywany jako źródło wymagania, a oceny opisują poziom jego opanowania; materiał wymaga końcowej recenzji nauczycieli przed publikacją.
 </div>
 <div class="legend">
   <div><strong>Dopuszczająca</strong><br>minimum konieczne, rozpoznaje, wskazuje, wykonuje z pomocą</div>

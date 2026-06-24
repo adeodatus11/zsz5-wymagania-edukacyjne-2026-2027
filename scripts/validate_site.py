@@ -52,6 +52,16 @@ def main() -> None:
         fail("PDF library label not found")
     if "<td" in html and re.search(r"<td[^>]*>\s*</td>", html):
         fail("Empty grade table cell found")
+    if "Próg do określenia" in html:
+        fail("Legacy empty-grade placeholder found")
+    table_count = html.count('class="req-table source-matrix"')
+    if table_count == 0:
+        fail("Source-based requirement tables not found")
+    source_headers = html.count("Wymaganie źródłowe z podstawy programowej") + html.count("Kryterium z podstawy programowej")
+    if source_headers < table_count:
+        fail("At least one requirement table lacks a source-requirement header")
+    if "Nie przypisujemy kolejnych punktów podstawy do kolejnych ocen" not in html:
+        fail("Source-safe grading model note not found")
     for marker in ["X X X", "Cele 1 2", "Wymagania fakultatywne", "Zakres rozszerzony"]:
         if marker in html:
             fail(f"Forbidden extraction marker found: {marker}")

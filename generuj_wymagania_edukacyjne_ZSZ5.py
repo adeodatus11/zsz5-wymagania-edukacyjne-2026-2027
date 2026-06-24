@@ -247,24 +247,8 @@ def extract_vocational_units(spec: VocationalSpec) -> dict:
     }
 
 
-def render_table(chunks: dict[str, list[str]]) -> str:
-    parts = [
-        '<div class="table-wrap" role="region" aria-label="Tabela wymagań na oceny"><table class="req-table">',
-        "<thead><tr>",
-    ]
-    for grade in GRADE_ORDER:
-        parts.append(f"<th>{h(grade)}</th>")
-    parts.append("</tr></thead><tbody><tr>")
-    for grade in GRADE_ORDER:
-        parts.append(f'<td data-label="{h(grade)}"><ul>')
-        grade_items = chunks.get(grade, [])
-        if not grade_items:
-            parts.append('<li class="review-note">Próg do określenia przez nauczyciela na podstawie programu nauczania.</li>')
-        for item in grade_items:
-            parts.append(f"<li>{h(item)}</li>")
-        parts.append("</ul></td>")
-    parts.append("</tr></tbody></table></div>")
-    return "\n".join(parts)
+def render_table(items: list[str], vocational: bool = False) -> str:
+    return og.render_requirement_matrix(items, vocational=vocational)
 
 
 def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
@@ -289,7 +273,7 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
     parts.extend(
         [
             "</details>",
-            '<p class="cumulative">Wymagania są kumulatywne: ocena wyższa obejmuje wymagania na oceny niższe.</p>',
+            '<p class="cumulative"><strong>Model bezpieczny źródłowo:</strong> każdy wiersz pokazuje jedno wymaganie z podstawy programowej, a kolumny ocen opisują poziom opanowania tego samego wymagania. Nie przypisujemy kolejnych punktów podstawy do kolejnych ocen.</p>',
             '<div class="card-actions">',
             f'<button type="button" onclick="expandSections(\'{card_id}\', true)">Rozwiń działy</button>',
             f'<button type="button" onclick="expandSections(\'{card_id}\', false)">Zwiń działy</button>',
@@ -299,7 +283,6 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
     for sidx, section in enumerate(sections):
         sec_id = f"{card_id}_{sidx}"
         sec_body_id = f"{sec_id}_body"
-        chunks = og.split_requirements(section["items"], section["title"])
         parts.extend(
             [
                 f'<section class="unit" id="{sec_id}" data-search="{h(section["number"] + " " + section["title"])}">',
@@ -310,7 +293,7 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(chunks),
+                render_table(section["items"]),
                 "</div></section>",
             ]
         )
@@ -354,7 +337,7 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
         parts.append("</ul></details>")
     parts.extend(
         [
-            '<p class="cumulative">Wymagania zawodowe są opracowaniem progów ocen na podstawie efektów kształcenia i kryteriów weryfikacji z PDF.</p>',
+            '<p class="cumulative"><strong>Model bezpieczny źródłowo:</strong> każdy wiersz pokazuje jedno kryterium lub efekt z podstawy programowej zawodu, a kolumny ocen opisują poziom samodzielności, poprawności, jakości i złożoności wykonania tego samego kryterium.</p>',
             '<div class="card-actions">',
             f'<button type="button" onclick="expandSections(\'{card_id}\', true)">Rozwiń jednostki</button>',
             f'<button type="button" onclick="expandSections(\'{card_id}\', false)">Zwiń jednostki</button>',
@@ -364,7 +347,6 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
     for uidx, unit in enumerate(units):
         sec_id = f"{card_id}_{uidx}"
         sec_body_id = f"{sec_id}_body"
-        chunks = og.split_requirements(unit["items"], f'{unit["code"]} {unit["title"]}')
         parts.extend(
             [
                 f'<section class="unit" id="{sec_id}" data-search="{h(unit["code"] + " " + unit["title"])}">',
@@ -375,7 +357,7 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(unit["items"]), "kryterium", "kryteria", "kryteriów")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(chunks),
+                render_table(unit["items"], vocational=True),
                 "</div></section>",
             ]
         )
@@ -540,7 +522,7 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
       <div class="stat-box"><div class="stat-num">{total_items}</div><div class="stat-label">wymagań i kryteriów</div></div>
       <div class="stat-box"><div class="stat-num">{total_pdf}</div><div class="stat-label">plików PDF</div></div>
     </div>
-    <p class="home-warning"><strong>Status roboczy:</strong> wymagania na oceny są opracowaniem szkolnym. Podstawy programowe w bibliotece są źródłami, natomiast podział na oceny trzeba zatwierdzić w pracy zespołów przedmiotowych i zawodowych.</p>
+    <p class="home-warning"><strong>Status roboczy:</strong> wymagania na oceny są opracowaniem szkolnym. Podstawy programowe w bibliotece są źródłami, a oceny opisują poziom opanowania tych samych wymagań; całość trzeba zatwierdzić w pracy zespołów przedmiotowych i zawodowych.</p>
   </section>
 
   <section class="home-section">
@@ -926,17 +908,16 @@ header p{{font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.45;ma
 .unit-count{{font-size:.75rem;color:#9ca3af;flex-shrink:0}}
 .unit-body{{display:none;padding:8px;border-top:1px solid #e5e7eb;background:#fff}}
 .table-wrap{{overflow-x:auto;scrollbar-gutter:stable}}
-table{{width:100%;border-collapse:collapse;table-layout:fixed;min-width:980px}}
+table{{width:100%;border-collapse:collapse;table-layout:fixed;min-width:1120px}}
+th:first-child,td:first-child{{width:28%}}
 th{{padding:8px 6px;border:1px solid #d1d5db;background:#f3f4f6;font-size:.78rem;color:#374151;text-align:left}}
 td{{vertical-align:top;padding:8px 10px;border:1px solid #e5e7eb;font-size:.78rem;line-height:1.38}}
-th:nth-child(1),td:nth-child(1){{background:#fff7ed;border-color:#fed7aa}}
-th:nth-child(2),td:nth-child(2){{background:#f0fdf4;border-color:#bbf7d0}}
-th:nth-child(3),td:nth-child(3){{background:#eff6ff;border-color:#bfdbfe}}
-th:nth-child(4),td:nth-child(4){{background:#faf5ff;border-color:#e9d5ff}}
-th:nth-child(5),td:nth-child(5){{background:#fefce8;border-color:#fde68a}}
-td ul{{padding-left:16px}}
-td li{{margin-bottom:5px}}
-.review-note{{color:#92400e;font-style:italic}}
+th:nth-child(1),td:nth-child(1){{background:#fff;border-color:#d1d5db;font-weight:650}}
+th:nth-child(2),td:nth-child(2){{background:#fff7ed;border-color:#fed7aa}}
+th:nth-child(3),td:nth-child(3){{background:#f0fdf4;border-color:#bbf7d0}}
+th:nth-child(4),td:nth-child(4){{background:#eff6ff;border-color:#bfdbfe}}
+th:nth-child(5),td:nth-child(5){{background:#faf5ff;border-color:#e9d5ff}}
+th:nth-child(6),td:nth-child(6){{background:#fefce8;border-color:#fde68a}}
 .category-filter{{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}}
 .category-filter button.active{{background:var(--navy);color:#fff;border-color:var(--navy)}}
 .pdf-grid{{max-width:1236px;margin:0 auto;padding:12px 22px;display:grid;gap:12px}}
@@ -951,7 +932,7 @@ td li{{margin-bottom:5px}}
 button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offset:2px}}
 .back-top{{position:fixed;right:16px;bottom:16px;z-index:50;width:42px;height:42px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#1f2937;box-shadow:0 2px 8px rgba(0,0,0,.16);cursor:pointer;font-size:1.1rem}}
 @media (max-width:900px){{body{{font-size:14px}}.brand{{align-items:flex-start}}.brand-logo{{width:74px;height:52px}}.tools{{grid-template-columns:1fr;padding:10px 12px 12px}}.tab-row{{padding-left:10px;padding-right:10px}}.card-toggle,.unit-toggle{{align-items:flex-start}}.card-meta,.unit-count{{display:none}}.pdf-card{{flex-direction:column}}.pdf-actions{{justify-content:flex-start;min-width:0}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:14px;padding-right:14px}}.cards-list,.pdf-grid{{padding-left:12px;padding-right:12px}}.home-hero{{grid-template-columns:1fr;margin:14px 12px 0;padding:20px 16px}}.home-logo-card{{justify-content:flex-start;min-height:0;max-width:210px}}.home-section{{padding:18px 12px 4px}}.process-lab{{grid-template-columns:1fr}}.home-stats{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
-@media (max-width:640px){{header{{padding-top:10px;padding-bottom:10px}}header h1{{font-size:1.04rem}}header p{{display:none}}.brand-logo{{width:58px;height:42px}}.summary{{display:none}}.tab-btn,.mode-btn{{padding:7px 10px;font-size:.82rem}}.tools{{padding:8px 12px}}.tools label{{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}.tools input{{padding:9px 12px}}.filter-status:empty{{display:none}}.home-hero{{display:block}}.home-hero h2{{font-size:1.45rem}}.home-hero p{{font-size:.88rem}}.home-hero-text>p:not(.eyebrow){{display:none}}.home-logo-card{{display:none}}.home-nav-hint{{gap:6px;margin-top:12px}}.home-nav-hint a{{min-height:28px;padding:5px 8px;font-size:.76rem}}.home-stats{{gap:8px}}.home-card,.process-step,.process-panel,.process-panel-grid div,.pdf-card{{padding:12px}}.process-step{{grid-template-columns:30px 1fr;min-height:58px}}.process-panel h4{{font-size:1.05rem}}.table-wrap{{overflow-x:visible}}table{{min-width:0;table-layout:auto}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:800;color:#374151;margin-bottom:5px}}}}
+@media (max-width:640px){{header{{padding-top:10px;padding-bottom:10px}}header h1{{font-size:1.04rem}}header p{{display:none}}.brand-logo{{width:58px;height:42px}}.summary{{display:none}}.tab-btn,.mode-btn{{padding:7px 10px;font-size:.82rem}}.tools{{padding:8px 12px}}.tools label{{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}.tools input{{padding:9px 12px}}.filter-status:empty{{display:none}}.home-hero{{display:block}}.home-hero h2{{font-size:1.45rem}}.home-hero p{{font-size:.88rem}}.home-hero-text>p:not(.eyebrow){{display:none}}.home-logo-card{{display:none}}.home-nav-hint{{gap:6px;margin-top:12px}}.home-nav-hint a{{min-height:28px;padding:5px 8px;font-size:.76rem}}.home-stats{{gap:8px}}.home-card,.process-step,.process-panel,.process-panel-grid div,.pdf-card{{padding:12px}}.process-step{{grid-template-columns:30px 1fr;min-height:58px}}.process-panel h4{{font-size:1.05rem}}.table-wrap{{overflow-x:visible}}table{{min-width:0;table-layout:auto}}th:first-child,td:first-child{{width:100%}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:800;color:#374151;margin-bottom:5px}}}}
 @media print{{.skip-link,.top-tabs,.tools,.quick-index,.card-actions,.back-top{{display:none}}.content-page{{display:block!important}}.card-body,.unit-body{{display:block!important}}body{{background:#fff}}.content-card,.unit,.pdf-card{{break-inside:avoid}}.table-wrap{{overflow:visible}}table{{min-width:700px}}}}
 </style>
 </head>
@@ -967,7 +948,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid var(
   </div>
 </header>
 <div class="summary">
-  <strong>Status:</strong> {len([s for s in stats if s['type'] == 'ogolne'])} przedmiotów ogólnokształcących, {len([s for s in stats if s['type'] == 'zawodowe'])} kierunków zawodowych, {total_tables} działów/jednostek, {total_items} wymagań/kryteriów, {total_pdf} plików PDF. To robocze opracowanie ZSZ5; przed udostępnieniem uczniom i rodzicom każde wymaganie powinno zostać sprawdzone przez nauczyciela przedmiotu lub zawodu i dostosowane do programu nauczania w danym oddziale.
+  <strong>Status:</strong> {len([s for s in stats if s['type'] == 'ogolne'])} przedmiotów ogólnokształcących, {len([s for s in stats if s['type'] == 'zawodowe'])} kierunków zawodowych, {total_tables} działów/jednostek, {total_items} wymagań/kryteriów, {total_pdf} plików PDF. Każdy punkt podstawy jest pokazywany jako źródło wymagania, a oceny opisują poziom jego opanowania; przed udostępnieniem uczniom i rodzicom materiał powinien zostać sprawdzony przez nauczyciela przedmiotu lub zawodu i dostosowany do programu nauczania w danym oddziale.
 </div>
 <nav class="top-tabs" aria-label="Nawigacja główna">
   <div class="tab-row" role="tablist" aria-label="Typ szkoły">{school_tabs}</div>

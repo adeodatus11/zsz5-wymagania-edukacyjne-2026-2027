@@ -50,6 +50,14 @@ Rekomendowana konfiguracja:
 - źródło GitHub Pages: root repozytorium,
 - plik startowy: `index.html`.
 
-## Ważna informacja
+## Model wymagań na oceny
 
-Podział wymagań na oceny jest opracowaniem ZSZ5 przygotowanym na podstawie lokalnych PDF podstaw programowych. Przed publikacją szkolną wymaga końcowej recenzji nauczycieli właściwych przedmiotów i zawodów.
+Strona nie przypisuje kolejnych punktów podstawy programowej do kolejnych ocen. Każdy wiersz tabeli pokazuje jedno wymaganie lub kryterium z podstawy programowej, a kolumny ocen opisują poziom opanowania tego samego wymagania:
+
+- minimum konieczne i praca z pomocą,
+- samodzielne wykonanie typowego zadania,
+- poprawne stosowanie w typowych sytuacjach,
+- analiza, uzasadnienie i sprawne działanie,
+- samodzielne użycie w nowym lub problemowym kontekście.
+
+To nadal jest opracowanie ZSZ5 przygotowane na podstawie lokalnych PDF podstaw programowych. Przed publikacją szkolną wymaga końcowej recenzji nauczycieli właściwych przedmiotów i zawodów oraz dostosowania do realizowanego programu nauczania w danym oddziale.
