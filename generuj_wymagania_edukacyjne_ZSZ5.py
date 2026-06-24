@@ -527,7 +527,7 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
       </div>
     </div>
     <div class="home-logo-card">
-      <img src="assets/logo-zsz5.jpg" alt="Logotyp ZSZ5 we Wrocławiu">
+      <img src="assets/logo-zsz5-black.png" alt="Logotyp ZSZ5 we Wrocławiu">
     </div>
   </section>
 
@@ -574,36 +574,37 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
   <section class="home-section">
     <h3>Od podstawy programowej do wymagań na oceny</h3>
     <p>Droga od podstawy programowej do oceny ucznia powinna być czytelna i możliwa do sprawdzenia. Sama podstawa nie jest jeszcze wymaganiami na ocenę: najpierw trzeba wybrać lub opracować program nauczania, rozpisać go na rozkład materiału, jasno określić wymagania edukacyjne, zaplanować sprawdzanie wiedzy i umiejętności, a dopiero potem wystawić ocenę ucznia.</p>
-    <div class="flow-diagram">
-      <div class="flow-step">
-        <div class="step-num">1</div>
-        <h4>Podstawa programowa</h4>
-        <p>Określa obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach. To punkt wyjścia, a nie gotowa tabela ocen.</p>
+    <div class="process-lab" aria-label="Ścieżka od podstawy programowej do oceny ucznia">
+      <div class="process-track" role="list">
+        <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach." data-output="Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji." data-check="Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa." onclick="setProcessStep(this)">
+          <span class="step-num">1</span><span><strong>Podstawa programowa</strong><small>Co jest obowiązkowe</small></span>
+        </button>
+        <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Wybiera program z wydawnictwa, modyfikuje go albo opracowuje własny, ale nadal pilnuje zgodności z podstawą." data-output="Program, który pokazuje sposób realizacji podstawy w danym oddziale." data-check="Program może być adaptowany, jeżeli tempo, kolejność albo dobór ćwiczeń nie pasują do klasy." onclick="setProcessStep(this)">
+          <span class="step-num">2</span><span><strong>Program nauczania</strong><small>Jak realizujemy podstawę</small></span>
+        </button>
+        <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Przekłada program na działy, tematy, ćwiczenia, powtórzenia, projekty i orientacyjny czas pracy." data-output="Plan pracy na rok lub semestr, który da się realnie wykonać z konkretną klasą." data-check="Rozkład nie jest świętym harmonogramem. Ma pomagać kontrolować realizację, a nie blokować sensowną korektę tempa." onclick="setProcessStep(this)">
+          <span class="step-num">3</span><span><strong>Rozkład materiału</strong><small>Kolejność i tempo pracy</small></span>
+        </button>
+        <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="4" data-title="Wymagania edukacyjne" data-teacher="Opisuje, co uczeń powinien wiedzieć i umieć na poszczególne oceny." data-output="Jasne wymagania na dopuszczającą, dostateczną, dobrą, bardzo dobrą i celującą." data-check="Wymagania mają wynikać z realizowanego programu i podstawy, a nie z ogólnych haseł typu zna, rozumie, potrafi." onclick="setProcessStep(this)">
+          <span class="step-num">4</span><span><strong>Wymagania edukacyjne</strong><small>Poziomy na oceny</small></span>
+        </button>
+        <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="5" data-title="Sprawdzanie wiedzy i umiejętności" data-teacher="Dobiera sprawdziany, odpowiedzi, zadania praktyczne, projekty i obserwację pracy ucznia do wcześniej podanych wymagań." data-output="Dowody uczenia się: prace, wypowiedzi, działania praktyczne, wyniki zadań i projekty." data-check="Nie oceniaj tego, czego wcześniej nie było w wymaganiach albo czego nie dało się przećwiczyć w danym trybie pracy." onclick="setProcessStep(this)">
+          <span class="step-num">5</span><span><strong>Sprawdzanie</strong><small>Dowody wiedzy i umiejętności</small></span>
+        </button>
+        <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="6" data-title="Ocena ucznia" data-teacher="Porównuje osiągnięcia ucznia z wymaganiami edukacyjnymi i zasadami oceniania." data-output="Ocena bieżąca, śródroczna lub roczna, którą da się uzasadnić konkretnymi wymaganiami." data-check="Ocena powinna wynikać z rozpoznanych osiągnięć ucznia, a nie z samego faktu przerobienia tematów." onclick="setProcessStep(this)">
+          <span class="step-num">6</span><span><strong>Ocena ucznia</strong><small>Uzasadniony wynik</small></span>
+        </button>
       </div>
-      <div class="flow-step">
-        <div class="step-num">2</div>
-        <h4>Program nauczania</h4>
-        <p>Nauczyciel wybiera program, np. z wydawnictwa, albo opracowuje własny. Program pokazuje, jak podstawa będzie realizowana w danym przedmiocie, klasie i typie szkoły.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-num">3</div>
-        <h4>Rozkład materiału</h4>
-        <p>Program zostaje przełożony na kolejność działów, tematów, ćwiczeń, powtórzeń i orientacyjny czas pracy w roku szkolnym.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-num">4</div>
-        <h4>Wymagania edukacyjne</h4>
-        <p>Nauczyciel jasno określa, co uczeń powinien wiedzieć i umieć na poszczególne oceny, zgodnie z realizowanym programem nauczania.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-num">5</div>
-        <h4>Sprawdzanie wiedzy i umiejętności</h4>
-        <p>Sprawdziany, odpowiedzi, zadania praktyczne, projekty i obserwacja pracy ucznia powinny odnosić się do wcześniej podanych wymagań.</p>
-      </div>
-      <div class="flow-step">
-        <div class="step-num">6</div>
-        <h4>Ocena ucznia</h4>
-        <p>Ocena jest wynikiem porównania osiągnięć ucznia z wymaganiami edukacyjnymi, z uwzględnieniem zasad oceniania oraz realnego sposobu pracy w danym oddziale.</p>
+      <div class="process-panel" aria-live="polite">
+        <div class="process-panel-head">
+          <span class="eyebrow">aktywny etap</span>
+          <h4><span id="process_step_num">1</span>. <span id="process_title">Podstawa programowa</span></h4>
+        </div>
+        <div class="process-panel-grid">
+          <div><strong>Nauczyciel robi</strong><p id="process_teacher">Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach.</p></div>
+          <div><strong>Powstaje</strong><p id="process_output">Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji.</p></div>
+          <div><strong>Trzeba pilnować</strong><p id="process_check">Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa.</p></div>
+        </div>
       </div>
     </div>
     <div class="law-callout">
@@ -813,7 +814,7 @@ def render_page(general_specs: list[og.SubjectSpec], vocational_data: list[dict]
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Wymagania edukacyjne ZSZ5 2026/2027</title>
-<link rel="icon" href="assets/logo-zsz5.jpg">
+<link rel="icon" href="assets/logo-zsz5-black.png">
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 :root{{--bg:#f3f0e9;--paper:#fffdf8;--ink:#172033;--muted:#647084;--line:#d9d5cc;--navy:#172a46;--blue:#2b67d1;--cyan:#28a8b8;--gold:#d99b2b;--green:#2e8b68;--red:#c94c4c;--shadow:0 12px 30px rgba(23,32,51,.08);--soft-shadow:0 8px 20px rgba(23,32,51,.06)}}
@@ -869,8 +870,8 @@ header p{{font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.45;ma
 .home-hero h2{{font-size:clamp(1.55rem,3vw,2.35rem);line-height:1.08;margin:6px 0 12px;max-width:860px}}
 .home-hero p{{color:#c8d1df;font-size:.98rem;line-height:1.58;max-width:900px}}
 .eyebrow{{font-size:.74rem;text-transform:uppercase;letter-spacing:.12em;color:#8fd4dd;font-weight:850}}
-.home-logo-card{{display:flex;justify-content:center;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:8px;padding:16px;min-height:150px}}
-.home-logo-card img{{width:100%;max-width:172px;height:auto;display:block;filter:drop-shadow(0 14px 24px rgba(0,0,0,.22))}}
+.home-logo-card{{display:flex;justify-content:center;align-items:center;background:#fffdf8;border:1px solid rgba(255,255,255,.5);border-radius:8px;padding:16px;min-height:150px}}
+.home-logo-card img{{width:100%;max-width:172px;height:auto;display:block}}
 .home-section{{max-width:1236px;margin:0 auto;padding:22px 22px 4px}}
 .home-section h3{{font-size:1.04rem;font-weight:850;color:var(--ink);margin-bottom:12px;padding-bottom:0;border-bottom:0}}
 .home-section>p{{font-size:.9rem;color:#374151;line-height:1.65;margin-bottom:14px;max-width:920px}}
@@ -885,11 +886,23 @@ header p{{font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.45;ma
 .resource-link{{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:32px;margin-top:auto;padding:6px 11px;border-radius:999px;border:1px solid #b9d4f7;background:#eef4fb;color:#1d4f9a;text-decoration:none;font-size:.8rem;font-weight:850}}
 .resource-link:hover{{background:#dcecff;border-color:#8ebcf2}}
 .source-note{{font-size:.76rem;color:var(--muted);margin-top:-2px}}
-.flow-diagram{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 14px}}
-.flow-step{{background:var(--paper);border:1px solid rgba(23,32,51,.08);border-radius:8px;padding:15px;box-shadow:var(--soft-shadow)}}
-.flow-step .step-num{{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;background:var(--navy);color:#fff;font-size:.78rem;font-weight:850;margin-bottom:8px}}
-.flow-step h4{{font-size:.9rem;color:var(--ink);margin-bottom:6px}}
-.flow-step p{{font-size:.82rem;color:#4b5563;line-height:1.5}}
+.process-lab{{display:grid;grid-template-columns:minmax(280px,0.95fr) minmax(320px,1.05fr);gap:14px;margin:14px 0}}
+.process-track{{display:grid;grid-template-columns:1fr;gap:8px}}
+.process-step{{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;width:100%;min-height:64px;text-align:left;background:var(--paper);border:1px solid rgba(23,32,51,.1);border-radius:8px;padding:10px 12px;color:var(--ink);box-shadow:0 6px 16px rgba(23,32,51,.04);cursor:pointer}}
+.process-step:hover{{border-color:#b9d4f7;background:#fff}}
+.process-step.active{{background:#eef4fb;border-color:var(--blue);box-shadow:0 10px 24px rgba(43,103,209,.13)}}
+.process-step .step-num{{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:var(--navy);color:#fff;font-size:.8rem;font-weight:850}}
+.process-step.active .step-num{{background:var(--blue)}}
+.process-step strong{{display:block;font-size:.88rem;line-height:1.2}}
+.process-step small{{display:block;margin-top:3px;color:var(--muted);font-size:.74rem;line-height:1.25}}
+.process-panel{{background:var(--paper);border:1px solid rgba(23,32,51,.08);border-radius:8px;padding:18px;box-shadow:var(--shadow);align-self:stretch}}
+.process-panel-head{{margin-bottom:12px}}
+.process-panel-head .eyebrow{{color:var(--blue)}}
+.process-panel h4{{font-size:1.2rem;line-height:1.2;margin-top:5px;color:var(--ink)}}
+.process-panel-grid{{display:grid;grid-template-columns:1fr;gap:10px}}
+.process-panel-grid div{{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px}}
+.process-panel-grid strong{{display:block;color:var(--navy);font-size:.82rem;margin-bottom:5px;text-transform:uppercase;letter-spacing:.05em}}
+.process-panel-grid p{{font-size:.88rem;color:#374151;line-height:1.55}}
 .law-callout{{background:#e8f6f4;border:1px solid #b8ddd7;border-radius:8px;padding:15px;margin:12px 0 14px;color:#245e58}}
 .law-callout h4{{font-size:.92rem;color:#245e58;margin-bottom:6px}}
 .law-callout p{{font-size:.86rem;color:#245e58;line-height:1.55}}
@@ -937,8 +950,8 @@ td li{{margin-bottom:5px}}
 [hidden]{{display:none!important}}
 button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offset:2px}}
 .back-top{{position:fixed;right:16px;bottom:16px;z-index:50;width:42px;height:42px;border-radius:999px;border:1px solid #cbd5e1;background:#fff;color:#1f2937;box-shadow:0 2px 8px rgba(0,0,0,.16);cursor:pointer;font-size:1.1rem}}
-@media (max-width:900px){{body{{font-size:14px}}.brand{{align-items:flex-start}}.brand-logo{{width:74px;height:52px}}.tools{{grid-template-columns:1fr;padding:10px 12px 12px}}.tab-row{{padding-left:10px;padding-right:10px}}.card-toggle,.unit-toggle{{align-items:flex-start}}.card-meta,.unit-count{{display:none}}.pdf-card{{flex-direction:column}}.pdf-actions{{justify-content:flex-start;min-width:0}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:14px;padding-right:14px}}.cards-list,.pdf-grid{{padding-left:12px;padding-right:12px}}.home-hero{{grid-template-columns:1fr;margin:14px 12px 0;padding:20px 16px}}.home-logo-card{{justify-content:flex-start;min-height:0;max-width:210px}}.home-section{{padding:18px 12px 4px}}.flow-diagram{{grid-template-columns:1fr}}.home-stats{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
-@media (max-width:640px){{header{{padding-top:10px;padding-bottom:10px}}header h1{{font-size:1.04rem}}header p{{display:none}}.brand-logo{{width:58px;height:42px}}.summary{{display:none}}.tab-btn,.mode-btn{{padding:7px 10px;font-size:.82rem}}.tools{{padding:8px 12px}}.tools label{{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}.tools input{{padding:9px 12px}}.filter-status:empty{{display:none}}.home-hero{{display:block}}.home-hero h2{{font-size:1.45rem}}.home-hero p{{font-size:.88rem}}.home-hero-text>p:not(.eyebrow){{display:none}}.home-logo-card{{display:none}}.home-nav-hint{{gap:6px;margin-top:12px}}.home-nav-hint a{{min-height:28px;padding:5px 8px;font-size:.76rem}}.home-stats{{gap:8px}}.home-card,.flow-step,.pdf-card{{padding:12px}}.table-wrap{{overflow-x:visible}}table{{min-width:0;table-layout:auto}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:800;color:#374151;margin-bottom:5px}}}}
+@media (max-width:900px){{body{{font-size:14px}}.brand{{align-items:flex-start}}.brand-logo{{width:74px;height:52px}}.tools{{grid-template-columns:1fr;padding:10px 12px 12px}}.tab-row{{padding-left:10px;padding-right:10px}}.card-toggle,.unit-toggle{{align-items:flex-start}}.card-meta,.unit-count{{display:none}}.pdf-card{{flex-direction:column}}.pdf-actions{{justify-content:flex-start;min-width:0}}table{{min-width:760px}}header,.summary,.page-head{{padding-left:14px;padding-right:14px}}.cards-list,.pdf-grid{{padding-left:12px;padding-right:12px}}.home-hero{{grid-template-columns:1fr;margin:14px 12px 0;padding:20px 16px}}.home-logo-card{{justify-content:flex-start;min-height:0;max-width:210px}}.home-section{{padding:18px 12px 4px}}.process-lab{{grid-template-columns:1fr}}.home-stats{{grid-template-columns:repeat(2,minmax(0,1fr))}}}}
+@media (max-width:640px){{header{{padding-top:10px;padding-bottom:10px}}header h1{{font-size:1.04rem}}header p{{display:none}}.brand-logo{{width:58px;height:42px}}.summary{{display:none}}.tab-btn,.mode-btn{{padding:7px 10px;font-size:.82rem}}.tools{{padding:8px 12px}}.tools label{{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}}.tools input{{padding:9px 12px}}.filter-status:empty{{display:none}}.home-hero{{display:block}}.home-hero h2{{font-size:1.45rem}}.home-hero p{{font-size:.88rem}}.home-hero-text>p:not(.eyebrow){{display:none}}.home-logo-card{{display:none}}.home-nav-hint{{gap:6px;margin-top:12px}}.home-nav-hint a{{min-height:28px;padding:5px 8px;font-size:.76rem}}.home-stats{{gap:8px}}.home-card,.process-step,.process-panel,.process-panel-grid div,.pdf-card{{padding:12px}}.process-step{{grid-template-columns:30px 1fr;min-height:58px}}.process-panel h4{{font-size:1.05rem}}.table-wrap{{overflow-x:visible}}table{{min-width:0;table-layout:auto}}thead{{display:none}}tr,td{{display:block;width:100%}}td{{border-width:1px 1px 0}}td:last-child{{border-bottom-width:1px}}td::before{{content:attr(data-label);display:block;font-weight:800;color:#374151;margin-bottom:5px}}}}
 @media print{{.skip-link,.top-tabs,.tools,.quick-index,.card-actions,.back-top{{display:none}}.content-page{{display:block!important}}.card-body,.unit-body{{display:block!important}}body{{background:#fff}}.content-card,.unit,.pdf-card{{break-inside:avoid}}.table-wrap{{overflow:visible}}table{{min-width:700px}}}}
 </style>
 </head>
@@ -946,7 +959,7 @@ button:focus-visible,a:focus-visible,input:focus-visible{{outline:3px solid var(
 <a class="skip-link" href="#main_content">Przejdź do treści</a>
 <header>
   <div class="brand">
-    <img class="brand-logo" src="assets/logo-zsz5.jpg" alt="Logotyp ZSZ5 we Wrocławiu">
+    <img class="brand-logo" src="assets/logo-zsz5-black.png" alt="Logotyp ZSZ5 we Wrocławiu">
     <div>
       <h1>Wymagania edukacyjne ZSZ5 2026/2027</h1>
       <p>Jedna strona do przeglądania wymagań ogólnokształcących, zawodowych oraz lokalnej biblioteki PDF podstaw programowych.</p>
@@ -1081,6 +1094,25 @@ function setPdfCategory(category){{
   activePdfCategory=category;
   document.querySelectorAll('.pdf-filter').forEach(btn=>btn.classList.toggle('active', btn.dataset.pdfFilter===category));
   filterCurrentPage();
+}}
+function setProcessStep(button){{
+  if(!button) return;
+  document.querySelectorAll('.process-step').forEach(step=>{{
+    const active=step===button;
+    step.classList.toggle('active', active);
+    step.setAttribute('aria-pressed', active ? 'true' : 'false');
+  }});
+  const fields={{
+    process_step_num: button.dataset.step,
+    process_title: button.dataset.title,
+    process_teacher: button.dataset.teacher,
+    process_output: button.dataset.output,
+    process_check: button.dataset.check
+  }};
+  Object.entries(fields).forEach(([id,value])=>{{
+    const el=document.getElementById(id);
+    if(el) el.textContent=value || '';
+  }});
 }}
 function openFromHash(){{
   const raw=decodeURIComponent(location.hash || '').replace(/^#/,'');
