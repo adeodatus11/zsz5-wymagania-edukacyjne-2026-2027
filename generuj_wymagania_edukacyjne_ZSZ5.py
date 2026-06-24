@@ -645,6 +645,67 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
   </section>
 
   <section class="home-section">
+    <h3>Co znaczy dostosować podstawę w praktyce</h3>
+    <p>Nie dostosowuje się samej podstawy programowej jako aktu prawnego: jej wymagania pozostają punktem odniesienia. Dostosowuje się sposób realizacji podstawy w szkolnym programie, rozkładzie materiału, metodach pracy, formach sprawdzania osiągnięć i wymaganiach edukacyjnych dla konkretnych uczniów. W praktyce oznacza to decyzje o tempie, kolejności, przykładach, ćwiczeniach, sposobach odpowiedzi, kryteriach oceniania i wsparciu, przy zachowaniu obowiązkowych celów i treści.</p>
+    <div class="home-cards">
+      <div class="home-card">
+        <h4>1. Od podstawy do programu</h4>
+        <p>Najpierw trzeba ustalić, które cele i treści są obowiązkowe. Program nauczania nie jest kopią podstawy: porządkuje jej realizację w konkretnym oddziale i w konkretnych warunkach szkoły.</p>
+      </div>
+      <div class="home-card">
+        <h4>2. Od programu do rozkładu</h4>
+        <p>Rozkład materiału przekłada program na kalendarz pracy. To w nim widać, czy tempo jest realne, gdzie są powtórzenia, kiedy uczniowie ćwiczą umiejętności i kiedy nauczyciel sprawdza osiągnięcia.</p>
+      </div>
+      <div class="home-card">
+        <h4>3. Od wymagań do dostosowań</h4>
+        <p>Wymagania na oceny powinny być zrozumiałe dla ucznia, ale mogą wymagać dostosowania formy, czasu pracy, sposobu odpowiedzi, liczby przykładów lub poziomu wsparcia, jeżeli wynika to z potrzeb i możliwości ucznia.</p>
+      </div>
+      <div class="home-card">
+        <h4>4. Co nie powinno się wydarzyć</h4>
+        <p>Dostosowanie nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu. Powinno być udokumentowaną decyzją nauczyciela, zespołu lub szkoły, zgodną z podstawą i przepisami o ocenianiu.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-section">
+    <h3>Przydatne materiały i linki</h3>
+    <p>Poniższe linki prowadzą do materiałów, które warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i planowaniu dostosowań. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
+    <div class="home-cards resource-grid">
+      <div class="home-card">
+        <h4>MEN - materiały dla nauczycieli szkół ponadpodstawowych</h4>
+        <p>Pakiet pomocniczy do rozumienia podstawy programowej: preambuła, komentarze, porównania, uzasadnienia i rekomendacje.</p>
+        <a class="resource-link" href="https://www.gov.pl/web/edukacja/podstawa-programowa--materialy-dla-nauczycieli-szkol-ponadpodstawowych" target="_blank" rel="noopener">Otwórz materiał</a>
+      </div>
+      <div class="home-card">
+        <h4>ORE - podstawa programowa z 28 czerwca 2024 r.</h4>
+        <p>Strona ORE porządkująca materiały związane ze zmianami podstawy programowej, przydatna przy sprawdzaniu aktualnego zakresu treści.</p>
+        <a class="resource-link" href="https://ore.edu.pl/2024/09/podstawa-programowa-z-28-czerwca-2024-r/" target="_blank" rel="noopener">Otwórz materiał</a>
+      </div>
+      <div class="home-card">
+        <h4>ORE - programy nauczania do szkoły ponadpodstawowej</h4>
+        <p>Przykładowe programy nauczania pokazujące, jak przejść od podstawy programowej do realnej organizacji pracy w szkole.</p>
+        <a class="resource-link" href="https://ore.edu.pl/2020/04/programy-nauczania-programy-do-szkoly-ponadpodstawowej/" target="_blank" rel="noopener">Otwórz materiał</a>
+      </div>
+      <div class="home-card">
+        <h4>ORE - dostosowanie wymagań edukacyjnych</h4>
+        <p>Praktyczny materiał o dostosowaniu wymagań wobec uczniów ze specyficznymi trudnościami w uczeniu się, z przykładami pracy nauczyciela.</p>
+        <a class="resource-link" href="https://ore.edu.pl/wp-content/uploads/2015/03/dostosowanie-wymagan-edukacyjnych-wobec-uczniow-ze-specyficznymi-trudnosciami-w-uczeniu-sie.pdf" target="_blank" rel="noopener">Otwórz PDF</a>
+      </div>
+      <div class="home-card">
+        <h4>ORE - podstawa prawna indywidualizacji nauczania</h4>
+        <p>Omówienie przepisów i praktycznych konsekwencji indywidualizacji pracy z uczniem oraz dostosowywania wymagań.</p>
+        <a class="resource-link" href="https://ore.edu.pl/2025/10/podstawa-prawna-indywidualizacji-nauczania/" target="_blank" rel="noopener">Otwórz materiał</a>
+      </div>
+      <div class="home-card">
+        <h4>IBE PIB - podstawy programowe i kierunki zmian</h4>
+        <p>Miejsce do monitorowania prac nad podstawami programowymi i szerszego kontekstu zmian w edukacji. Do bieżącej publikacji szkolnej trzeba je zestawiać z obowiązującymi aktami prawnymi.</p>
+        <a class="resource-link" href="https://ibe.edu.pl/pl/podstawy-programowe" target="_blank" rel="noopener">Otwórz materiał</a>
+      </div>
+    </div>
+    <p class="source-note">Ostatnie sprawdzenie linków źródłowych: 24 czerwca 2026 r.</p>
+  </section>
+
+  <section class="home-section">
     <h3>Jak korzystać ze strony</h3>
     <div class="home-cards">
       <div class="home-card">
@@ -811,6 +872,10 @@ header p{{font-size:.86rem;color:#cbd5e1;margin-top:5px;line-height:1.45}}
 .home-card ul{{padding-left:18px;margin-top:8px}}
 .home-card li{{font-size:.82rem;color:#374151;line-height:1.45;margin-bottom:5px}}
 .legal-ref{{display:inline-block;margin-bottom:7px;padding:3px 7px;border-radius:4px;background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;font-size:.74rem;font-weight:800}}
+.resource-grid .home-card{{display:flex;flex-direction:column;gap:8px}}
+.resource-link{{display:inline-flex;align-items:center;justify-content:center;align-self:flex-start;min-height:32px;margin-top:auto;padding:6px 10px;border-radius:4px;border:1px solid #bfdbfe;background:#eff6ff;color:#1e40af;text-decoration:none;font-size:.8rem;font-weight:800}}
+.resource-link:hover{{background:#dbeafe;border-color:#93c5fd}}
+.source-note{{font-size:.76rem;color:#6b7280;margin-top:-2px}}
 .flow-diagram{{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:12px 0 14px}}
 .flow-step{{background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:14px}}
 .flow-step .step-num{{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:#1e293b;color:#fff;font-size:.78rem;font-weight:800;margin-bottom:8px}}
