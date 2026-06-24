@@ -1,0 +1,80 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: python -m pip install pypdf
+
+      - name: Validate static site
+        run: |
+          python -m py_compile generuj_kompletne_wymagania_ogolne.py
+          python -m py_compile generuj_wymagania_edukacyjne_ZSZ5.py
+          python -m py_compile scripts/validate_site.py
+          python scripts/validate_site.py
+
+      - name: Check embedded JavaScript
+        run: |
+          python - <<'PY' > /tmp/site.js
+          from pathlib import Path
+          import re
+          html = Path("wymagania_edukacyjne_ZSZ5_2026_2027.html").read_text(encoding="utf-8")
+          match = re.search(r"<script>([\s\S]*)</script>", html)
+          print(match.group(1) if match else "")
+          PY
+          node --check /tmp/site.js
+
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p public
+          cp index.html public/
+          cp wymagania_edukacyjne_ZSZ5_2026_2027.html public/
+          cp CNAME public/
+          cp .nojekyll public/
+          cp -R assets data 01_BSI_stopnia 02_BSII_stopnia 03_Technikum public/
+          find public \( -name '.DS_Store' -o -name 'Thumbs.db' -o -name '.~lock.*' \) -delete
+          du -sh public
+          find public -type f | wc -l
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000
+          error_count: 60
+          reporting_interval: 10000
