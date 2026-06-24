@@ -64,10 +64,21 @@ def main() -> None:
         fail("Source-safe grading model note not found")
     if "Wersja robocza" not in html or "weryfikacji nauczyciela i akceptacji" not in html:
         fail("Draft verification and acceptance notice not found")
-    if "Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę" not in html:
-        fail("Concrete vocational grade descriptions not found")
-    if "Uczeń podaje podstawowy przykład, definicję albo element związany z wymaganiem" not in html:
-        fail("Concrete general grade descriptions not found")
+    if "Uczeń rozpoznaje, czy podany przykład należy do kultury popularnej" not in html:
+        fail("Curated Polish grade description not found")
+    if "Do opracowania przez nauczyciela" not in html:
+        fail("Unreviewed teacher-work placeholder not found")
+    if html.count("curated-row") < 26:
+        fail("Expected at least 26 curated requirement rows in generated HTML")
+    forbidden_auto_phrases = [
+        "Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę",
+        "Uczeń podaje podstawowy przykład, definicję albo element związany z wymaganiem",
+        "Uczeń opisuje wymaganie:",
+        "Uczeń samodzielnie realizuje wymaganie:",
+    ]
+    for phrase in forbidden_auto_phrases:
+        if phrase in html:
+            fail(f"Generic automatic grade paraphrase found: {phrase}")
     for marker in ["X X X", "Cele 1 2", "Wymagania fakultatywne", "Zakres rozszerzony"]:
         if marker in html:
             fail(f"Forbidden extraction marker found: {marker}")

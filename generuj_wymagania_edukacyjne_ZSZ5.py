@@ -247,8 +247,20 @@ def extract_vocational_units(spec: VocationalSpec) -> dict:
     }
 
 
-def render_table(items: list[str], subject_name: str = "", vocational: bool = False) -> str:
-    return og.render_requirement_matrix(items, subject_name=subject_name, vocational=vocational)
+def render_table(
+    items: list[str],
+    subject_name: str = "",
+    vocational: bool = False,
+    school: str = "",
+    section_number: str = "",
+) -> str:
+    return og.render_requirement_matrix(
+        items,
+        subject_name=subject_name,
+        vocational=vocational,
+        school=school,
+        section_number=section_number,
+    )
 
 
 def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
@@ -293,7 +305,12 @@ def render_general_card(spec: og.SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(section["items"], subject_name=spec.name),
+                render_table(
+                    section["items"],
+                    subject_name=spec.name,
+                    school=spec.school,
+                    section_number=section["number"],
+                ),
                 "</div></section>",
             ]
         )
@@ -357,7 +374,13 @@ def render_vocational_card(item: dict, idx: int) -> tuple[str, dict]:
                 f'<span class="unit-count">{og.polish_count(len(unit["items"]), "kryterium", "kryteria", "kryteriów")}</span>',
                 "</button>",
                 f'<div class="unit-body" id="{sec_body_id}">',
-                render_table(unit["items"], subject_name=item["name"], vocational=True),
+                render_table(
+                    unit["items"],
+                    subject_name=item["name"],
+                    vocational=True,
+                    school=item["school"],
+                    section_number=unit["code"],
+                ),
                 "</div></section>",
             ]
         )
@@ -845,6 +868,10 @@ header p{{font-size:.86rem;color:var(--muted);margin-top:5px;line-height:1.45;ma
 .note{{margin-top:6px;color:#92400e}}
 .cumulative{{font-size:.82rem;color:#4b5563;margin:4px 0 8px;line-height:1.45}}
 .draft-note{{font-size:.8rem;line-height:1.45;color:#6d5828;background:#fff7df;border:1px solid #ecd6a4;border-radius:6px;padding:8px 10px;margin:4px 0 8px}}
+.source-requirement.curated-row{{background:#f0fdf4!important;border-left:4px solid #16a34a!important}}
+.source-requirement.curated-row::before{{content:"Opracowane roboczo";display:inline-block;margin:0 0 6px;padding:2px 6px;border-radius:999px;background:#dcfce7;color:#166534;font-size:.68rem;font-weight:850;text-transform:uppercase}}
+.source-requirement.unreviewed-row{{background:#fffbeb!important;border-left:4px solid #f59e0b!important}}
+.source-requirement.unreviewed-row::before{{content:"Do opracowania";display:inline-block;margin:0 0 6px;padding:2px 6px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:.68rem;font-weight:850;text-transform:uppercase}}
 .status{{display:inline-block;margin-right:8px;padding:2px 7px;border-radius:999px;font-size:.72rem;font-weight:800;text-transform:uppercase}}
 .status-ok{{background:#dcfce7;color:#166534}}
 .status-review{{background:#fef3c7;color:#92400e}}

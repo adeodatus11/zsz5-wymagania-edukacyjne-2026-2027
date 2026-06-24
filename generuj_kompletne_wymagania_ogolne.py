@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import html
+import json
 import re
 import shutil
 from dataclasses import dataclass
@@ -15,6 +16,7 @@ OUT = ROOT / "wymagania_ogolne_ZSZ5_2026_2027.html"
 BACKUP = ROOT / "wymagania_ogolne_ZSZ5_2026_2027__przed_przebudowa.html"
 REPORT = ROOT / "przebudowa_wymagan_ogolnych" / "raport_generowania_kompletnej_strony.md"
 FIX_REPORT = ROOT / "przebudowa_wymagan_ogolnych" / "raport_napraw_tresci_wymagan.md"
+CURATED_REQUIREMENTS = ROOT / "data" / "wymagania_kuratorskie.json"
 GRADE_ORDER = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
 
 GENERAL_GRADE_DESCRIPTORS = {
@@ -131,6 +133,36 @@ def concrete_grade_requirements(source: str, domain: str, vocational: bool = Fal
         "Dobra": f"Uczeń samodzielnie {action} wymaganie: „{focus}” w typowym zadaniu, dobiera właściwy przykład i wyjaśnia podstawową zależność.",
         "Bardzo dobra": f"Uczeń porównuje lub analizuje przykłady związane z wymaganiem: „{focus}”, łączy je z innymi treściami działu i uzasadnia odpowiedź.",
         "Celująca": f"Uczeń wykorzystuje wymaganie: „{focus}” w nowym, problemowym albo projektowym kontekście oraz formułuje samodzielny wniosek lub propozycję rozwiązania.",
+    }
+
+
+@lru_cache(maxsize=1)
+def load_curated_requirements() -> dict:
+    if not CURATED_REQUIREMENTS.exists():
+        return {}
+    return json.loads(CURATED_REQUIREMENTS.read_text(encoding="utf-8"))
+
+
+def curated_key(school: str, subject_name: str, section_number: str, source: str) -> str:
+    return "||".join([school, subject_name, section_number, clean_source_requirement(source)])
+
+
+def curated_grade_requirements(school: str, subject_name: str, section_number: str, source: str) -> dict[str, str] | None:
+    grades = load_curated_requirements().get("requirements", {}).get(curated_key(school, subject_name, section_number, source))
+    if not grades:
+        return None
+    if any(grade not in grades or not str(grades[grade]).strip() for grade in GRADE_ORDER):
+        return None
+    return {grade: str(grades[grade]).strip() for grade in GRADE_ORDER}
+
+
+def unreviewed_grade_requirements() -> dict[str, str]:
+    return {
+        "Dopuszczająca": "Do opracowania przez nauczyciela: minimum konieczne dla tego punktu podstawy, z konkretnym zadaniem lub przykładem sprawdzenia.",
+        "Dostateczna": "Do opracowania przez nauczyciela: typowe wymaganie podstawowe wynikające z programu nauczania i realizowanego materiału.",
+        "Dobra": "Do opracowania przez nauczyciela: samodzielne zastosowanie wymagania w typowym zadaniu, z jasnym kryterium poprawności.",
+        "Bardzo dobra": "Do opracowania przez nauczyciela: analiza, porównanie, uzasadnienie lub wykonanie zadania złożonego dla tego punktu.",
+        "Celująca": "Do opracowania przez nauczyciela: wykorzystanie wymagania w zadaniu problemowym, projekcie, samodzielnej interpretacji albo sytuacji nietypowej.",
     }
 
 
@@ -684,7 +716,13 @@ def grade_descriptors(vocational: bool = False) -> dict[str, str]:
     return VOCATIONAL_GRADE_DESCRIPTORS if vocational else GENERAL_GRADE_DESCRIPTORS
 
 
-def render_requirement_matrix(items: list[str], subject_name: str = "", vocational: bool = False) -> str:
+def render_requirement_matrix(
+    items: list[str],
+    subject_name: str = "",
+    vocational: bool = False,
+    school: str = "",
+    section_number: str = "",
+) -> str:
     domain = detect_requirement_domain(subject_name, vocational)
     source_label = "Kryterium z podstawy programowej" if vocational else "Wymaganie źródłowe z podstawy programowej"
     table_label = "Tabela poziomów opanowania kryteriów zawodowych" if vocational else "Tabela poziomów opanowania wymagań źródłowych"
@@ -698,9 +736,11 @@ def render_requirement_matrix(items: list[str], subject_name: str = "", vocation
         parts.append(f"<th>{h(grade)}</th>")
     parts.append("</tr></thead><tbody>")
     for item in items:
-        concrete = concrete_grade_requirements(item, domain, vocational)
+        curated = curated_grade_requirements(school, subject_name, section_number, item)
+        concrete = curated or unreviewed_grade_requirements()
+        row_class = "curated-row" if curated else "unreviewed-row"
         parts.append("<tr>")
-        parts.append(f'<td data-label="{h(source_label)}" class="source-requirement">{h(item)}</td>')
+        parts.append(f'<td data-label="{h(source_label)}" class="source-requirement {row_class}">{h(item)}</td>')
         for grade in GRADE_ORDER:
             parts.append(f'<td data-label="{h(grade)}">{h(concrete[grade])}</td>')
         parts.append("</tr>")
@@ -775,7 +815,12 @@ def render_subject(spec: SubjectSpec, idx: int) -> tuple[str, dict]:
                 f'<span class="dzial-count">{polish_count(len(section["items"]), "wymaganie", "wymagania", "wymagań")}</span>',
                 "</button>",
                 f'<div class="dzial-body" id="{dz_body_id}">',
-                render_requirement_matrix(section["items"], subject_name=spec.name),
+                render_requirement_matrix(
+                    section["items"],
+                    subject_name=spec.name,
+                    school=spec.school,
+                    section_number=section["number"],
+                ),
             ]
         )
         parts.extend(["</div>", "</section>"])
@@ -960,6 +1005,10 @@ header p{{font-size:.82rem;color:#cbd5e1;margin-top:4px}}
 .note{{margin-top:5px;color:#92400e}}
 .cumulative{{font-size:.82rem;color:#4b5563;margin:4px 0 8px;line-height:1.45}}
 .draft-note{{font-size:.8rem;line-height:1.45;color:#6d5828;background:#fff7df;border:1px solid #ecd6a4;border-radius:6px;padding:8px 10px;margin:4px 0 8px}}
+.source-requirement.curated-row{{background:#f0fdf4!important;border-left:4px solid #16a34a!important}}
+.source-requirement.curated-row::before{{content:"Opracowane roboczo";display:inline-block;margin:0 0 6px;padding:2px 6px;border-radius:999px;background:#dcfce7;color:#166534;font-size:.68rem;font-weight:850;text-transform:uppercase}}
+.source-requirement.unreviewed-row{{background:#fffbeb!important;border-left:4px solid #f59e0b!important}}
+.source-requirement.unreviewed-row::before{{content:"Do opracowania";display:inline-block;margin:0 0 6px;padding:2px 6px;border-radius:999px;background:#fef3c7;color:#92400e;font-size:.68rem;font-weight:850;text-transform:uppercase}}
 .dzial{{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden;margin-bottom:7px}}
 .dzial-toggle{{width:100%;display:flex;align-items:center;gap:8px;padding:10px 14px;border:none;background:#f9fafb;cursor:pointer;text-align:left}}
 .dzial-toggle:hover{{background:#f3f4f6}}

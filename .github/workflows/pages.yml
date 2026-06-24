@@ -32,7 +32,9 @@ jobs:
         run: |
           python -m py_compile generuj_kompletne_wymagania_ogolne.py
           python -m py_compile generuj_wymagania_edukacyjne_ZSZ5.py
+          python -m py_compile scripts/validate_curated_requirements.py
           python -m py_compile scripts/validate_site.py
+          python scripts/validate_curated_requirements.py
           python scripts/validate_site.py
 
       - name: Check embedded JavaScript

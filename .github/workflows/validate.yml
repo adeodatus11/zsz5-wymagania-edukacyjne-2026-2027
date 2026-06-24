@@ -26,7 +26,11 @@ jobs:
         run: |
           python -m py_compile generuj_kompletne_wymagania_ogolne.py
           python -m py_compile generuj_wymagania_edukacyjne_ZSZ5.py
+          python -m py_compile scripts/validate_curated_requirements.py
           python -m py_compile scripts/validate_site.py
+
+      - name: Validate curated requirements
+        run: python scripts/validate_curated_requirements.py
 
       - name: Validate generated static site
         run: python scripts/validate_site.py
