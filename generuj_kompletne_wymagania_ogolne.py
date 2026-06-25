@@ -488,6 +488,61 @@ def make_sections(raw_sections: list[tuple[str, str, list[str]]]) -> list[dict]:
 
 def fixed_sections(spec: SubjectSpec) -> list[dict] | None:
     key = (spec.school, spec.name)
+    if key in {("technikum", "Język polski"), ("bsii", "Język polski")}:
+        return make_sections(
+            [
+                (
+                    "I",
+                    "Kształcenie literackie i kulturowe",
+                    [
+                        "1) Kształtowanie dojrzałości intelektualnej, emocjonalnej i moralnej uczniów.",
+                        "2) Rozumienie historii literatury i dziejów kultury jako procesu, a także dostrzeganie roli czynników wewnętrznych i zewnętrznych wpływających na ten proces.",
+                        "3) Rozumienie konieczności zachowania i rozwoju literatury i kultury w życiu jednostki oraz społeczeństwa.",
+                        "4) Rozróżnianie kultury wysokiej i niskiej, elitarnej i popularnej oraz dostrzeganie związków między nimi.",
+                        "5) Znajomość wybranych utworów z literatury polskiej i światowej oraz umiejętność mówienia o nich z wykorzystaniem potrzebnej terminologii.",
+                        "6) Kształtowanie różnorodnych postaw czytelniczych: od spontanicznego czytania do odbioru opartego na podstawach naukowych.",
+                        "7) Kształcenie umiejętności czytania, analizowania i interpretowania literatury oraz innych tekstów kultury, a także ich wzajemnej korespondencji.",
+                        "8) Kształcenie umiejętności świadomego odbioru utworów literackich i tekstów kultury na różnych poziomach: dosłownym, metaforycznym, symbolicznym, aksjologicznym.",
+                    ],
+                ),
+                (
+                    "II",
+                    "Kształcenie językowe",
+                    [
+                        "1) Pogłębianie funkcjonalnej wiedzy z zakresu nauki o języku.",
+                        "2) Wzbogacanie umiejętności komunikacyjnych, stosowne wykorzystanie języka w różnych sytuacjach komunikacyjnych.",
+                        "3) Funkcjonalne wykorzystywanie wiedzy o języku w odczytaniu sensów zawartych w strukturze głębokiej tekstów literackich i nieliterackich.",
+                        "4) Świadome wykorzystanie działań językowych w formowaniu odpowiedzialności za własne zachowania językowe.",
+                        "5) Uwrażliwianie na piękno mowy ojczystej, wspomaganie rozwoju kultury językowej, doskonalenie umiejętności posługiwania się poprawną polszczyzną.",
+                    ],
+                ),
+                (
+                    "III",
+                    "Tworzenie wypowiedzi",
+                    [
+                        "1) Doskonalenie umiejętności wyrażania własnych sądów, argumentacji i udziału w dyskusji.",
+                        "2) Wykorzystanie kompetencji językowych i komunikacyjnych w wypowiedziach ustnych i pisemnych.",
+                        "3) Kształcenie umiejętności formułowania i uzasadniania sądów na temat dzieł literackich oraz innych tekstów kultury.",
+                        "4) Doskonalenie umiejętności retorycznych, w szczególności zasad tworzenia wypowiedzi spójnych, logicznych oraz stosowania kompozycji odpowiedniej dla danej formy gatunkowej.",
+                        "5) Rozwijanie umiejętności tworzenia tekstów o wyższym stopniu złożoności.",
+                    ],
+                ),
+                (
+                    "IV",
+                    "Samokształcenie",
+                    [
+                        "1) Rozwijanie zainteresowań humanistycznych.",
+                        "2) Doskonalenie umiejętności korzystania z różnych źródeł informacji, w tym zasobów cyfrowych, oceny ich rzetelności, wiarygodności i poprawności merytorycznej.",
+                        "3) Kształcenie nawyków systematycznego uczenia się, porządkowania zdobytej wiedzy i jej pogłębiania oraz syntezy poznanego materiału.",
+                        "4) Wyrabianie nawyku samodzielnej, systematycznej lektury.",
+                        "5) Rozwijanie uzdolnień i zainteresowań poprzez udział w różnych formach aktywności intelektualnej i twórczej.",
+                        "6) Umacnianie postawy poszanowania dla cudzej własności intelektualnej.",
+                        "7) Rozwijanie umiejętności efektywnego posługiwania się technologią informacyjną w poszukiwaniu, porządkowaniu i wykorzystywaniu pozyskanych informacji.",
+                        "8) Rozumienie pojęcia tradycji, dostrzeganie jej obecności we współczesnej kulturze.",
+                    ],
+                ),
+            ]
+        )
     if key == ("bsi", "Edukacja dla bezpieczeństwa"):
         return make_sections(
             [

@@ -68,7 +68,7 @@ def main() -> None:
         fail("Curated Polish grade description not found")
     if "Do opracowania przez nauczyciela" not in html:
         fail("Unreviewed teacher-work placeholder not found")
-    if html.count("curated-row") < 26:
+    if html.count('class="source-requirement curated-row"') < 26:
         fail("Expected at least 26 curated requirement rows in generated HTML")
     forbidden_auto_phrases = [
         "Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę",
@@ -79,7 +79,15 @@ def main() -> None:
     for phrase in forbidden_auto_phrases:
         if phrase in html:
             fail(f"Generic automatic grade paraphrase found: {phrase}")
-    for marker in ["X X X", "Cele 1 2", "Wymagania fakultatywne", "Zakres rozszerzony"]:
+    for marker in [
+        "X X X",
+        "Cele 1 2",
+        "Wymagania fakultatywne",
+        "Zakres rozszerzony",
+        "16 Treści nauczania",
+        "języ ku",
+        "efek tywnego",
+    ]:
         if marker in html:
             fail(f"Forbidden extraction marker found: {marker}")
 

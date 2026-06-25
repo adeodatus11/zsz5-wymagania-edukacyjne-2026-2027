@@ -73,13 +73,6 @@
       "Bardzo dobra": "Uczeń analizuje skuteczność własnej lub cudzej wypowiedzi i uzasadnia, które elementy języka wzmacniają albo osłabiają komunikat. Dowód sprawdzenia: karta oceny wypowiedzi z konkretnymi wnioskami.",
       "Celująca": "Uczeń tworzy spójną, stosowną i celową wypowiedź w sytuacji wymagającej świadomego dostosowania stylu, argumentacji i tonu. Dowód sprawdzenia: wypowiedź problemowa lub dialog z omówieniem zastosowanej strategii komunikacyjnej."
     },
-    "bsii||Język polski||II||Funkcjonalne wykorzystywanie wiedzy o języ ku w odczytaniu sensów zawartych w strukturze głębokiej tekstów literackich i nieliterackich.": {
-      "Dopuszczająca": "Uczeń rozpoznaje w tekście element językowy, który wpływa na odczytanie sensu wypowiedzi. Dowód sprawdzenia: wskazanie fragmentu i jednozdaniowe wyjaśnienie jego znaczenia.",
-      "Dostateczna": "Uczeń wyjaśnia, jak wybrany element języka pomaga odczytać sens niewyrażony wprost. Dowód sprawdzenia: odpowiedź do fragmentu tekstu z odwołaniem do konkretnego sformułowania.",
-      "Dobra": "Uczeń stosuje wiedzę o języku do interpretacji tekstu, łącząc obserwację językową z wnioskiem o znaczeniu. Dowód sprawdzenia: akapit interpretacyjny zawierający obserwację i wniosek.",
-      "Bardzo dobra": "Uczeń analizuje kilka powiązanych sygnałów językowych i uzasadnia, jak budują ukryty sens tekstu. Dowód sprawdzenia: notatka analityczna z uporządkowanymi argumentami.",
-      "Celująca": "Uczeń samodzielnie formułuje pogłębioną interpretację, pokazując zależność między organizacją języka a sensem tekstu. Dowód sprawdzenia: komentarz interpretacyjny z własną tezą i uzasadnieniem opartym na materiale tekstowym."
-    },
     "bsii||Język polski||II||Świadome wykorzystanie działań językowych w formowaniu odpowiedzialności za własne zachowania językowe.": {
       "Dopuszczająca": "Uczeń rozpoznaje, że wypowiedź może wpływać na odbiorcę i wskazuje podstawowy skutek użytych słów. Dowód sprawdzenia: analiza krótkiej wypowiedzi z zaznaczeniem możliwej reakcji odbiorcy.",
       "Dostateczna": "Uczeń wyjaśnia, dlaczego wybrane sformułowanie jest stosowne albo niestosowne w danej sytuacji. Dowód sprawdzenia: odpowiedź pisemna z uzasadnieniem oceny komunikatu.",
@@ -184,6 +177,13 @@
       "Dobra": "Uczeń porównuje tradycyjny element z jego współczesnym użyciem, korzystając z materiałów omawianych na lekcji. Dowód sprawdzenia: tabela porównawcza z wnioskiem.",
       "Bardzo dobra": "Uczeń interpretuje funkcję tradycji we współczesnym tekście kultury i uzasadnia ją szczegółami z materiału. Dowód sprawdzenia: akapit interpretacyjny z odwołaniem do konkretnego fragmentu lub elementu.",
       "Celująca": "Uczeń formułuje samodzielną tezę o ciągłości lub zmianie tradycji we współczesnej kulturze i uzasadnia ją uporządkowanymi argumentami. Dowód sprawdzenia: wypowiedź problemowa lub prezentacja z tezą i wnioskami."
+    },
+    "bsii||Język polski||II||Funkcjonalne wykorzystywanie wiedzy o języku w odczytaniu sensów zawartych w strukturze głębokiej tekstów literackich i nieliterackich.": {
+      "Dopuszczająca": "Uczeń rozpoznaje w tekście element językowy, który wpływa na odczytanie sensu wypowiedzi. Dowód sprawdzenia: wskazanie fragmentu i jednozdaniowe wyjaśnienie jego znaczenia.",
+      "Dostateczna": "Uczeń wyjaśnia, jak wybrany element języka pomaga odczytać sens niewyrażony wprost. Dowód sprawdzenia: odpowiedź do fragmentu tekstu z odwołaniem do konkretnego sformułowania.",
+      "Dobra": "Uczeń stosuje wiedzę o języku do interpretacji tekstu, łącząc obserwację językową z wnioskiem o znaczeniu. Dowód sprawdzenia: akapit interpretacyjny zawierający obserwację i wniosek.",
+      "Bardzo dobra": "Uczeń analizuje kilka powiązanych sygnałów językowych i uzasadnia, jak budują ukryty sens tekstu. Dowód sprawdzenia: notatka analityczna z uporządkowanymi argumentami.",
+      "Celująca": "Uczeń samodzielnie formułuje pogłębioną interpretację, pokazując zależność między organizacją języka a sensem tekstu. Dowód sprawdzenia: komentarz interpretacyjny z własną tezą i uzasadnieniem opartym na materiale tekstowym."
     }
   }
 }

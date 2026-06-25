@@ -10,8 +10,18 @@ CURATED = ROOT / "data" / "wymagania_kuratorskie.json"
 GRADES = ["Dopuszczająca", "Dostateczna", "Dobra", "Bardzo dobra", "Celująca"]
 FORBIDDEN = [
     "związany z wymaganiem",
+    "związane z wymaganiem",
     "opisuje wymaganie:",
     "realizuje wymaganie:",
+    "wykorzystuje wymaganie",
+    "wyjaśnia wymaganie:",
+    "interpretuje wymaganie:",
+    "wymaganiem: «",
+    "kryterium: «",
+    "wymagania: «",
+    "podstawowy element",
+    "typowe zadanie komunikacyjne dotyczące",
+    "podstawowe słowa lub struktury związane",
     "Uczeń samodzielnie realizuje",
     "Uczeń wykonuje typową czynność lub wyjaśnia typową procedurę",
 ]
