@@ -142,25 +142,30 @@ def export_vocational(parts: list[str]) -> tuple[int, int, int]:
 
 
 def main() -> None:
-    parts = [
-        "# Wymagania edukacyjne do opracowania",
-        "",
-        "Ten plik jest roboczą bazą wszystkich przedmiotów, działów i wymagań źródłowych wyciągniętych z lokalnych podstaw programowych ZSZ5.",
+    intro = [
+        "Ten plik jest roboczo-produkcyjną bazą wszystkich przedmiotów, działów i wymagań źródłowych wyciągniętych z lokalnych podstaw programowych ZSZ5.",
+        "Po uzupełnieniu ma zawierać gotowe wymagania edukacyjne do wstrzyknięcia na stronę przez `scripts/import_curated_from_working_md.py`.",
         "",
         "Jak używać:",
         "- każda tabela ma klucz zgodny z `data/wymagania_kuratorskie.json`,",
-        "- wiersze oznaczone `opracowane roboczo` mają już konkretne wymagania w bazie kuratorskiej,",
-        "- wiersze `do opracowania` trzeba uzupełnić konkretnymi wymaganiami na oceny,",
+        "- wiersz ze statusem `opracowane roboczo` oznacza kandydat gotowy do importu na stronę,",
+        "- wiersz `do opracowania` trzeba uzupełnić konkretnymi wymaganiami na oceny,",
+        "- po uzupełnieniu uruchom `python3 scripts/audit_requirements_working_md.py`,",
+        "- dopiero potem uruchom `python3 scripts/import_curated_from_working_md.py --apply`,",
         "- nie dopisuj autorów, lektur, epok ani przykładów, jeśli nie wynikają z programu nauczania albo rozkładu materiału,",
-        "- każda ocena powinna opisywać obserwowalne działanie ucznia i najlepiej zawierać dowód sprawdzenia.",
+        "- każda ocena musi opisywać obserwowalne działanie ucznia i zawierać `Dowód sprawdzenia:`.",
+        "",
+        "Wiersz nie jest gotowy do importu, jeżeli tylko powtarza wymaganie źródłowe w formie typu `zagadnienie: ...`, `wymaganie: ...`, `kryterium: ...`, `związane z wymaganiem ...` albo zmienia jedynie czasowniki bez konkretnego zachowania ucznia.",
     ]
+    parts: list[str] = []
     general_subjects, general_sections, general_requirements = export_general(parts)
     vocational_programmes, vocational_units, vocational_requirements = export_vocational(parts)
 
     summary = [
         "# Wymagania edukacyjne do opracowania",
         "",
-        "Ten plik jest roboczą bazą wszystkich przedmiotów, działów i wymagań źródłowych wyciągniętych z lokalnych podstaw programowych ZSZ5.",
+        "Ten plik jest roboczo-produkcyjną bazą wszystkich przedmiotów, działów i wymagań źródłowych wyciągniętych z lokalnych podstaw programowych ZSZ5.",
+        "Po uzupełnieniu ma zawierać gotowe wymagania edukacyjne do wstrzyknięcia na stronę przez `scripts/import_curated_from_working_md.py`.",
         "",
         "## Podsumowanie",
         "",
@@ -173,7 +178,7 @@ def main() -> None:
         f"- razem wierszy do opracowania lub recenzji: {general_requirements + vocational_requirements}",
         "",
     ]
-    final_parts = summary + parts[2:]
+    final_parts = summary + intro[3:] + [""] + parts
     OUT.write_text("\n".join(final_parts) + "\n", encoding="utf-8")
     print(f"Generated {OUT}")
     print(f"Rows: {general_requirements + vocational_requirements}")
