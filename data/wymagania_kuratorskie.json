@@ -1,0 +1,189 @@
+{
+  "schema_version": "curated_requirements_v1",
+  "status": "partial_curated_draft",
+  "description": "Ręcznie/subagentowo opracowane wymagania na oceny. Klucze mają format: typ szkoły||przedmiot||dział||wymaganie źródłowe po normalizacji. Treści są opracowaniem szkolnym do weryfikacji i akceptacji nauczyciela.",
+  "requirements": {
+    "bsii||Język polski||I||Kształtowanie dojrzałości intelektualnej, emocjonalnej i moralnej uczniów.": {
+      "Dopuszczająca": "Uczeń wskazuje w omawianym tekście jedną sytuację wyboru lub konfliktu bohatera i nazywa podstawową emocję albo wartość. Dowód sprawdzenia: krótka karta pracy z cytatem i jednozdaniowym komentarzem.",
+      "Dostateczna": "Uczeń wyjaśnia, jakie skutki ma decyzja postaci dla niej samej lub dla innych osób. Dowód sprawdzenia: odpowiedź ustna z odwołaniem do konkretnego fragmentu tekstu.",
+      "Dobra": "Uczeń porównuje dwie postawy obecne w tekście i uzasadnia, która z nich świadczy o większej odpowiedzialności. Dowód sprawdzenia: tabela porównawcza z dwoma argumentami.",
+      "Bardzo dobra": "Uczeń interpretuje konflikt wartości w tekście i formułuje własną ocenę postawy bohatera, unikając streszczenia. Dowód sprawdzenia: akapit argumentacyjny z przykładem z utworu.",
+      "Celująca": "Uczeń samodzielnie formułuje pogłębioną tezę o dojrzewaniu intelektualnym, emocjonalnym lub moralnym postaci i odnosi ją do problemu ogólnoludzkiego. Dowód sprawdzenia: wypowiedź pisemna lub prezentacja z uporządkowaną argumentacją."
+    },
+    "bsii||Język polski||I||Rozumienie historii literatury i dziejów kultury jako procesu, a także dostrzeganie roli czynników wewnętrznych i zewnętrznych wpływających na ten proces.": {
+      "Dopuszczająca": "Uczeń porządkuje omawiane teksty lub zjawiska kultury w prostej kolejności czasowej. Dowód sprawdzenia: uzupełniona oś czasu z minimum trzema elementami.",
+      "Dostateczna": "Uczeń wskazuje jeden czynnik wpływający na zmianę w literaturze lub kulturze, na przykład tematykę, sytuację społeczną albo sposób publikowania. Dowód sprawdzenia: odpowiedź pisemna w dwóch-trzech zdaniach.",
+      "Dobra": "Uczeń wyjaśnia związek między wybranym zjawiskiem kulturowym a warunkami historycznymi lub społecznymi. Dowód sprawdzenia: notatka problemowa z przykładem z lekcji.",
+      "Bardzo dobra": "Uczeń pokazuje literaturę lub kulturę jako ciągłość i zmianę, wskazując co najmniej dwa powiązane etapy albo zjawiska. Dowód sprawdzenia: krótka wypowiedź z użyciem pojęć procesu, kontynuacji i przemiany.",
+      "Celująca": "Uczeń samodzielnie analizuje, jak czynniki wewnętrzne tekstu i czynniki zewnętrzne wpływają na rozwój zjawiska literackiego lub kulturowego. Dowód sprawdzenia: uporządkowany komentarz interpretacyjny z własną tezą."
+    },
+    "bsii||Język polski||I||Rozumienie konieczności zachowania i rozwoju literatury i kultury w życiu jednostki oraz społeczeństwa.": {
+      "Dopuszczająca": "Uczeń podaje jeden przykład sytuacji, w której literatura lub kultura pomaga człowiekowi rozumieć siebie albo innych. Dowód sprawdzenia: odpowiedź na pytanie problemowe po lekturze fragmentu.",
+      "Dostateczna": "Uczeń wyjaśnia, dlaczego wybrany tekst lub praktyka kulturowa może być ważna dla grupy społecznej. Dowód sprawdzenia: krótka wypowiedź pisemna z jednym argumentem.",
+      "Dobra": "Uczeń uzasadnia potrzebę zachowania wybranego elementu kultury i wskazuje, co może się zmienić, gdy zostanie on zapomniany. Dowód sprawdzenia: karta argumentów za i przeciw.",
+      "Bardzo dobra": "Uczeń omawia napięcie między ochroną tradycji a rozwojem kultury, podając przykład z omawianych tekstów lub zjawisk. Dowód sprawdzenia: wypowiedź ustna z kontrargumentem.",
+      "Celująca": "Uczeń formułuje samodzielne stanowisko o roli literatury i kultury w życiu jednostki i społeczeństwa, łącząc argumenty aksjologiczne i społeczne. Dowód sprawdzenia: rozprawkowy akapit lub głos w debacie klasowej."
+    },
+    "bsii||Język polski||I||Rozróżnianie kultury wysokiej i niskiej, elitarnej i popularnej oraz dostrzeganie związków między nimi.": {
+      "Dopuszczająca": "Uczeń rozpoznaje, czy podany przykład należy do kultury popularnej, wysokiej, elitarnej lub masowej, korzystając z podpowiedzi nauczyciela. Dowód sprawdzenia: ćwiczenie klasyfikacyjne z krótkim uzasadnieniem.",
+      "Dostateczna": "Uczeń wyjaśnia jedną różnicę między kulturą wysoką a popularną albo elitarną a masową. Dowód sprawdzenia: odpowiedź pisemna z przykładem omawianego tekstu kultury.",
+      "Dobra": "Uczeń porównuje dwa teksty kultury i wskazuje, jakie cechy łączą je z różnymi obiegami kultury. Dowód sprawdzenia: tabela cech z minimum dwoma przykładami.",
+      "Bardzo dobra": "Uczeń pokazuje, że granice między obiegami kultury mogą się przesuwać, i uzasadnia to konkretnym przykładem. Dowód sprawdzenia: wypowiedź problemowa z argumentem i kontrargumentem.",
+      "Celująca": "Uczeń samodzielnie analizuje relacje między kulturą wysoką, popularną, elitarną i masową, oceniając funkcję tych relacji w odbiorze tekstu kultury. Dowód sprawdzenia: komentarz interpretacyjny lub mini-prezentacja porównawcza."
+    },
+    "bsii||Język polski||I||Znajomość wybranych utworów z literatury polskiej i światowej oraz umiejętność mówienia o nich z wykorzystaniem potrzebnej terminologii.": {
+      "Dopuszczająca": "Uczeń przedstawia podstawowe informacje o omawianym utworze i wskazuje jego temat. Dowód sprawdzenia: odpowiedź ustna lub notatka z trzema informacjami o tekście.",
+      "Dostateczna": "Uczeń omawia główny problem utworu, używając kilku podstawowych pojęć, takich jak bohater, narrator, podmiot mówiący, motyw lub konflikt. Dowód sprawdzenia: krótka wypowiedź z poprawnym użyciem terminów.",
+      "Dobra": "Uczeń charakteryzuje wybrany element utworu i dobiera do niego właściwą terminologię literacką. Dowód sprawdzenia: analiza fragmentu z podkreślonymi pojęciami.",
+      "Bardzo dobra": "Uczeń mówi o utworze w sposób uporządkowany, łącząc treść, formę i funkcję zastosowanych środków. Dowód sprawdzenia: wypowiedź ustna z planem i cytatem lub przykładem.",
+      "Celująca": "Uczeń samodzielnie omawia utwór, precyzyjnie dobiera terminologię i pokazuje, jak środki literackie wpływają na sens całości. Dowód sprawdzenia: interpretacja ustna lub pisemna bez schematycznego streszczania."
+    },
+    "bsii||Język polski||I||Kształtowanie różnorodnych postaw czytelniczych: od spontanicznego czytania do odbioru opartego na podstawach naukowych.": {
+      "Dopuszczająca": "Uczeń formułuje pierwszą reakcję na tekst i wskazuje fragment, który ją wywołał. Dowód sprawdzenia: dzienniczek lektury z cytatem lub opisem sceny.",
+      "Dostateczna": "Uczeń odróżnia osobiste wrażenie od informacji wynikającej z tekstu. Dowód sprawdzenia: karta pracy z dwiema rubrykami: moje odczucie i dowód z tekstu.",
+      "Dobra": "Uczeń uzasadnia swoją opinię o tekście, korzystając z prostych pojęć analitycznych. Dowód sprawdzenia: krótka recenzja lub wypowiedź z minimum dwoma argumentami.",
+      "Bardzo dobra": "Uczeń rozwija odbiór tekstu przez analizę kompozycji, języka lub kontekstu omawianego na lekcji. Dowód sprawdzenia: notatka interpretacyjna z uporządkowanymi obserwacjami.",
+      "Celująca": "Uczeń łączy osobisty odbiór z metodą analizy, świadomie sprawdza swoje hipotezy w tekście i koryguje interpretację. Dowód sprawdzenia: refleksyjny komentarz pokazujący drogę od pierwszego wrażenia do wniosku."
+    },
+    "bsii||Język polski||I||Kształcenie umiejętności czytania, analizowania i interpretowania literatury oraz innych tekstów kultury, a także ich wzajemnej korespondencji.": {
+      "Dopuszczająca": "Uczeń odczytuje podstawowy sens tekstu literackiego lub tekstu kultury i wskazuje jego główny temat. Dowód sprawdzenia: odpowiedzi do krótkiego fragmentu lub obrazu/filmu/reklamy omawianej na lekcji.",
+      "Dostateczna": "Uczeń wskazuje wybrane elementy budowy tekstu i wyjaśnia ich najprostszą funkcję. Dowód sprawdzenia: karta analizy z przykładami z materiału źródłowego.",
+      "Dobra": "Uczeń interpretuje wybrany fragment, łącząc obserwacje o treści i formie. Dowód sprawdzenia: akapit interpretacyjny z jednym cytatem lub opisem szczegółu.",
+      "Bardzo dobra": "Uczeń porównuje dwa teksty kultury i wskazuje między nimi podobieństwa lub różnice w temacie, motywie, obrazie człowieka albo sposobie przedstawienia. Dowód sprawdzenia: wypowiedź porównawcza z uporządkowanymi kryteriami.",
+      "Celująca": "Uczeń samodzielnie analizuje korespondencję między tekstami kultury, formułuje wniosek interpretacyjny i uzasadnia go szczegółami z obu materiałów. Dowód sprawdzenia: praca porównawcza lub prezentacja interpretacyjna."
+    },
+    "bsii||Język polski||I||Kształcenie umiejętności świadomego odbioru utworów literackich i tekstów kultury na różnych poziomach: dosłownym, metaforycznym, symbolicznym, aksjologicznym.": {
+      "Dopuszczająca": "Uczeń odtwarza dosłowny sens tekstu lub sceny i wskazuje najważniejsze zdarzenie, obraz albo wypowiedź. Dowód sprawdzenia: krótkie pytania sprawdzające rozumienie tekstu.",
+      "Dostateczna": "Uczeń rozpoznaje prosty sens przenośny i wyjaśnia go własnymi słowami. Dowód sprawdzenia: ćwiczenie z dopisaniem znaczenia metafory lub obrazu.",
+      "Dobra": "Uczeń wskazuje element symboliczny i uzasadnia jego znaczenie w kontekście całego tekstu. Dowód sprawdzenia: notatka interpretacyjna z przykładem z materiału.",
+      "Bardzo dobra": "Uczeń omawia, jakie wartości, postawy lub konflikty moralne ujawnia tekst na poziomie aksjologicznym. Dowód sprawdzenia: wypowiedź argumentacyjna z odwołaniem do szczegółów tekstu.",
+      "Celująca": "Uczeń samodzielnie łączy poziom dosłowny, metaforyczny, symboliczny i aksjologiczny w spójną interpretację, pokazując zależności między nimi. Dowód sprawdzenia: pełna interpretacja fragmentu lub tekstu kultury z własną tezą."
+    },
+    "bsii||Język polski||II||Pogłębianie funkcjonalnej wiedzy z zakresu nauki o języku.": {
+      "Dopuszczająca": "Uczeń rozpoznaje w krótkim tekście podstawowe zjawisko językowe omawiane na lekcji i wskazuje, czemu ono służy. Dowód sprawdzenia: karta pracy z oznaczeniem jednego zjawiska i krótką odpowiedzią o jego funkcji.",
+      "Dostateczna": "Uczeń wyjaśnia prosty związek między budową wypowiedzi a jej znaczeniem lub odbiorem. Dowód sprawdzenia: odpowiedź pisemna w dwóch-trzech zdaniach do wskazanego fragmentu.",
+      "Dobra": "Uczeń stosuje wiedzę o języku przy redagowaniu lub poprawianiu własnej wypowiedzi, zachowując sens i cel komunikatu. Dowód sprawdzenia: poprawiona wersja krótkiego tekstu z zaznaczonymi zmianami.",
+      "Bardzo dobra": "Uczeń analizuje, jak wybrane rozwiązania językowe wpływają na precyzję, ton i spójność wypowiedzi. Dowód sprawdzenia: komentarz analityczny do fragmentu tekstu z uzasadnieniem obserwacji.",
+      "Celująca": "Uczeń samodzielnie dobiera i uzasadnia rozwiązania językowe w złożonej wypowiedzi, świadomie kontrolując znaczenie, styl i odbiór tekstu. Dowód sprawdzenia: autorska wypowiedź z krótką autorefleksją o zastosowanych wyborach językowych."
+    },
+    "bsii||Język polski||II||Wzbogacanie umiejętności komunikacyjnych, stosowne wykorzystanie języka w różnych sytuacjach komunikacyjnych.": {
+      "Dopuszczająca": "Uczeń rozpoznaje nadawcę, odbiorcę i cel prostej sytuacji komunikacyjnej. Dowód sprawdzenia: krótkie zadanie z opisem sytuacji i wskazaniem trzech elementów komunikacji.",
+      "Dostateczna": "Uczeń dobiera podstawowy sposób wypowiedzi do adresata i celu, unikając rażącej niestosowności. Dowód sprawdzenia: krótka wypowiedź ustna lub pisemna przygotowana do podanej sytuacji.",
+      "Dobra": "Uczeń stosuje język odpowiedni do sytuacji, porządkuje wypowiedź i reaguje na informacje zwrotne rozmówcy. Dowód sprawdzenia: scenka komunikacyjna albo odpowiedź pisemna z korektą po uwadze nauczyciela.",
+      "Bardzo dobra": "Uczeń analizuje skuteczność własnej lub cudzej wypowiedzi i uzasadnia, które elementy języka wzmacniają albo osłabiają komunikat. Dowód sprawdzenia: karta oceny wypowiedzi z konkretnymi wnioskami.",
+      "Celująca": "Uczeń tworzy spójną, stosowną i celową wypowiedź w sytuacji wymagającej świadomego dostosowania stylu, argumentacji i tonu. Dowód sprawdzenia: wypowiedź problemowa lub dialog z omówieniem zastosowanej strategii komunikacyjnej."
+    },
+    "bsii||Język polski||II||Świadome wykorzystanie działań językowych w formowaniu odpowiedzialności za własne zachowania językowe.": {
+      "Dopuszczająca": "Uczeń rozpoznaje, że wypowiedź może wpływać na odbiorcę i wskazuje podstawowy skutek użytych słów. Dowód sprawdzenia: analiza krótkiej wypowiedzi z zaznaczeniem możliwej reakcji odbiorcy.",
+      "Dostateczna": "Uczeń wyjaśnia, dlaczego wybrane sformułowanie jest stosowne albo niestosowne w danej sytuacji. Dowód sprawdzenia: odpowiedź pisemna z uzasadnieniem oceny komunikatu.",
+      "Dobra": "Uczeń koryguje własną lub podaną wypowiedź tak, aby była rzeczowa, jasna i respektowała odbiorcę. Dowód sprawdzenia: poprawiona wersja komunikatu z krótkim opisem zmian.",
+      "Bardzo dobra": "Uczeń analizuje konsekwencje działań językowych i uzasadnia wybór formy wypowiedzi odpowiedzialnej za słowo. Dowód sprawdzenia: wypowiedź argumentacyjna do sytuacji komunikacyjnej.",
+      "Celująca": "Uczeń tworzy wypowiedź w sytuacji problemowej, świadomie dobierając środki językowe, aby osiągnąć cel bez manipulacji i naruszania godności odbiorcy. Dowód sprawdzenia: projekt wypowiedzi z omówieniem przyjętych decyzji językowych."
+    },
+    "bsii||Język polski||II||Uwrażliwianie na piękno mowy ojczystej, wspomaganie rozwoju kultury językowej, doskonalenie umiejętności posługiwania się poprawną polszczyzną.": {
+      "Dopuszczająca": "Uczeń rozpoznaje w wypowiedzi podstawowe uchybienie językowe albo przykład starannego sformułowania. Dowód sprawdzenia: krótkie ćwiczenie z zaznaczeniem poprawnej lub wymagającej poprawy formy.",
+      "Dostateczna": "Uczeń stosuje podstawowe zasady poprawności w krótkiej wypowiedzi i usuwa wskazane błędy. Dowód sprawdzenia: poprawiona notatka lub odpowiedź pisemna po informacji od nauczyciela.",
+      "Dobra": "Uczeń koryguje własny tekst pod względem poprawności, jasności i kultury języka. Dowód sprawdzenia: dwie wersje wypowiedzi: robocza i poprawiona, z zaznaczonymi zmianami.",
+      "Bardzo dobra": "Uczeń uzasadnia wybór poprawnych i starannych sformułowań, dbając o precyzję oraz estetykę wypowiedzi. Dowód sprawdzenia: komentarz do własnego tekstu z wyjaśnieniem najważniejszych poprawek.",
+      "Celująca": "Uczeń tworzy dopracowaną językowo wypowiedź, świadomie łącząc poprawność, stosowność, precyzję i kulturę słowa. Dowód sprawdzenia: finalna wypowiedź pisemna lub ustna z krótką samooceną jakości języka."
+    },
+    "bsii||Język polski||III||Doskonalenie umiejętności wyrażania własnych sądów, argumentacji i udziału w dyskusji.": {
+      "Dopuszczająca": "Uczeń formułuje prosty własny sąd na podany temat i podaje jeden argument związany z tematem. Dowód sprawdzenia: krótka wypowiedź ustna lub pisemna z zaznaczoną tezą i argumentem.",
+      "Dostateczna": "Uczeń uzasadnia własny sąd dwoma argumentami i odnosi się do wypowiedzi rozmówcy w dyskusji. Dowód sprawdzenia: udział w rozmowie kierowanej oraz karta z zapisanymi argumentami.",
+      "Dobra": "Uczeń dobiera argumenty do stanowiska, porządkuje je według ważności i reaguje na prosty kontrargument. Dowód sprawdzenia: plan wypowiedzi argumentacyjnej oraz krótki głos w dyskusji.",
+      "Bardzo dobra": "Uczeń prowadzi spójną argumentację, uzasadnia stanowisko i rzeczowo odpowiada na odmienne opinie. Dowód sprawdzenia: wypowiedź problemowa lub moderowana dyskusja z oceną argumentów.",
+      "Celująca": "Uczeń samodzielnie formułuje pogłębione stanowisko, rozwija argumentację, wykorzystuje kontrargument i podsumowuje dyskusję wnioskami. Dowód sprawdzenia: debata klasowa albo pisemna wypowiedź argumentacyjna z samooceną argumentacji."
+    },
+    "bsii||Język polski||III||Wykorzystanie kompetencji językowych i komunikacyjnych w wypowiedziach ustnych i pisemnych.": {
+      "Dopuszczająca": "Uczeń tworzy krótką wypowiedź ustną lub pisemną na temat i zachowuje podstawową zrozumiałość komunikatu. Dowód sprawdzenia: odpowiedź ustna albo kilkuzdaniowa notatka po korekcie nauczyciela.",
+      "Dostateczna": "Uczeń dobiera słownictwo do tematu i poprawia najważniejsze błędy zakłócające odbiór wypowiedzi. Dowód sprawdzenia: pierwsza i poprawiona wersja krótkiego tekstu.",
+      "Dobra": "Uczeń dostosowuje sposób wypowiedzi do sytuacji komunikacyjnej, odbiorcy i formy zadania. Dowód sprawdzenia: wypowiedź ustna lub pisemna przygotowana dla wskazanego odbiorcy.",
+      "Bardzo dobra": "Uczeń redaguje wypowiedź poprawną, logiczną i stosowną językowo, świadomie dobierając środki komunikacyjne. Dowód sprawdzenia: praca pisemna z autokorektą języka i kompozycji.",
+      "Celująca": "Uczeń swobodnie wykorzystuje kompetencje językowe w złożonej wypowiedzi, kontroluje styl, precyzję i skuteczność komunikatu. Dowód sprawdzenia: rozbudowana wypowiedź ustna lub pisemna z uzasadnieniem zastosowanych rozwiązań językowych."
+    },
+    "bsii||Język polski||III||Kształcenie umiejętności formułowania i uzasadniania sądów na temat dzieł literackich oraz innych tekstów kultury.": {
+      "Dopuszczająca": "Uczeń formułuje prostą opinię o omawianym tekście i wskazuje jeden element, który ją uzasadnia. Dowód sprawdzenia: odpowiedź pisemna w dwóch-trzech zdaniach z odwołaniem do tekstu.",
+      "Dostateczna": "Uczeń uzasadnia sąd o tekście, odwołując się do wybranego fragmentu, postaci, sytuacji lub środka wyrazu. Dowód sprawdzenia: krótki akapit interpretacyjny z jednym przykładem z materiału.",
+      "Dobra": "Uczeń formułuje sąd interpretacyjny i dobiera do niego trafne argumenty wynikające z analizy tekstu. Dowód sprawdzenia: plan wypowiedzi z tezą, argumentami i odwołaniami do tekstu.",
+      "Bardzo dobra": "Uczeń uzasadnia ocenę tekstu w sposób uporządkowany, łącząc obserwacje dotyczące treści, formy i funkcji. Dowód sprawdzenia: wypowiedź interpretacyjna z wyraźnym wnioskiem.",
+      "Celująca": "Uczeń samodzielnie formułuje pogłębiony sąd o tekście kultury, rozważa możliwe odczytania i broni własnego stanowiska. Dowód sprawdzenia: praca problemowa albo wypowiedź ustna z odpowiedzią na pytania sprawdzające."
+    },
+    "bsii||Język polski||III||Doskonalenie umiejętności retorycznych, w szczególności zasad tworzenia wypowiedzi spójnych, logicznych oraz stosowania kompozycji odpowiedniej dla danej formy gatunkowej.": {
+      "Dopuszczająca": "Uczeń układa prostą wypowiedź z początkiem, rozwinięciem i zakończeniem oraz zachowuje związek z tematem. Dowód sprawdzenia: plan wypowiedzi i krótki tekst napisany według planu.",
+      "Dostateczna": "Uczeń porządkuje treść wypowiedzi, stosuje podstawowe łączniki logiczne i zachowuje główne cechy wskazanej formy. Dowód sprawdzenia: tekst po poprawie kompozycji i zaznaczeniu części wypowiedzi.",
+      "Dobra": "Uczeń dobiera kompozycję do formy gatunkowej, rozwija argumenty w logicznej kolejności i unika powtórzeń myślowych. Dowód sprawdzenia: wypowiedź pisemna z planem oraz krótką autokorektą układu treści.",
+      "Bardzo dobra": "Uczeń tworzy spójną i logiczną wypowiedź, świadomie stosując środki porządkujące oraz właściwe proporcje części tekstu. Dowód sprawdzenia: praca pisemna oceniona pod kątem kompozycji, spójności i argumentacji.",
+      "Celująca": "Uczeń samodzielnie projektuje kompozycję złożonej wypowiedzi, wzmacnia jej perswazyjność i koryguje układ tekstu po analizie efektu. Dowód sprawdzenia: wersja robocza i końcowa wypowiedzi z komentarzem do wprowadzonych zmian."
+    },
+    "bsii||Język polski||III||Rozwijanie umiejętności tworzenia tekstów o wyższym stopniu złożoności.": {
+      "Dopuszczająca": "Uczeń tworzy krótki tekst wielozdaniowy na temat, zachowując podstawowy porządek wypowiedzi. Dowód sprawdzenia: kilkuzdaniowa praca pisemna z poprawioną wersją końcową.",
+      "Dostateczna": "Uczeń rozwija tekst przez dodanie argumentu, przykładu i prostego wniosku. Dowód sprawdzenia: akapit rozwinięty według wskazanych elementów.",
+      "Dobra": "Uczeń redaguje dłuższą wypowiedź z wyraźną tezą, uporządkowanymi częściami i powiązaniami między akapitami. Dowód sprawdzenia: praca pisemna z planem i zaznaczonymi przejściami między częściami.",
+      "Bardzo dobra": "Uczeń tworzy złożony tekst, łącząc argumentację, analizę materiału i wnioski w spójną całość. Dowód sprawdzenia: rozbudowana wypowiedź pisemna z kryteriami samooceny.",
+      "Celująca": "Uczeń samodzielnie opracowuje wieloaspektowy tekst, świadomie planuje jego strukturę, poprawia wersję roboczą i dba o precyzję wniosków. Dowód sprawdzenia: portfolio obejmujące plan, wersję roboczą, korektę i tekst końcowy."
+    },
+    "bsii||Język polski||IV||Rozwijanie zainteresowań humanistycznych.": {
+      "Dopuszczająca": "Uczeń wskazuje jeden temat humanistyczny, który chce pogłębić, i zapisuje do niego proste pytanie. Dowód sprawdzenia: krótka notatka z tematem i pytaniem do dalszej pracy.",
+      "Dostateczna": "Uczeń planuje prostą aktywność samokształceniową związaną z wybranym tematem i określa, czego chce się dowiedzieć. Dowód sprawdzenia: plan pracy z celem i terminem wykonania.",
+      "Dobra": "Uczeń dobiera materiał do wybranego tematu, notuje najważniejsze informacje i wskazuje, dlaczego są przydatne. Dowód sprawdzenia: karta źródła z trzema uporządkowanymi notatkami.",
+      "Bardzo dobra": "Uczeń dokumentuje postęp pracy, porządkuje zebrane informacje i formułuje własny wniosek. Dowód sprawdzenia: notatka podsumowująca z wnioskiem i opisem wykorzystanych materiałów.",
+      "Celująca": "Uczeń samodzielnie rozwija temat, łączy informacje z kilku materiałów i prezentuje efekt pracy w uporządkowanej formie. Dowód sprawdzenia: prezentacja, wypowiedź lub portfolio z jasnym celem i wnioskami."
+    },
+    "bsii||Język polski||IV||Doskonalenie umiejętności korzystania z różnych źródeł informacji, w tym zasobów cyfrowych, oceny ich rzetelności, wiarygodności i poprawności merytorycznej.": {
+      "Dopuszczająca": "Uczeń wybiera wskazane źródło informacji i zapisuje podstawowe dane potrzebne do jego identyfikacji. Dowód sprawdzenia: karta źródła z tytułem, autorem lub instytucją oraz adresem albo opisem miejsca znalezienia.",
+      "Dostateczna": "Uczeń porównuje dwa źródła i odróżnia informację od opinii lub komentarza. Dowód sprawdzenia: tabela porównawcza z zaznaczeniem informacji i opinii.",
+      "Dobra": "Uczeń ocenia wiarygodność źródła, biorąc pod uwagę autora, aktualność, zgodność z tematem i sposób uzasadnienia informacji. Dowód sprawdzenia: krótka ocena źródła z minimum dwoma kryteriami.",
+      "Bardzo dobra": "Uczeń uzasadnia wybór źródeł do pracy i odrzuca materiał, który jest nierzetelny, niepełny albo niezgodny z tematem. Dowód sprawdzenia: lista wykorzystanych i odrzuconych źródeł z uzasadnieniem.",
+      "Celująca": "Uczeń samodzielnie tworzy zestaw źródeł, wskazuje ich mocne i słabe strony oraz wyjaśnia, jak sprawdził poprawność informacji. Dowód sprawdzenia: adnotowana bibliografia lub notatka badawcza z komentarzem do źródeł."
+    },
+    "bsii||Język polski||IV||Kształcenie nawyków systematycznego uczenia się, porządkowania zdobytej wiedzy i jej pogłębiania oraz syntezy poznanego materiału.": {
+      "Dopuszczająca": "Uczeń prowadzi podstawową notatkę z lekcji lub pracy własnej i uzupełnia ją po wskazówce nauczyciela. Dowód sprawdzenia: zeszyt albo plik z uporządkowanymi punktami.",
+      "Dostateczna": "Uczeń porządkuje poznany materiał w planie, tabeli lub mapie pojęć. Dowód sprawdzenia: opracowana notatka z podziałem na najważniejsze zagadnienia.",
+      "Dobra": "Uczeń wybiera najważniejsze informacje, dopisuje zależności między nimi i usuwa treści drugorzędne. Dowód sprawdzenia: notatka po korekcie z zaznaczonymi informacjami kluczowymi.",
+      "Bardzo dobra": "Uczeń syntetyzuje poznany materiał w krótkim podsumowaniu i wskazuje, czego jeszcze wymaga pogłębienia. Dowód sprawdzenia: podsumowanie działu z listą pytań lub braków do uzupełnienia.",
+      "Celująca": "Uczeń samodzielnie planuje powtórkę, aktualizuje własne notatki i łączy nowe informacje z wcześniejszą wiedzą. Dowód sprawdzenia: plan nauki, zaktualizowane notatki i końcowe wnioski."
+    },
+    "bsii||Język polski||IV||Wyrabianie nawyku samodzielnej, systematycznej lektury.": {
+      "Dopuszczająca": "Uczeń odnotowuje wykonanie ustalonego fragmentu lektury i wskazuje jedną zapamiętaną informację. Dowód sprawdzenia: wpis w dzienniczku lektury lub krótka odpowiedź sprawdzająca.",
+      "Dostateczna": "Uczeń czyta w ustalonych terminach i zapisuje krótkie streszczenie przeczytanego fragmentu. Dowód sprawdzenia: dzienniczek lektury z datami i streszczeniami.",
+      "Dobra": "Uczeń planuje czytanie, zaznacza fragmenty wymagające wyjaśnienia i formułuje pytania do tekstu. Dowód sprawdzenia: plan lektury z pytaniami lub zaznaczonymi trudnościami.",
+      "Bardzo dobra": "Uczeń systematycznie dokumentuje lekturę, cytuje ważne fragmenty i komentuje ich znaczenie dla rozumienia tekstu. Dowód sprawdzenia: dzienniczek lektury z cytatami i komentarzami.",
+      "Celująca": "Uczeń samodzielnie utrzymuje rytm czytania, porównuje swoje pierwsze rozumienie z późniejszymi wnioskami i prezentuje refleksję po lekturze. Dowód sprawdzenia: portfolio lekturowe lub wypowiedź podsumowująca proces czytania."
+    },
+    "bsii||Język polski||IV||Rozwijanie uzdolnień i zainteresowań poprzez udział w różnych formach aktywności intelektualnej i twórczej.": {
+      "Dopuszczająca": "Uczeń uczestniczy w zaproponowanej aktywności i wykonuje przydzielone zadanie w podstawowym zakresie. Dowód sprawdzenia: oddany rezultat pracy lub zapis udziału w zadaniu.",
+      "Dostateczna": "Uczeń wybiera formę aktywności zgodną ze swoimi zainteresowaniami i określa własny wkład. Dowód sprawdzenia: karta zadania z opisem roli i wykonanych czynności.",
+      "Dobra": "Uczeń przygotowuje efekt pracy, dokumentuje kolejne etapy i korzysta z informacji zwrotnej. Dowód sprawdzenia: wersja robocza i poprawiona praca z krótkim opisem zmian.",
+      "Bardzo dobra": "Uczeń planuje i realizuje aktywność w sposób samodzielny, dobierając formę wypowiedzi do celu. Dowód sprawdzenia: gotowa praca, wystąpienie lub projekt z opisem celu i sposobu wykonania.",
+      "Celująca": "Uczeń inicjuje własną aktywność, rozwija ją ponad wymagany zakres i przedstawia refleksję nad uzyskanym efektem. Dowód sprawdzenia: prezentacja efektu, dokumentacja procesu i samoocena."
+    },
+    "bsii||Język polski||IV||Umacnianie postawy poszanowania dla cudzej własności intelektualnej.": {
+      "Dopuszczająca": "Uczeń rozpoznaje cudzą treść wykorzystaną w pracy i oznacza jej źródło. Dowód sprawdzenia: praca z podpisanym cytatem, ilustracją, danymi lub fragmentem materiału.",
+      "Dostateczna": "Uczeń oddziela własne słowa od zapożyczeń i podaje źródło wykorzystanej informacji. Dowód sprawdzenia: krótka wypowiedź z wyraźnie oznaczonym zapożyczeniem.",
+      "Dobra": "Uczeń parafrazuje cudzą myśl bez zniekształcania sensu i zapisuje informację o źródle. Dowód sprawdzenia: porównanie fragmentu źródłowego z parafrazą i opisem źródła.",
+      "Bardzo dobra": "Uczeń przygotowuje pracę z konsekwentnym oznaczaniem cytatów, parafraz i materiałów pomocniczych. Dowód sprawdzenia: praca pisemna lub prezentacja z uporządkowanym wykazem źródeł.",
+      "Celująca": "Uczeń świadomie dobiera sposób wykorzystania cudzych treści, poprawia błędy w oznaczeniach i wyjaśnia, dlaczego źródło trzeba wskazać. Dowód sprawdzenia: poprawiona wersja pracy z komentarzem autora."
+    },
+    "bsii||Język polski||IV||Rozwijanie umiejętności efektywnego posługiwania się technologią informacyjną w poszukiwaniu, porządkowaniu i wykorzystywaniu pozyskanych informacji.": {
+      "Dopuszczająca": "Uczeń używa narzędzia cyfrowego do znalezienia informacji i zapisuje link lub lokalizację materiału. Dowód sprawdzenia: notatka z adresem źródła i krótkim opisem treści.",
+      "Dostateczna": "Uczeń zapisuje pozyskane informacje w uporządkowanej formie cyfrowej, na przykład w tabeli, dokumencie lub folderze. Dowód sprawdzenia: plik albo zrzut struktury notatek z opisanymi elementami.",
+      "Dobra": "Uczeń dobiera słowa kluczowe, zawęża wyniki wyszukiwania i wybiera materiały zgodne z tematem. Dowód sprawdzenia: lista użytych zapytań oraz wybranych wyników.",
+      "Bardzo dobra": "Uczeń łączy informacje z kilku materiałów cyfrowych, porządkuje je i wykorzystuje w swojej wypowiedzi z oznaczeniem źródeł. Dowód sprawdzenia: notatka syntetyczna lub prezentacja z linkami do źródeł.",
+      "Celująca": "Uczeń tworzy uporządkowany zestaw cyfrowych materiałów, sprawdza ich przydatność i przekształca je w samodzielne opracowanie. Dowód sprawdzenia: folder, dokument lub baza notatek z komentarzami i końcową syntezą."
+    },
+    "bsii||Język polski||IV||Rozumienie pojęcia tradycji, dostrzeganie jej obecności we współczesnej kulturze.": {
+      "Dopuszczająca": "Uczeń wskazuje w omawianym materiale element związany z tradycją. Dowód sprawdzenia: odpowiedź ustna lub karta pracy z zaznaczonym elementem.",
+      "Dostateczna": "Uczeń wyjaśnia własnymi słowami, jak wskazany element tradycji pojawia się w materiale współczesnym. Dowód sprawdzenia: krótka notatka z opisem zależności.",
+      "Dobra": "Uczeń porównuje tradycyjny element z jego współczesnym użyciem, korzystając z materiałów omawianych na lekcji. Dowód sprawdzenia: tabela porównawcza z wnioskiem.",
+      "Bardzo dobra": "Uczeń interpretuje funkcję tradycji we współczesnym tekście kultury i uzasadnia ją szczegółami z materiału. Dowód sprawdzenia: akapit interpretacyjny z odwołaniem do konkretnego fragmentu lub elementu.",
+      "Celująca": "Uczeń formułuje samodzielną tezę o ciągłości lub zmianie tradycji we współczesnej kulturze i uzasadnia ją uporządkowanymi argumentami. Dowód sprawdzenia: wypowiedź problemowa lub prezentacja z tezą i wnioskami."
+    },
+    "bsii||Język polski||II||Funkcjonalne wykorzystywanie wiedzy o języku w odczytaniu sensów zawartych w strukturze głębokiej tekstów literackich i nieliterackich.": {
+      "Dopuszczająca": "Uczeń rozpoznaje w tekście element językowy, który wpływa na odczytanie sensu wypowiedzi. Dowód sprawdzenia: wskazanie fragmentu i jednozdaniowe wyjaśnienie jego znaczenia.",
+      "Dostateczna": "Uczeń wyjaśnia, jak wybrany element języka pomaga odczytać sens niewyrażony wprost. Dowód sprawdzenia: odpowiedź do fragmentu tekstu z odwołaniem do konkretnego sformułowania.",
+      "Dobra": "Uczeń stosuje wiedzę o języku do interpretacji tekstu, łącząc obserwację językową z wnioskiem o znaczeniu. Dowód sprawdzenia: akapit interpretacyjny zawierający obserwację i wniosek.",
+      "Bardzo dobra": "Uczeń analizuje kilka powiązanych sygnałów językowych i uzasadnia, jak budują ukryty sens tekstu. Dowód sprawdzenia: notatka analityczna z uporządkowanymi argumentami.",
+      "Celująca": "Uczeń samodzielnie formułuje pogłębioną interpretację, pokazując zależność między organizacją języka a sensem tekstu. Dowód sprawdzenia: komentarz interpretacyjny z własną tezą i uzasadnieniem opartym na materiale tekstowym."
+    }
+  }
+}
