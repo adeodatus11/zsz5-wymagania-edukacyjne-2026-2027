@@ -20,6 +20,8 @@ Widoczny na stronie szablon pochodzi z pliku:
 
 - `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`
 
+Szablon wykorzystuje układ 8 kolumn: `nr tematu`, `poziom klasy`, `Temat`, `Dział`, `Liczba godzin`, `Elementy podstawy programowej`, `cele podstawowe: uczeń:`, `cele ponadpodstawowe: uczeń:`.
+
 Podglądy arkuszy są zapisane jako:
 
 - `assets/rozklad-materialu-wzor.png`

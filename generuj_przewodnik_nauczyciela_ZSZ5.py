@@ -261,7 +261,7 @@ SCHEDULE_BODY = f"""
     </div>
     <div class="card">
       <h4>Informacje do uzupełnienia przed tabelą</h4>
-      <p>Przed listą tematów należy wpisać przedmiot i nauczyciela, nazwę rozkładu, typ szkoły i poziom klasy, podstawę programową, krótki opis rozkładu oraz numer szkolnego zestawu programów nauczania.</p>
+      <p>Przed listą tematów należy wpisać nazwę rozkładu, typ szkoły i poziom klasy, nazwę oraz numer podstawy programowej, krótki opis rozkładu oraz numer szkolnego zestawu programów nauczania.</p>
     </div>
   </div>
   <div class="preview-grid">
@@ -280,20 +280,14 @@ SCHEDULE_BODY = f"""
 <section class="section">
   <h3>Opis kolumn w szablonie</h3>
   <div class="column-guide">
-    <div class="column-item"><strong>L.p.</strong><p>Kolejny numer pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i odwoływanie się do konkretnego tematu.</p></div>
+    <div class="column-item"><strong>nr tematu</strong><p>Kolejny numer tematu lub pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i odwoływanie się do konkretnej lekcji.</p></div>
+    <div class="column-item"><strong>poziom klasy</strong><p>Poziom, klasa albo rok realizacji, którego dotyczy temat. Przy przedmiotach wieloletnich pozwala kontrolować, w którym roku realizowana jest dana część materiału.</p></div>
     <div class="column-item"><strong>Temat</strong><p>Temat lekcji, bloku zajęć, sprawdzianu, powtórzenia albo zadania praktycznego.</p></div>
     <div class="column-item"><strong>Dział</strong><p>Nazwa działu, modułu lub większego obszaru programu. Pomaga grupować tematy i kontrolować kolejność pracy.</p></div>
     <div class="column-item"><strong>Liczba godzin</strong><p>Planowana liczba godzin przeznaczona na temat lub blok.</p></div>
     <div class="column-item"><strong>Elementy podstawy programowej</strong><p>Numery punktów, efekty kształcenia albo kryteria z podstawy programowej, które są realizowane w tej pozycji.</p></div>
-    <div class="column-item"><strong>Podstawa programowa</strong><p>Nazwa podstawy, dokumentu lub kwalifikacji, z której pochodzą wskazane elementy.</p></div>
-    <div class="column-item"><strong>Komentarz</strong><p>Krótkie uwagi organizacyjne: warunki realizacji, pracownia, zakres powtórzenia lub wariant dla klasy.</p></div>
-    <div class="column-item"><strong>Zasoby prywatne</strong><p>Materiały nauczyciela niedostępne publicznie, np. własne karty pracy, sprawdziany lub notatki.</p></div>
-    <div class="column-item"><strong>Zasoby publiczne</strong><p>Linki do publicznych materiałów, stron, filmów, dokumentów albo otwartych zasobów edukacyjnych.</p></div>
-    <div class="column-item"><strong>Rozszerzenie</strong><p>Informacja, czy temat wykracza poza podstawowy zakres albo jest traktowany jako poszerzenie.</p></div>
-    <div class="column-item"><strong>Smartlinki</strong><p>Krótkie odnośniki lub identyfikatory prowadzące do powiązanych materiałów.</p></div>
-    <div class="column-item"><strong>Materiały dydaktyczne</strong><p>Podręcznik, ćwiczenia, prezentacje, karty pracy, sprzęt, oprogramowanie albo inne materiały potrzebne do lekcji.</p></div>
-    <div class="column-item"><strong>Kolekcja po lekcji</strong><p>Materiały powstałe po zajęciach: notatki, linki, prace uczniów lub zadania do poprawy.</p></div>
-    <div class="column-item"><strong>Aktywna</strong><p>Informacja, czy pozycja ma być brana pod uwagę w aktualnym rozkładzie.</p></div>
+    <div class="column-item"><strong>cele podstawowe: uczeń:</strong><p>Podstawowe wymagania lub cele operacyjne dla ucznia. Ta kolumna pomaga pokazać, co uczeń powinien opanować na poziomie podstawowym.</p></div>
+    <div class="column-item"><strong>cele ponadpodstawowe: uczeń:</strong><p>Wymagania lub cele wykraczające poza poziom podstawowy. Ta kolumna porządkuje treści potrzebne do planów wynikowych i wymagań na wyższe oceny.</p></div>
   </div>
 </section>
 """
