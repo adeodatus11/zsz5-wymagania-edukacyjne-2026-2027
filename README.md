@@ -6,6 +6,8 @@ Repozytorium zawiera statyczny przewodnik dla nauczycieli ZSZ5: od podstawy prog
 
 - `index.html` - ścieżka pracy od podstawy programowej do wymagań na oceny.
 - `rozklad_materialu.html` - rozkład materiału, terminy, szablon XLSX i opis kolumn.
+- `ramowe_plany_nauczania.html` - miejsce na ramowe plany nauczania.
+- `szkolne_zestawy_programow_nauczania.html` - miejsce na szkolne zestawy programów nauczania.
 - `adaptacja_programu.html` - jak adaptować program nauczania w praktyce.
 - `materialy_i_linki.html` - katalog podstaw programowych, szablon rozkładu i materiały zewnętrzne.
 - `podstawy_prawne.html` - podstawy prawne i źródła.

@@ -10,6 +10,8 @@ ROOT = Path(__file__).resolve().parents[1]
 PAGES = [
     "index.html",
     "rozklad_materialu.html",
+    "ramowe_plany_nauczania.html",
+    "szkolne_zestawy_programow_nauczania.html",
     "adaptacja_programu.html",
     "materialy_i_linki.html",
     "podstawy_prawne.html",
@@ -84,6 +86,14 @@ def main() -> None:
             "assets/rozklad-materialu-szablon.png",
             "Elementy podstawy programowej",
             "Kolekcja po lekcji",
+        ],
+        "ramowe_plany_nauczania.html": [
+            "Ramowe plany nauczania",
+            "Wkrótce pojawią się tutaj ramowe plany nauczania",
+        ],
+        "szkolne_zestawy_programow_nauczania.html": [
+            "Szkolne zestawy programów nauczania",
+            "Wkrótce pojawią się tutaj szkolne zestawy programów nauczania",
         ],
         "adaptacja_programu.html": ["Adaptacja programu w praktyce"],
         "materialy_i_linki.html": ["Przydatne materiały i linki", "Katalog podstaw programowych"],

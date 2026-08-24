@@ -142,7 +142,7 @@ def page_shell(page: Page, pages: list[Page]) -> str:
       <a class="nav-link" href="{SCHEDULE_TEMPLATE}">Otwórz szablon XLSX</a>
     </div>
   </section>
-  {page.body}
+{page.body}
 </main>
 <script>
 function setProcessStep(button){{
@@ -317,6 +317,30 @@ ADAPTATION_BODY = """
 """
 
 
+FRAMEWORK_PLANS_BODY = """
+<section class="section">
+  <h3>Ramowe plany nauczania</h3>
+  <p>Ta sekcja zostanie uzupełniona. Wkrótce pojawią się tutaj ramowe plany nauczania.</p>
+  <div class="callout">
+    <h4>W przygotowaniu</h4>
+    <p>Po dodaniu materiałów ta podstrona będzie miejscem do sprawdzania ramowych planów nauczania dla typów szkół i kierunków prowadzonych w ZSZ5.</p>
+  </div>
+</section>
+"""
+
+
+SCHOOL_PROGRAM_SETS_BODY = """
+<section class="section">
+  <h3>Szkolne zestawy programów nauczania</h3>
+  <p>Ta sekcja zostanie uzupełniona. Wkrótce pojawią się tutaj szkolne zestawy programów nauczania.</p>
+  <div class="callout">
+    <h4>W przygotowaniu</h4>
+    <p>Po uzupełnieniu danych ta podstrona będzie porządkowała szkolne zestawy programów nauczania obowiązujące w roku szkolnym 2026/2027.</p>
+  </div>
+</section>
+"""
+
+
 MATERIALS_BODY = """
 <section class="section">
   <h3>Przydatne materiały i linki</h3>
@@ -362,6 +386,20 @@ def pages() -> list[Page]:
             "Rozkład materiału",
             "Rozkład materiału pokazuje, jak nauczyciel planuje realizację podstawy programowej w konkretnym oddziale, roku szkolnym i kalendarzu pracy.",
             SCHEDULE_BODY,
+        ),
+        Page(
+            "ramowe_plany_nauczania.html",
+            "Ramowe plany",
+            "Ramowe plany nauczania",
+            "Miejsce na ramowe plany nauczania dla typów szkół i kierunków prowadzonych w ZSZ5.",
+            FRAMEWORK_PLANS_BODY,
+        ),
+        Page(
+            "szkolne_zestawy_programow_nauczania.html",
+            "Szkolne zestawy",
+            "Szkolne zestawy programów nauczania",
+            "Miejsce na szkolne zestawy programów nauczania obowiązujące w roku szkolnym 2026/2027.",
+            SCHOOL_PROGRAM_SETS_BODY,
         ),
         Page(
             "adaptacja_programu.html",
