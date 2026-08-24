@@ -41,6 +41,17 @@ main{padding-bottom:44px}
 .resource-grid .card{display:flex;flex-direction:column;gap:8px}
 .btn{align-self:flex-start;margin-top:auto;border:1px solid var(--line);background:#fff;color:var(--ink)}
 .source-note{font-size:.76rem;color:var(--muted);margin-top:8px}
+.table-wrap{overflow-x:auto;scrollbar-gutter:stable;background:var(--paper);border:1px solid rgba(23,32,51,.08);border-radius:8px;box-shadow:var(--soft-shadow)}
+.sample-table{width:100%;border-collapse:collapse;min-width:900px}
+.sample-table th,.sample-table td{border-bottom:1px solid var(--line);border-right:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top;font-size:.8rem;line-height:1.4}
+.sample-table th{background:#eef4fb;color:#1d4f9a;font-weight:850}
+.sample-table td{background:#fff}
+.sample-table tr:last-child td{border-bottom:none}
+.sample-table th:last-child,.sample-table td:last-child{border-right:none}
+.column-guide{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:14px}
+.column-item{background:var(--paper);border:1px solid rgba(23,32,51,.08);border-radius:8px;padding:12px;box-shadow:0 6px 16px rgba(23,32,51,.04)}
+.column-item strong{display:block;color:var(--navy);font-size:.86rem;margin-bottom:4px}
+.column-item p{font-size:.82rem;color:#374151;line-height:1.5}
 .process-lab{display:grid;grid-template-columns:minmax(280px,.95fr) minmax(320px,1.05fr);gap:14px;margin-top:14px}
 .process-track{display:grid;gap:8px}
 .process-step{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;width:100%;min-height:64px;text-align:left;background:var(--paper);border:1px solid rgba(23,32,51,.1);border-radius:8px;padding:10px 12px;color:var(--ink);box-shadow:0 6px 16px rgba(23,32,51,.04);cursor:pointer}
@@ -85,6 +96,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
     <a class="nav-link" href="#sciezka">Ścieżka pracy</a>
     <a class="nav-link" href="#materialy">Materiały</a>
     <a class="nav-link" href="#rozklad">Rozkład materiału</a>
+    <a class="nav-link" href="#przyklad-rozkladu">Wzór rozkładu</a>
     <a class="nav-link" href="#podstawy-prawne">Podstawy prawne</a>
   </div>
 </nav>
@@ -96,6 +108,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
     <div class="hero-actions">
       <a class="nav-link" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog podstaw programowych</a>
       <a class="nav-link" href="#sciezka">Zobacz ścieżkę pracy</a>
+      <a class="nav-link" href="#przyklad-rozkladu">Zobacz wzór rozkładu</a>
     </div>
   </section>
 
@@ -196,6 +209,91 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
         <h4>Jak łączy się z adaptacją programu</h4>
         <p>Adaptacja programu wpływa na tempo, formy pracy, liczbę ćwiczeń, sposób sprawdzania wiedzy i dobór materiałów. To właśnie rozkład materiału pomaga przełożyć decyzje nauczyciela na codzienną pracę z klasą.</p>
       </div>
+    </div>
+  </section>
+
+  <section class="section" id="przyklad-rozkladu">
+    <h3>Przykładowy rozkład materiału - szablon i wzór</h3>
+    <p>Plik zawiera dwa arkusze: <strong>wzór</strong> z przykładem wypełnienia oraz <strong>szablon</strong> do pracy nauczyciela. W górnej części arkusza wpisuje się informacje ogólne o rozkładzie, a od wiersza z nagłówkami uzupełnia się kolejne lekcje, tematy lub bloki pracy.</p>
+    <div class="cards resource-grid">
+      <div class="card">
+        <h4>Plik do pobrania</h4>
+        <p>Szablon rozkładu materiału na rok szkolny 2026/2027 z przykładowym arkuszem wzorcowym.</p>
+        <a class="btn primary" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon XLSX</a>
+      </div>
+      <div class="card">
+        <h4>Co uzupełnić przed tabelą</h4>
+        <p>Przed listą tematów trzeba wpisać przedmiot i nauczyciela, nazwę rozkładu, typ szkoły i poziom klasy, podstawę programową, krótki opis rozkładu oraz numer szkolnego zestawu programów nauczania.</p>
+      </div>
+    </div>
+    <div class="table-wrap" aria-label="Podgląd przykładowego rozkładu materiału">
+      <table class="sample-table">
+        <thead>
+          <tr>
+            <th>L.p.</th>
+            <th>Temat</th>
+            <th>Dział</th>
+            <th>Liczba godzin</th>
+            <th>Elementy podstawy programowej</th>
+            <th>Rozszerzenie</th>
+            <th>Aktywna</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Sieci komputerowe</td>
+            <td>Temat A1. Sieci komputerowe</td>
+            <td>1</td>
+            <td>III.4</td>
+            <td>Nie</td>
+            <td>Tak</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Bezpieczeństwo i ochrona danych w komputerach i sieciach komputerowych</td>
+            <td>Temat A2. Bezpieczeństwo i ochrona danych w komputerach i sieciach komputerowych</td>
+            <td>1</td>
+            <td>V.1, V.3, V.4</td>
+            <td>Nie</td>
+            <td>Tak</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Sprawdzian (tematy A1-A2)</td>
+            <td>-</td>
+            <td>1</td>
+            <td></td>
+            <td>Nie</td>
+            <td>Tak</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Tworzenie formuł, formaty danych i formatowanie tabeli arkusza kalkulacyjnego</td>
+            <td>Temat B1. Formuły, funkcje i wykresy w arkuszu kalkulacyjnym</td>
+            <td>1</td>
+            <td>II.2, II.3.c</td>
+            <td>Nie</td>
+            <td>Tak</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="column-guide">
+      <div class="column-item"><strong>L.p.</strong><p>Kolejny numer pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i rozmowę o konkretnym temacie.</p></div>
+      <div class="column-item"><strong>Temat</strong><p>Temat lekcji, bloku zajęć, sprawdzianu, powtórzenia albo zadania praktycznego. Powinien być zrozumiały dla nauczyciela i możliwy do przeniesienia do planu pracy.</p></div>
+      <div class="column-item"><strong>Dział</strong><p>Nazwa działu, modułu lub większego obszaru programu. Pomaga grupować tematy i kontrolować kolejność pracy.</p></div>
+      <div class="column-item"><strong>Liczba godzin</strong><p>Planowana liczba godzin przeznaczona na temat lub blok. Wpis powinien pomagać sprawdzić, czy cały rozkład mieści się w realnej liczbie godzin.</p></div>
+      <div class="column-item"><strong>Elementy podstawy programowej</strong><p>Numery punktów, efekty kształcenia albo kryteria z podstawy programowej, które są realizowane w tej pozycji.</p></div>
+      <div class="column-item"><strong>Podstawa programowa</strong><p>Nazwa podstawy, dokumentu lub kwalifikacji, z której pochodzą wskazane elementy. Przy kilku podstawach warto podać dokładne źródło.</p></div>
+      <div class="column-item"><strong>Komentarz</strong><p>Miejsce na krótkie uwagi organizacyjne: warunki realizacji, potrzebne pracownie, zakres powtórzenia, wariant dla słabszej lub mocniejszej klasy.</p></div>
+      <div class="column-item"><strong>Zasoby prywatne</strong><p>Materiały nauczyciela niedostępne publicznie, np. własne karty pracy, pliki w chmurze szkolnej, sprawdziany lub notatki.</p></div>
+      <div class="column-item"><strong>Zasoby publiczne</strong><p>Linki do publicznych materiałów, stron, filmów, dokumentów albo otwartych zasobów edukacyjnych.</p></div>
+      <div class="column-item"><strong>Rozszerzenie</strong><p>Informacja, czy temat wykracza poza podstawowy zakres albo jest traktowany jako poszerzenie dla danej klasy. W szablonie przykładowo wpisano „Tak” albo „Nie”.</p></div>
+      <div class="column-item"><strong>Smartlinki</strong><p>Miejsce na krótkie odnośniki lub identyfikatory prowadzące do powiązanych materiałów w systemie, repozytorium albo bibliotece nauczyciela.</p></div>
+      <div class="column-item"><strong>Materiały dydaktyczne</strong><p>Podręcznik, ćwiczenia, prezentacje, karty pracy, sprzęt, oprogramowanie albo inne materiały potrzebne do realizacji tematu.</p></div>
+      <div class="column-item"><strong>Kolekcja po lekcji</strong><p>Miejsce na materiały powstałe po zajęciach: notatki, linki, prace uczniów, zdjęcia efektów, zadania do poprawy lub materiały do archiwum.</p></div>
+      <div class="column-item"><strong>Aktywna</strong><p>Informacja, czy pozycja ma być brana pod uwagę w aktualnym rozkładzie. Przydatne, gdy nauczyciel trzyma w pliku tematy rezerwowe albo wyłączone.</p></div>
     </div>
   </section>
 

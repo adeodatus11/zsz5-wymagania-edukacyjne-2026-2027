@@ -21,6 +21,7 @@ Klikalny katalog podstaw programowych:
 - przewodnik od podstawy programowej do wymagań na oceny,
 - materiały i linki pomocnicze,
 - sekcja o rozkładzie materiału,
+- przykładowy rozkład materiału z pliku `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`,
 - sekcja o adaptacji programu,
 - podstawy prawne,
 - link do katalogu podstaw programowych ZSZ5.

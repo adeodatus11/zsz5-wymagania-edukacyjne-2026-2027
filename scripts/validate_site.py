@@ -61,6 +61,8 @@ def main() -> None:
         "Przewodnik dla nauczyciela ZSZ5 2026/2027",
         "Od podstawy programowej do wymagań na oceny",
         "Rozkład materiału - po co jest potrzebny",
+        "Przykładowy rozkład materiału - szablon i wzór",
+        "rozkład materiału - szablon 2026_2027.xlsx",
         "Katalog podstaw programowych ZSZ5",
     ]
     for marker in required_index_markers:
