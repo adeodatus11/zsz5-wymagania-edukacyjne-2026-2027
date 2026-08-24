@@ -4,13 +4,13 @@ Repozytorium zawiera statyczny przewodnik dla nauczycieli ZSZ5: od podstawy prog
 
 ## Struktura strony
 
-- `index.html` - ścieżka pracy od podstawy programowej do wymagań na oceny.
-- `rozklad_materialu.html` - rozkład materiału, terminy, szablon XLSX i opis kolumn.
-- `ramowe_plany_nauczania.html` - miejsce na ramowe plany nauczania.
-- `szkolne_zestawy_programow_nauczania.html` - miejsce na szkolne zestawy programów nauczania.
-- `adaptacja_programu.html` - jak adaptować program nauczania w praktyce.
-- `materialy_i_linki.html` - katalog podstaw programowych, szablon rozkładu i materiały zewnętrzne.
-- `podstawy_prawne.html` - podstawy prawne i źródła.
+- `index.html` - krok 1: ścieżka pracy od podstawy programowej do wymagań na oceny.
+- `adaptacja_programu.html` - krok 2: jak adaptować program nauczania w praktyce.
+- `rozklad_materialu.html` - krok 3: rozkład materiału, terminy, szablon XLSX i opis kolumn.
+- `ramowe_plany_nauczania.html` - krok 4: miejsce na ramowe plany nauczania.
+- `szkolne_zestawy_programow_nauczania.html` - krok 5: miejsce na szkolne zestawy programów nauczania.
+- `materialy_i_linki.html` - krok 6: katalog podstaw programowych, szablon rozkładu i materiały zewnętrzne.
+- `podstawy_prawne.html` - krok 7: podstawy prawne i źródła.
 - `wymagania_edukacyjne_ZSZ5_2026_2027.html` - kompatybilny adres wejściowy z treścią strony startowej.
 - `katalog_podstaw_programowych_ZSZ5_2026_2027.html` - klikalny katalog podstaw programowych ZSZ5.
 

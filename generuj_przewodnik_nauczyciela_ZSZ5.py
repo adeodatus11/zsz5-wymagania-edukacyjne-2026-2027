@@ -106,6 +106,13 @@ def page_shell(page: Page, pages: list[Page]) -> str:
         f'<a class="nav-link{" active" if item.file_name == page.file_name else ""}" href="{item.file_name}">{item.nav_label}</a>'
         for item in pages
     )
+    page_index = pages.index(page)
+    if page_index + 1 < len(pages):
+        next_page = pages[page_index + 1]
+        next_label = f"Przejdź do kroku {page_index + 2}"
+    else:
+        next_page = pages[0]
+        next_label = "Wróć do kroku 1"
     return f"""<!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -138,7 +145,7 @@ def page_shell(page: Page, pages: list[Page]) -> str:
     <h2>{page.title}</h2>
     <p>{page.lead}</p>
     <div class="hero-actions">
-      <a class="nav-link" href="rozklad_materialu.html">Przejdź do rozkładu materiału</a>
+      <a class="nav-link" href="{next_page.file_name}">{next_label}</a>
       <a class="nav-link" href="{SCHEDULE_TEMPLATE}">Otwórz szablon XLSX</a>
     </div>
   </section>
@@ -172,8 +179,8 @@ START_BODY = """
       <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Analizę obowiązkowych celów, treści, efektów kształcenia i kryteriów wskazanych w przepisach." data-output="Zestawienie elementów obowiązkowych w danym przedmiocie lub kwalifikacji." data-check="Podstawa programowa pozostaje nadrzędna wobec propozycji z podręcznika lub tabeli wydawnictwa." onclick="setProcessStep(this)">
         <span class="step-num">1</span><span><strong>Podstawa programowa</strong><small>Co jest obowiązkowe</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Program nauczania wybrany z oferty wydawnictwa, zmodyfikowany albo opracowany samodzielnie z zachowaniem zgodności z podstawą." data-output="Program pokazujący sposób realizacji podstawy programowej w danym oddziale." data-check="Adaptacja programu może obejmować tempo, kolejność treści i dobór ćwiczeń dostosowanych do potrzeb klasy." onclick="setProcessStep(this)">
-        <span class="step-num">2</span><span><strong>Program nauczania</strong><small>Jak realizujemy podstawę</small></span>
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Adaptacja programu" data-teacher="Program nauczania wybrany z oferty wydawnictwa, zmodyfikowany albo opracowany samodzielnie z zachowaniem zgodności z podstawą." data-output="Program pokazujący sposób realizacji podstawy programowej w danym oddziale i warunkach szkoły." data-check="Adaptacja programu może obejmować tempo, kolejność treści i dobór ćwiczeń dostosowanych do potrzeb klasy." onclick="setProcessStep(this)">
+        <span class="step-num">2</span><span><strong>Adaptacja programu</strong><small>Jak realizujemy podstawę</small></span>
       </button>
       <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Układ działów, tematów, ćwiczeń, powtórzeń, projektów oraz orientacyjny czas pracy." data-output="Realny plan pracy na rok lub semestr dla konkretnej klasy." data-check="Rozkład powinien pokazywać realizację podstawy, tempo pracy i momenty sprawdzania osiągnięć." onclick="setProcessStep(this)">
         <span class="step-num">3</span><span><strong>Rozkład materiału</strong><small>Kolejność i tempo pracy</small></span>
@@ -203,10 +210,12 @@ START_BODY = """
 </section>
 <section class="section">
   <h3>Najważniejsze kroki przed 1 września</h3>
+  <p>Każdy krok powinien zostać sprawdzony w tej kolejności. Numeracja w menu odpowiada kolejności pracy nauczyciela.</p>
   <div class="cards">
     <div class="card"><h4>1. Analiza podstawy</h4><p>Należy ustalić, które elementy podstawy programowej dotyczą danego przedmiotu, klasy, zawodu lub kwalifikacji.</p></div>
-    <div class="card"><h4>2. Przygotowanie rozkładu</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
-    <div class="card"><h4>3. Powiązanie wymagań</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów oraz uwzględnione w pracy nauczyciela od początku roku.</p></div>
+    <div class="card"><h4>2. Adaptacja programu</h4><p>Należy sprawdzić program nauczania w odniesieniu do podstawy programowej oraz warunków pracy z konkretną klasą.</p></div>
+    <div class="card"><h4>3. Przygotowanie rozkładu</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
+    <div class="card"><h4>4. Powiązanie wymagań</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów oraz uwzględnione w pracy nauczyciela od początku roku.</p></div>
   </div>
 </section>
 """
@@ -235,6 +244,10 @@ SCHEDULE_BODY = f"""
       <h4>Materiały wydawnictw</h4>
       <p>Wiele wydawnictw publikuje gotowe rozkłady materiału oraz plany wynikowe. Często wystarczające jest połączenie tych dwóch źródeł, sprawdzenie zgodności z podstawą programową i dostosowanie materiału do realnej pracy z klasą.</p>
     </div>
+    <div class="card">
+      <h4>Zastępstwa i nieobecności</h4>
+      <p>Dobrze przygotowany rozkład pomaga nauczycielowi zastępującemu kontynuować materiał w razie choroby lub nieprzewidzianej nieobecności nauczyciela prowadzącego.</p>
+    </div>
   </div>
   <div class="callout warning">
     <h4>Termin przygotowania</h4>
@@ -247,7 +260,6 @@ SCHEDULE_BODY = f"""
   <div class="cards">
     <div class="card"><h4>Zapis w dzienniku</h4><p>Temat musi zostać wpisany do dziennika elektronicznego. Jeżeli zapis w dzienniku jest prawidłowy, od tego roku szkolnego nie zbiera się dodatkowych papierowych potwierdzeń od nauczycieli uczących w oddziale.</p></div>
     <div class="card"><h4>Przypominanie wymagań</h4><p>Wymagania edukacyjne warto przypominać także na początku działów lub większych partii materiału, zwłaszcza przed sprawdzaniem osiągnięć.</p></div>
-    <div class="card"><h4>Zastępstwa i nieobecności</h4><p>Dobrze przygotowany rozkład pomaga nauczycielowi zastępującemu kontynuować materiał w razie choroby lub nieprzewidzianej nieobecności nauczyciela prowadzącego.</p></div>
   </div>
 </section>
 <section class="section">
@@ -302,6 +314,11 @@ ADAPTATION_BODY = """
     <div class="card"><h4>2. Od programu do rozkładu</h4><p>Rozkład materiału przekłada program na kalendarz pracy. Widać w nim tempo, powtórzenia, ćwiczenia umiejętności i momenty sprawdzania osiągnięć.</p></div>
     <div class="card"><h4>3. Od wymagań do pracy na lekcji</h4><p>Wymagania na oceny powinny być zrozumiałe dla ucznia, a sposób dochodzenia do nich może obejmować różne ćwiczenia, projekty, rozmowy i zadania praktyczne.</p></div>
     <div class="card"><h4>4. Warto zwrócić uwagę</h4><p>Adaptacja nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu.</p></div>
+  </div>
+  <div class="callout">
+    <h4>Najpierw sprawdź podstawę programową</h4>
+    <p>Przed adaptacją programu należy odnieść go do właściwej podstawy programowej dla przedmiotu, zawodu lub kwalifikacji.</p>
+    <a class="btn primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog podstaw programowych</a>
   </div>
   <div class="callout">
     <h4>Praktyczna zasada</h4>
@@ -369,49 +386,49 @@ def pages() -> list[Page]:
     return [
         Page(
             "index.html",
-            "Ścieżka pracy",
+            "1. Ścieżka pracy",
             "Od podstawy programowej do wymagań na oceny",
             "Przewodnik porządkuje pracę nauczyciela: od obowiązkowych treści podstawy programowej, przez program nauczania i rozkład materiału, po wymagania edukacyjne, sposoby sprawdzania osiągnięć i ocenę ucznia.",
             START_BODY,
         ),
         Page(
+            "adaptacja_programu.html",
+            "2. Adaptacja programu",
+            "Adaptacja programu w praktyce",
+            "Program nauczania można dostosować do warunków klasy, zachowując pełną zgodność z podstawą programową.",
+            ADAPTATION_BODY,
+        ),
+        Page(
             "rozklad_materialu.html",
-            "Rozkład materiału",
+            "3. Rozkład materiału",
             "Rozkład materiału",
             "Rozkład materiału pokazuje, jak nauczyciel planuje realizację podstawy programowej w konkretnym oddziale, roku szkolnym i kalendarzu pracy.",
             SCHEDULE_BODY,
         ),
         Page(
             "ramowe_plany_nauczania.html",
-            "Ramowe plany",
+            "4. Ramowe plany",
             "Ramowe plany nauczania",
             "Miejsce na ramowe plany nauczania dla typów szkół i kierunków prowadzonych w ZSZ5.",
             FRAMEWORK_PLANS_BODY,
         ),
         Page(
             "szkolne_zestawy_programow_nauczania.html",
-            "Szkolne zestawy",
+            "5. Szkolne zestawy",
             "Szkolne zestawy programów nauczania",
             "Miejsce na szkolne zestawy programów nauczania obowiązujące w roku szkolnym 2026/2027.",
             SCHOOL_PROGRAM_SETS_BODY,
         ),
         Page(
-            "adaptacja_programu.html",
-            "Adaptacja programu",
-            "Adaptacja programu w praktyce",
-            "Program nauczania można dostosować do warunków klasy, zachowując pełną zgodność z podstawą programową.",
-            ADAPTATION_BODY,
-        ),
-        Page(
             "materialy_i_linki.html",
-            "Materiały i linki",
+            "6. Materiały i linki",
             "Przydatne materiały i linki",
             "Zebrane źródła pomagają sprawdzić podstawy programowe, przygotować rozkład materiału i uporządkować wymagania edukacyjne.",
             MATERIALS_BODY,
         ),
         Page(
             "podstawy_prawne.html",
-            "Podstawy prawne",
+            "7. Podstawy prawne",
             "Podstawy prawne i źródła",
             "Najważniejsze akty i odniesienia potrzebne przy pracy nad programem nauczania, wymaganiami edukacyjnymi i ocenianiem.",
             LEGAL_BODY,

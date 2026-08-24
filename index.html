@@ -100,13 +100,13 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
 </header>
 <nav class="topbar" aria-label="Nawigacja">
   <div class="topbar-inner">
-    <a class="nav-link active" href="index.html">Ścieżka pracy</a>
-<a class="nav-link" href="rozklad_materialu.html">Rozkład materiału</a>
-<a class="nav-link" href="ramowe_plany_nauczania.html">Ramowe plany</a>
-<a class="nav-link" href="szkolne_zestawy_programow_nauczania.html">Szkolne zestawy</a>
-<a class="nav-link" href="adaptacja_programu.html">Adaptacja programu</a>
-<a class="nav-link" href="materialy_i_linki.html">Materiały i linki</a>
-<a class="nav-link" href="podstawy_prawne.html">Podstawy prawne</a>
+    <a class="nav-link active" href="index.html">1. Ścieżka pracy</a>
+<a class="nav-link" href="adaptacja_programu.html">2. Adaptacja programu</a>
+<a class="nav-link" href="rozklad_materialu.html">3. Rozkład materiału</a>
+<a class="nav-link" href="ramowe_plany_nauczania.html">4. Ramowe plany</a>
+<a class="nav-link" href="szkolne_zestawy_programow_nauczania.html">5. Szkolne zestawy</a>
+<a class="nav-link" href="materialy_i_linki.html">6. Materiały i linki</a>
+<a class="nav-link" href="podstawy_prawne.html">7. Podstawy prawne</a>
     <a class="nav-link primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Katalog podstaw programowych</a>
   </div>
 </nav>
@@ -116,7 +116,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
     <h2>Od podstawy programowej do wymagań na oceny</h2>
     <p>Przewodnik porządkuje pracę nauczyciela: od obowiązkowych treści podstawy programowej, przez program nauczania i rozkład materiału, po wymagania edukacyjne, sposoby sprawdzania osiągnięć i ocenę ucznia.</p>
     <div class="hero-actions">
-      <a class="nav-link" href="rozklad_materialu.html">Przejdź do rozkładu materiału</a>
+      <a class="nav-link" href="adaptacja_programu.html">Przejdź do kroku 2</a>
       <a class="nav-link" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon XLSX</a>
     </div>
   </section>
@@ -129,8 +129,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
       <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Analizę obowiązkowych celów, treści, efektów kształcenia i kryteriów wskazanych w przepisach." data-output="Zestawienie elementów obowiązkowych w danym przedmiocie lub kwalifikacji." data-check="Podstawa programowa pozostaje nadrzędna wobec propozycji z podręcznika lub tabeli wydawnictwa." onclick="setProcessStep(this)">
         <span class="step-num">1</span><span><strong>Podstawa programowa</strong><small>Co jest obowiązkowe</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Program nauczania wybrany z oferty wydawnictwa, zmodyfikowany albo opracowany samodzielnie z zachowaniem zgodności z podstawą." data-output="Program pokazujący sposób realizacji podstawy programowej w danym oddziale." data-check="Adaptacja programu może obejmować tempo, kolejność treści i dobór ćwiczeń dostosowanych do potrzeb klasy." onclick="setProcessStep(this)">
-        <span class="step-num">2</span><span><strong>Program nauczania</strong><small>Jak realizujemy podstawę</small></span>
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Adaptacja programu" data-teacher="Program nauczania wybrany z oferty wydawnictwa, zmodyfikowany albo opracowany samodzielnie z zachowaniem zgodności z podstawą." data-output="Program pokazujący sposób realizacji podstawy programowej w danym oddziale i warunkach szkoły." data-check="Adaptacja programu może obejmować tempo, kolejność treści i dobór ćwiczeń dostosowanych do potrzeb klasy." onclick="setProcessStep(this)">
+        <span class="step-num">2</span><span><strong>Adaptacja programu</strong><small>Jak realizujemy podstawę</small></span>
       </button>
       <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Układ działów, tematów, ćwiczeń, powtórzeń, projektów oraz orientacyjny czas pracy." data-output="Realny plan pracy na rok lub semestr dla konkretnej klasy." data-check="Rozkład powinien pokazywać realizację podstawy, tempo pracy i momenty sprawdzania osiągnięć." onclick="setProcessStep(this)">
         <span class="step-num">3</span><span><strong>Rozkład materiału</strong><small>Kolejność i tempo pracy</small></span>
@@ -160,10 +160,12 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
 </section>
 <section class="section">
   <h3>Najważniejsze kroki przed 1 września</h3>
+  <p>Każdy krok powinien zostać sprawdzony w tej kolejności. Numeracja w menu odpowiada kolejności pracy nauczyciela.</p>
   <div class="cards">
     <div class="card"><h4>1. Analiza podstawy</h4><p>Należy ustalić, które elementy podstawy programowej dotyczą danego przedmiotu, klasy, zawodu lub kwalifikacji.</p></div>
-    <div class="card"><h4>2. Przygotowanie rozkładu</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
-    <div class="card"><h4>3. Powiązanie wymagań</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów oraz uwzględnione w pracy nauczyciela od początku roku.</p></div>
+    <div class="card"><h4>2. Adaptacja programu</h4><p>Należy sprawdzić program nauczania w odniesieniu do podstawy programowej oraz warunków pracy z konkretną klasą.</p></div>
+    <div class="card"><h4>3. Przygotowanie rozkładu</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
+    <div class="card"><h4>4. Powiązanie wymagań</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów oraz uwzględnione w pracy nauczyciela od początku roku.</p></div>
   </div>
 </section>
 

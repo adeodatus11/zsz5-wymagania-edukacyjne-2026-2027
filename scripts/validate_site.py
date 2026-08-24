@@ -118,11 +118,16 @@ def main() -> None:
         "index.html": [
             "Od podstawy programowej do wymagań na oceny",
             "Ścieżka pracy",
-            "Przejdź do rozkładu materiału",
+            "1. Ścieżka pracy",
+            "2. Adaptacja programu",
+            "3. Przygotowanie rozkładu",
+            "Przejdź do kroku 2",
         ],
         "rozklad_materialu.html": [
             "Rozkład materiału",
+            "3. Rozkład materiału",
             SCHEDULE_TEMPLATE,
+            "Zastępstwa i nieobecności",
             "Lekcja organizacyjna. Zapoznanie uczniów z wymaganiami edukacyjnymi i zasadami oceniania",
             "piątku 28 sierpnia 2026 r.",
             "sobotę 29 sierpnia 2026 r.",
@@ -143,7 +148,12 @@ def main() -> None:
             "Szkolne zestawy programów nauczania",
             "Wkrótce pojawią się tutaj szkolne zestawy programów nauczania",
         ],
-        "adaptacja_programu.html": ["Adaptacja programu w praktyce"],
+        "adaptacja_programu.html": [
+            "2. Adaptacja programu",
+            "Adaptacja programu w praktyce",
+            "Otwórz katalog podstaw programowych",
+            "katalog_podstaw_programowych_ZSZ5_2026_2027.html",
+        ],
         "materialy_i_linki.html": ["Przydatne materiały i linki", "Katalog podstaw programowych"],
         "podstawy_prawne.html": ["Podstawy prawne i źródła"],
     }
