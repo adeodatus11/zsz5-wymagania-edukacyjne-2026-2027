@@ -113,6 +113,15 @@ def page_shell(page: Page, pages: list[Page]) -> str:
     else:
         next_page = pages[0]
         next_label = "Wróć do kroku 1"
+    secondary_actions = {
+        "index.html": '<a class="nav-link" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog podstaw</a>',
+        "adaptacja_programu.html": '<a class="nav-link" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog podstaw</a>',
+        "rozklad_materialu.html": f'<a class="nav-link" href="{SCHEDULE_TEMPLATE}">Otwórz szablon XLSX</a>',
+    }
+    secondary_action = secondary_actions.get(page.file_name, "")
+    hero_actions = f'<a class="nav-link" href="{next_page.file_name}">{next_label}</a>'
+    if secondary_action:
+        hero_actions += f"\n      {secondary_action}"
     return f"""<!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -145,8 +154,7 @@ def page_shell(page: Page, pages: list[Page]) -> str:
     <h2>{page.title}</h2>
     <p>{page.lead}</p>
     <div class="hero-actions">
-      <a class="nav-link" href="{next_page.file_name}">{next_label}</a>
-      <a class="nav-link" href="{SCHEDULE_TEMPLATE}">Otwórz szablon XLSX</a>
+      {hero_actions}
     </div>
   </section>
 {page.body}
@@ -295,7 +303,7 @@ SCHEDULE_BODY = f"""
     <div class="column-item"><strong>nr tematu</strong><p>Kolejny numer tematu lub pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i odwoływanie się do konkretnej lekcji.</p></div>
     <div class="column-item"><strong>poziom klasy</strong><p>Poziom, klasa albo rok realizacji, którego dotyczy temat. Przy przedmiotach wieloletnich pozwala kontrolować, w którym roku realizowana jest dana część materiału.</p></div>
     <div class="column-item"><strong>Temat</strong><p>Temat lekcji, bloku zajęć, sprawdzianu, powtórzenia albo zadania praktycznego.</p></div>
-    <div class="column-item"><strong>Dział</strong><p>Nazwa działu, modułu lub większego obszaru programu. Pomaga grupować tematy i kontrolować kolejność pracy.</p></div>
+    <div class="column-item"><strong>Dział</strong><p>Nazwa działu, modułu lub większego obszaru programu. Umożliwia grupowanie tematów i kontrolowanie kolejności pracy.</p></div>
     <div class="column-item"><strong>Liczba godzin</strong><p>Planowana liczba godzin przeznaczona na temat lub blok.</p></div>
     <div class="column-item"><strong>Elementy podstawy programowej</strong><p>Numery punktów, efekty kształcenia albo kryteria z podstawy programowej, które są realizowane w tej pozycji.</p></div>
     <div class="column-item"><strong>cele podstawowe: uczeń:</strong><p>Podstawowe wymagania lub cele operacyjne dla ucznia. Ta kolumna wskazuje, co uczeń powinien opanować na poziomie podstawowym.</p></div>
@@ -321,7 +329,7 @@ ADAPTATION_BODY = """
     <a class="btn primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog podstaw programowych</a>
   </div>
   <div class="callout">
-    <h4>Praktyczna zasada</h4>
+    <h4>Zasada pracy</h4>
     <p>Punktem odniesienia pozostaje podstawa programowa: obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach. Propozycje wydawnictwa nie muszą być realizowane mechanicznie, jeżeli inna kolejność, tempo lub forma pracy lepiej odpowiada potrzebom klasy.</p>
   </div>
 </section>
