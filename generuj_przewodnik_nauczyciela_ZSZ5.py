@@ -166,25 +166,25 @@ function setProcessStep(button){{
 START_BODY = """
 <section class="section">
   <h3>Ścieżka pracy</h3>
-  <p>Praca nauczyciela zaczyna się od podstawy programowej, ale nie kończy się na jej przeczytaniu. Trzeba przełożyć ją na program nauczania, rozkład materiału, wymagania edukacyjne i konkretne sposoby sprawdzania osiągnięć uczniów.</p>
+  <p>Praca nauczyciela rozpoczyna się od analizy podstawy programowej. Następnie jej zapisy należy przełożyć na program nauczania, rozkład materiału, wymagania edukacyjne oraz sposoby sprawdzania osiągnięć uczniów.</p>
   <div class="process-lab" aria-label="Ścieżka od podstawy programowej do oceny ucznia">
     <div class="process-track" role="list">
-      <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach." data-output="Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji." data-check="Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa." onclick="setProcessStep(this)">
+      <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Analizę obowiązkowych celów, treści, efektów kształcenia i kryteriów wskazanych w przepisach." data-output="Zestawienie elementów obowiązkowych w danym przedmiocie lub kwalifikacji." data-check="Podstawa programowa pozostaje nadrzędna wobec propozycji z podręcznika lub tabeli wydawnictwa." onclick="setProcessStep(this)">
         <span class="step-num">1</span><span><strong>Podstawa programowa</strong><small>Co jest obowiązkowe</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Wybiera program z wydawnictwa, modyfikuje go albo opracowuje własny, ale nadal pilnuje zgodności z podstawą." data-output="Program, który pokazuje sposób realizacji podstawy w danym oddziale." data-check="Program może być adaptowany, jeżeli tempo, kolejność albo dobór ćwiczeń nie pasują do klasy." onclick="setProcessStep(this)">
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Program nauczania wybrany z oferty wydawnictwa, zmodyfikowany albo opracowany samodzielnie z zachowaniem zgodności z podstawą." data-output="Program pokazujący sposób realizacji podstawy programowej w danym oddziale." data-check="Adaptacja programu może obejmować tempo, kolejność treści i dobór ćwiczeń dostosowanych do potrzeb klasy." onclick="setProcessStep(this)">
         <span class="step-num">2</span><span><strong>Program nauczania</strong><small>Jak realizujemy podstawę</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Przekłada program na działy, tematy, ćwiczenia, powtórzenia, projekty i orientacyjny czas pracy." data-output="Plan pracy na rok lub semestr, który da się realnie wykonać z konkretną klasą." data-check="Rozkład ma pokazywać realizację podstawy, tempo pracy i punkty sprawdzania osiągnięć." onclick="setProcessStep(this)">
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Układ działów, tematów, ćwiczeń, powtórzeń, projektów oraz orientacyjny czas pracy." data-output="Realny plan pracy na rok lub semestr dla konkretnej klasy." data-check="Rozkład powinien pokazywać realizację podstawy, tempo pracy i momenty sprawdzania osiągnięć." onclick="setProcessStep(this)">
         <span class="step-num">3</span><span><strong>Rozkład materiału</strong><small>Kolejność i tempo pracy</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="4" data-title="Wymagania edukacyjne" data-teacher="Opisuje, co uczeń powinien wiedzieć i umieć na poszczególne oceny." data-output="Jasne wymagania na dopuszczającą, dostateczną, dobrą, bardzo dobrą i celującą." data-check="Wymagania mają wynikać z realizowanego programu i podstawy, a nie z ogólnych haseł." onclick="setProcessStep(this)">
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="4" data-title="Wymagania edukacyjne" data-teacher="Opis wymagań wskazujący, co uczeń powinien wiedzieć i umieć na poszczególne oceny." data-output="Zestaw wymagań na ocenę dopuszczającą, dostateczną, dobrą, bardzo dobrą i celującą." data-check="Wymagania powinny wynikać z realizowanego programu i podstawy programowej, a nie z ogólnych haseł." onclick="setProcessStep(this)">
         <span class="step-num">4</span><span><strong>Wymagania edukacyjne</strong><small>Poziomy na oceny</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="5" data-title="Sprawdzanie" data-teacher="Dobiera sprawdziany, odpowiedzi, zadania praktyczne, projekty i obserwację pracy ucznia do wcześniej podanych wymagań." data-output="Dowody uczenia się: prace, wypowiedzi, działania praktyczne, wyniki zadań i projekty." data-check="Nie oceniaj tego, czego wcześniej nie było w wymaganiach albo czego nie dało się przećwiczyć." onclick="setProcessStep(this)">
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="5" data-title="Sprawdzanie" data-teacher="Dobór sprawdzianów, odpowiedzi, zadań praktycznych, projektów i obserwacji pracy ucznia do wcześniej przedstawionych wymagań." data-output="Dowody uczenia się: prace, wypowiedzi, działania praktyczne, wyniki zadań i projekty." data-check="Sprawdzanie osiągnięć powinno obejmować treści i umiejętności wcześniej wskazane w wymaganiach oraz przećwiczone podczas zajęć." onclick="setProcessStep(this)">
         <span class="step-num">5</span><span><strong>Sprawdzanie</strong><small>Dowody wiedzy i umiejętności</small></span>
       </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="6" data-title="Ocena ucznia" data-teacher="Porównuje osiągnięcia ucznia z wymaganiami edukacyjnymi i zasadami oceniania." data-output="Ocena bieżąca, śródroczna lub roczna, którą da się uzasadnić konkretnymi wymaganiami." data-check="Ocena powinna wynikać z rozpoznanych osiągnięć ucznia, a nie z samego faktu przerobienia tematów." onclick="setProcessStep(this)">
+      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="6" data-title="Ocena ucznia" data-teacher="Zestawienie osiągnięć ucznia z wymaganiami edukacyjnymi i zasadami oceniania." data-output="Ocena bieżąca, śródroczna lub roczna uzasadniona konkretnymi wymaganiami." data-check="Ocena powinna wynikać z rozpoznanych osiągnięć ucznia, a nie wyłącznie z realizacji kolejnych tematów." onclick="setProcessStep(this)">
         <span class="step-num">6</span><span><strong>Ocena ucznia</strong><small>Uzasadniony wynik</small></span>
       </button>
     </div>
@@ -194,9 +194,9 @@ START_BODY = """
         <h4><span id="process_step_num">1</span>. <span id="process_title">Podstawa programowa</span></h4>
       </div>
       <div class="process-panel-grid">
-        <div><strong>Nauczyciel robi</strong><p id="process_teacher">Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach.</p></div>
-        <div><strong>Powstaje</strong><p id="process_output">Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji.</p></div>
-        <div><strong>Trzeba pilnować</strong><p id="process_check">Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa.</p></div>
+        <div><strong>Nauczyciel przygotowuje</strong><p id="process_teacher">Analizę obowiązkowych celów, treści, efektów kształcenia i kryteriów wskazanych w przepisach.</p></div>
+        <div><strong>Efekt pracy</strong><p id="process_output">Zestawienie elementów obowiązkowych w danym przedmiocie lub kwalifikacji.</p></div>
+        <div><strong>Warto zwrócić uwagę</strong><p id="process_check">Podstawa programowa pozostaje nadrzędna wobec propozycji z podręcznika lub tabeli wydawnictwa.</p></div>
       </div>
     </div>
   </div>
@@ -204,9 +204,9 @@ START_BODY = """
 <section class="section">
   <h3>Najważniejsze kroki przed 1 września</h3>
   <div class="cards">
-    <div class="card"><h4>1. Sprawdź podstawę</h4><p>Ustal, które elementy podstawy programowej dotyczą Twojego przedmiotu, klasy, zawodu lub kwalifikacji.</p></div>
-    <div class="card"><h4>2. Przygotuj rozkład</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
-    <div class="card"><h4>3. Powiąż wymagania</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów i zapisane w pracy nauczyciela od początku roku.</p></div>
+    <div class="card"><h4>1. Analiza podstawy</h4><p>Należy ustalić, które elementy podstawy programowej dotyczą danego przedmiotu, klasy, zawodu lub kwalifikacji.</p></div>
+    <div class="card"><h4>2. Przygotowanie rozkładu</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
+    <div class="card"><h4>3. Powiązanie wymagań</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów oraz uwzględnione w pracy nauczyciela od początku roku.</p></div>
   </div>
 </section>
 """
@@ -218,7 +218,7 @@ SCHEDULE_BODY = f"""
   <p>Każdy nauczyciel powinien mieć przygotowany rozkład materiału. To dokument, który przekłada podstawę programową i program nauczania na konkretne tematy, kolejność pracy, liczbę godzin oraz wymagania realizowane w czasie lekcji.</p>
   <div class="cards">
     <div class="card">
-      <h4>Co ma być widoczne</h4>
+      <h4>Zakres informacji w rozkładzie</h4>
       <ul>
         <li>jakie tematy lub działy są realizowane,</li>
         <li>ile godzin zaplanowano na poszczególne części,</li>
@@ -228,17 +228,17 @@ SCHEDULE_BODY = f"""
       </ul>
     </div>
     <div class="card">
-      <h4>Jeden arkusz albo kilka lat</h4>
-      <p>Jeżeli przedmiot jest nauczany przez wiele lat, rozkład może być prowadzony w jednym arkuszu, np. język polski na pięć lat albo informatyka na dwa lata. Można też rozbić go na osobne arkusze lub pliki dla pojedynczych lat szkolnych.</p>
+      <h4>Struktura arkusza</h4>
+      <p>Jeżeli przedmiot jest nauczany przez wiele lat, rozkład może być prowadzony w jednym arkuszu, np. język polski na pięć lat albo informatyka na dwa lata. Dopuszczalne jest także prowadzenie osobnych arkuszy lub plików dla pojedynczych lat szkolnych.</p>
     </div>
     <div class="card">
       <h4>Materiały wydawnictw</h4>
-      <p>Wiele wydawnictw publikuje gotowe rozkłady materiału oraz plany wynikowe. Często wystarczy połączyć te dwa źródła, sprawdzić zgodność z podstawą programową i dostosować je do realnej pracy z klasą.</p>
+      <p>Wiele wydawnictw publikuje gotowe rozkłady materiału oraz plany wynikowe. Często wystarczające jest połączenie tych dwóch źródeł, sprawdzenie zgodności z podstawą programową i dostosowanie materiału do realnej pracy z klasą.</p>
     </div>
   </div>
   <div class="callout warning">
     <h4>Termin przygotowania</h4>
-    <p>Rozkład materiału trzeba przygotować przed 1 września 2026 r. Istniejące rozkłady, które nauczyciele mają samodzielnie przygotowane w dzienniku elektronicznym, są jeszcze dostępne, ale w sobotę 29 sierpnia 2026 r. zostaną skasowane. Rozkłady należy przygotować do piątku 28 sierpnia 2026 r., żeby od 1 września rozpocząć pracę z czystą kartą.</p>
+    <p>Rozkład materiału należy przygotować przed 1 września 2026 r. Istniejące rozkłady, które nauczyciele przygotowali w dzienniku elektronicznym, są jeszcze dostępne, ale w sobotę 29 sierpnia 2026 r. zostaną usunięte. Rozkłady należy przygotować do piątku 28 sierpnia 2026 r., aby od 1 września rozpocząć pracę w uporządkowanym dzienniku.</p>
   </div>
 </section>
 <section class="section">
@@ -260,8 +260,8 @@ SCHEDULE_BODY = f"""
       <a class="btn primary" href="{SCHEDULE_TEMPLATE}">Otwórz szablon XLSX</a>
     </div>
     <div class="card">
-      <h4>Co uzupełnić przed tabelą</h4>
-      <p>Przed listą tematów trzeba wpisać przedmiot i nauczyciela, nazwę rozkładu, typ szkoły i poziom klasy, podstawę programową, krótki opis rozkładu oraz numer szkolnego zestawu programów nauczania.</p>
+      <h4>Informacje do uzupełnienia przed tabelą</h4>
+      <p>Przed listą tematów należy wpisać przedmiot i nauczyciela, nazwę rozkładu, typ szkoły i poziom klasy, podstawę programową, krótki opis rozkładu oraz numer szkolnego zestawu programów nauczania.</p>
     </div>
   </div>
   <div class="preview-grid">
@@ -280,7 +280,7 @@ SCHEDULE_BODY = f"""
 <section class="section">
   <h3>Opis kolumn w szablonie</h3>
   <div class="column-guide">
-    <div class="column-item"><strong>L.p.</strong><p>Kolejny numer pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i rozmowę o konkretnym temacie.</p></div>
+    <div class="column-item"><strong>L.p.</strong><p>Kolejny numer pozycji w rozkładzie. Ułatwia sprawdzanie kompletności i odwoływanie się do konkretnego tematu.</p></div>
     <div class="column-item"><strong>Temat</strong><p>Temat lekcji, bloku zajęć, sprawdzianu, powtórzenia albo zadania praktycznego.</p></div>
     <div class="column-item"><strong>Dział</strong><p>Nazwa działu, modułu lub większego obszaru programu. Pomaga grupować tematy i kontrolować kolejność pracy.</p></div>
     <div class="column-item"><strong>Liczba godzin</strong><p>Planowana liczba godzin przeznaczona na temat lub blok.</p></div>
@@ -301,17 +301,17 @@ SCHEDULE_BODY = f"""
 
 ADAPTATION_BODY = """
 <section class="section">
-  <h3>Co znaczy adaptować program w praktyce</h3>
-  <p>Nie zmienia się samej podstawy programowej jako aktu prawnego: jej wymagania pozostają punktem odniesienia. Adaptuje się sposób realizacji programu: kolejność tematów, tempo, przykłady, ćwiczenia, materiały, formy pracy i sposoby sprawdzania wiedzy.</p>
+  <h3>Na czym polega adaptacja programu w praktyce</h3>
+  <p>Podstawa programowa jako akt prawny nie podlega zmianie: jej wymagania pozostają punktem odniesienia. Adaptacji podlega sposób realizacji programu: kolejność tematów, tempo, przykłady, ćwiczenia, materiały, formy pracy i sposoby sprawdzania wiedzy.</p>
   <div class="cards">
-    <div class="card"><h4>1. Od podstawy do programu</h4><p>Najpierw trzeba ustalić, które cele i treści są obowiązkowe. Program nauczania porządkuje ich realizację w konkretnym oddziale i w konkretnych warunkach szkoły.</p></div>
+    <div class="card"><h4>1. Od podstawy do programu</h4><p>W pierwszej kolejności należy ustalić, które cele i treści są obowiązkowe. Program nauczania porządkuje ich realizację w konkretnym oddziale i w konkretnych warunkach szkoły.</p></div>
     <div class="card"><h4>2. Od programu do rozkładu</h4><p>Rozkład materiału przekłada program na kalendarz pracy. Widać w nim tempo, powtórzenia, ćwiczenia umiejętności i momenty sprawdzania osiągnięć.</p></div>
     <div class="card"><h4>3. Od wymagań do pracy na lekcji</h4><p>Wymagania na oceny powinny być zrozumiałe dla ucznia, a sposób dochodzenia do nich może obejmować różne ćwiczenia, projekty, rozmowy i zadania praktyczne.</p></div>
-    <div class="card"><h4>4. Czego unikać</h4><p>Adaptacja nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu.</p></div>
+    <div class="card"><h4>4. Warto zwrócić uwagę</h4><p>Adaptacja nie może oznaczać przypadkowego usunięcia kluczowych efektów kształcenia ani tabeli ocen oderwanej od programu.</p></div>
   </div>
   <div class="callout">
     <h4>Praktyczna zasada</h4>
-    <p>Sztywno trzymamy się podstawy programowej: obowiązkowych celów, treści, efektów kształcenia i kryteriów wskazanych w przepisach. Nie trzeba jednak mechanicznie realizować propozycji wydawnictwa, jeżeli inna kolejność, tempo lub forma pracy lepiej pasuje do klasy.</p>
+    <p>Punktem odniesienia pozostaje podstawa programowa: obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach. Propozycje wydawnictwa nie muszą być realizowane mechanicznie, jeżeli inna kolejność, tempo lub forma pracy lepiej odpowiada potrzebom klasy.</p>
   </div>
 </section>
 """
