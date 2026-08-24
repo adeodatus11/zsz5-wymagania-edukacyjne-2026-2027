@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 LEGACY_ENTRY = "wymagania_edukacyjne_ZSZ5_2026_2027.html"
-SCHEDULE_TEMPLATE = "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx"
+SCHEDULE_TEMPLATE = "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx"
 
 
 @dataclass(frozen=True)
@@ -347,7 +347,7 @@ MATERIALS_BODY = """
   <p>Te materiały warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i adaptowaniu programu do realnej pracy z klasą. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
   <div class="cards resource-grid">
     <div class="card"><h4>Katalog podstaw programowych ZSZ5</h4><p>Bezpośrednie linki do PDF-ów podstaw programowych uporządkowane według typu szkoły, obszaru, przedmiotu i zawodu.</p><a class="btn primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog</a></div>
-    <div class="card"><h4>Szablon rozkładu materiału</h4><p>Plik XLSX z arkuszem wzorcowym i pustym szablonem do pracy nauczyciela.</p><a class="btn" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon</a></div>
+    <div class="card"><h4>Szablon rozkładu materiału</h4><p>Plik XLSX z arkuszem wzorcowym i pustym szablonem do pracy nauczyciela.</p><a class="btn" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon</a></div>
     <div class="card"><h4>MEN - materiały dla nauczycieli szkół ponadpodstawowych</h4><p>Pakiet pomocniczy do rozumienia podstawy programowej: preambuła, komentarze, porównania, uzasadnienia i rekomendacje.</p><a class="btn" href="https://www.gov.pl/web/edukacja/podstawa-programowa--materialy-dla-nauczycieli-szkol-ponadpodstawowych" target="_blank" rel="noopener">Otwórz materiał</a></div>
     <div class="card"><h4>ORE - podstawa programowa z 28 czerwca 2024 r.</h4><p>Strona ORE porządkująca materiały związane ze zmianami podstawy programowej.</p><a class="btn" href="https://ore.edu.pl/2024/09/podstawa-programowa-z-28-czerwca-2024-r/" target="_blank" rel="noopener">Otwórz materiał</a></div>
     <div class="card"><h4>ORE - programy nauczania do szkoły ponadpodstawowej</h4><p>Przykładowe programy nauczania pokazujące przejście od podstawy programowej do organizacji pracy w szkole.</p><a class="btn" href="https://ore.edu.pl/2020/04/programy-nauczania-programy-do-szkoly-ponadpodstawowej/" target="_blank" rel="noopener">Otwórz materiał</a></div>

@@ -51,11 +51,12 @@ jobs:
       - name: Prepare publish directory
         run: |
           mkdir -p public
-          cp index.html public/
-          cp wymagania_edukacyjne_ZSZ5_2026_2027.html public/
+          cp *.html public/
           cp CNAME public/
           cp .nojekyll public/
           cp -R assets data 01_BSI_stopnia 02_BSII_stopnia 03_Technikum public/
+          mkdir -p "public/rozkłady materiału przedmiotów"
+          cp "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx" "public/rozkłady materiału przedmiotów/"
           find public \( -name '.DS_Store' -o -name 'Thumbs.db' -o -name '.~lock.*' \) -delete
           du -sh public
           find public -type f | wc -l

@@ -18,7 +18,7 @@ PAGES = [
     "wymagania_edukacyjne_ZSZ5_2026_2027.html",
 ]
 CATALOG = ROOT / "katalog_podstaw_programowych_ZSZ5_2026_2027.html"
-SCHEDULE_TEMPLATE = "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx"
+SCHEDULE_TEMPLATE = "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx"
 PREVIEW_IMAGES = [
     "assets/rozklad-materialu-wzor.png",
     "assets/rozklad-materialu-szablon.png",

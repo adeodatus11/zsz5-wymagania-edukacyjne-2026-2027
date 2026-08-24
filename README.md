@@ -18,7 +18,7 @@ Repozytorium zawiera statyczny przewodnik dla nauczycieli ZSZ5: od podstawy prog
 
 Widoczny na stronie szablon pochodzi z pliku:
 
-- `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`
+- `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`
 
 Podglądy arkuszy są zapisane jako:
 
