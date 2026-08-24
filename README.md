@@ -1,36 +1,27 @@
 # Przewodnik dla nauczyciela ZSZ5 2026/2027
 
-Repozytorium zawiera statyczną stronę roboczą dla nauczycieli ZSZ5. Obecny widok główny nie publikuje tabel wymagań wygenerowanych przez AI. Na stronie zostaje przewodnik pokazujący drogę od podstawy programowej przez program nauczania i rozkład materiału do wymagań na oceny.
+Repozytorium zawiera statyczny przewodnik dla nauczycieli ZSZ5: od podstawy programowej przez rozkład materiału do wymagań edukacyjnych i zasad oceniania.
 
-## Strona
+## Struktura strony
 
-Plik startowy GitHub Pages:
+- `index.html` - ścieżka pracy od podstawy programowej do wymagań na oceny.
+- `rozklad_materialu.html` - rozkład materiału, terminy, szablon XLSX i opis kolumn.
+- `adaptacja_programu.html` - jak adaptować program nauczania w praktyce.
+- `materialy_i_linki.html` - katalog podstaw programowych, szablon rozkładu i materiały zewnętrzne.
+- `podstawy_prawne.html` - podstawy prawne i źródła.
+- `wymagania_edukacyjne_ZSZ5_2026_2027.html` - kompatybilny adres wejściowy z treścią strony startowej.
+- `katalog_podstaw_programowych_ZSZ5_2026_2027.html` - klikalny katalog podstaw programowych ZSZ5.
 
-- `index.html`
+## Rozkład materiału
 
-Zapasowy adres wejściowy, obecnie z tą samą treścią:
+Widoczny na stronie szablon pochodzi z pliku:
 
-- `wymagania_edukacyjne_ZSZ5_2026_2027.html`
+- `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`
 
-Klikalny katalog podstaw programowych:
+Podglądy arkuszy są zapisane jako:
 
-- `katalog_podstaw_programowych_ZSZ5_2026_2027.html`
-
-## Co jest widoczne
-
-- przewodnik od podstawy programowej do wymagań na oceny,
-- materiały i linki pomocnicze,
-- sekcja o rozkładzie materiału,
-- przykładowy rozkład materiału z pliku `rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx`,
-- sekcja o adaptacji programu,
-- podstawy prawne,
-- link do katalogu podstaw programowych ZSZ5.
-
-## Co zostało schowane
-
-Robocze opracowanie AI z tabelami wymagań dla typów szkół, przedmiotów i zawodów zostało odłożone na branch:
-
-- `codex/opracowanie-ai-podstaw-programowych`
+- `assets/rozklad-materialu-wzor.png`
+- `assets/rozklad-materialu-szablon.png`
 
 ## Generowanie
 

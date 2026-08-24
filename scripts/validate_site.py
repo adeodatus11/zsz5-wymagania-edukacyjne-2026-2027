@@ -7,9 +7,20 @@ from urllib.parse import unquote
 
 
 ROOT = Path(__file__).resolve().parents[1]
-INDEX = ROOT / "index.html"
-LEGACY_ENTRY = ROOT / "wymagania_edukacyjne_ZSZ5_2026_2027.html"
+PAGES = [
+    "index.html",
+    "rozklad_materialu.html",
+    "adaptacja_programu.html",
+    "materialy_i_linki.html",
+    "podstawy_prawne.html",
+    "wymagania_edukacyjne_ZSZ5_2026_2027.html",
+]
 CATALOG = ROOT / "katalog_podstaw_programowych_ZSZ5_2026_2027.html"
+SCHEDULE_TEMPLATE = "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx"
+PREVIEW_IMAGES = [
+    "assets/rozklad-materialu-wzor.png",
+    "assets/rozklad-materialu-szablon.png",
+]
 
 
 class LinkParser(HTMLParser):
@@ -53,23 +64,44 @@ def local_href_missing(html: str) -> list[str]:
 
 
 def main() -> None:
-    index_html = read_html(INDEX)
-    legacy_html = read_html(LEGACY_ENTRY)
+    page_html = {page: read_html(ROOT / page) for page in PAGES}
     catalog_html = read_html(CATALOG)
 
-    required_index_markers = [
-        "Przewodnik dla nauczyciela ZSZ5 2026/2027",
-        "Od podstawy programowej do wymagań na oceny",
-        "Rozkład materiału - po co jest potrzebny",
-        "Przykładowy rozkład materiału - szablon i wzór",
-        "rozkład materiału - szablon 2026_2027.xlsx",
-        "Katalog podstaw programowych ZSZ5",
-    ]
-    for marker in required_index_markers:
-        if marker not in index_html:
-            fail(f"Missing current guide marker in index.html: {marker}")
+    required_by_page = {
+        "index.html": [
+            "Od podstawy programowej do wymagań na oceny",
+            "Ścieżka pracy",
+            "Przejdź do rozkładu materiału",
+        ],
+        "rozklad_materialu.html": [
+            "Rozkład materiału",
+            SCHEDULE_TEMPLATE,
+            "Lekcja organizacyjna. Zapoznanie uczniów z wymaganiami edukacyjnymi i zasadami oceniania",
+            "piątku 28 sierpnia 2026 r.",
+            "sobotę 29 sierpnia 2026 r.",
+            "1 września 2026 r.",
+            "assets/rozklad-materialu-wzor.png",
+            "assets/rozklad-materialu-szablon.png",
+            "Elementy podstawy programowej",
+            "Kolekcja po lekcji",
+        ],
+        "adaptacja_programu.html": ["Adaptacja programu w praktyce"],
+        "materialy_i_linki.html": ["Przydatne materiały i linki", "Katalog podstaw programowych"],
+        "podstawy_prawne.html": ["Podstawy prawne i źródła"],
+    }
+    for page, markers in required_by_page.items():
+        html = page_html[page]
+        for marker in markers:
+            if marker not in html:
+                fail(f"Missing marker in {page}: {marker}")
 
-    forbidden_index_markers = [
+    forbidden_markers = [
+        "materiał do dalszego opracowania",
+        "Robocze tabele",
+        "robocze tabele",
+        "Na tej stronie zostaje na razie",
+        "na tej stronie zostaje na razie",
+        "tabele wygenerowane wcześniej przez AI",
         "school_technikum",
         "school_bsi",
         "school_bsii",
@@ -78,22 +110,24 @@ def main() -> None:
         "10 kierunków zawodowych",
         "Wymagania edukacyjne i biblioteka podstaw programowych",
     ]
-    for marker in forbidden_index_markers:
-        if marker in index_html:
-            fail(f"Legacy visible marker still present in index.html: {marker}")
+    for page, html in page_html.items():
+        for marker in forbidden_markers:
+            if marker in html:
+                fail(f"Forbidden marker in {page}: {marker}")
 
-    if index_html != legacy_html:
-        fail("Legacy entry HTML no longer matches index.html")
+    for asset in [SCHEDULE_TEMPLATE, *PREVIEW_IMAGES]:
+        if not (ROOT / asset).exists():
+            fail(f"Missing asset: {asset}")
+
+    for page, html in page_html.items():
+        missing = local_href_missing(html)
+        if missing:
+            fail(f"Missing local hrefs in {page}: {', '.join(missing[:10])}")
 
     if "Cukiernik (SPC.01)" not in catalog_html:
         fail("Catalog does not contain Cukiernik (SPC.01)")
     if "01_BSI_stopnia/zawodowe/PP_cukiernik_SPC01.pdf" not in catalog_html:
         fail("Catalog does not link the local cukiernik PDF")
-
-    for path_name, html in [("index.html", index_html), ("catalog", catalog_html)]:
-        missing = local_href_missing(html)
-        if missing:
-            fail(f"Missing local hrefs in {path_name}: {', '.join(missing[:10])}")
 
     print("Guide page validation OK")
 

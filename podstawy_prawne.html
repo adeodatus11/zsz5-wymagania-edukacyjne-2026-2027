@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Od podstawy programowej do wymagań na oceny | ZSZ5 2026/2027</title>
+<title>Podstawy prawne i źródła | ZSZ5 2026/2027</title>
 <link rel="icon" href="assets/logo-zsz5-black.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -100,19 +100,19 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
 </header>
 <nav class="topbar" aria-label="Nawigacja">
   <div class="topbar-inner">
-    <a class="nav-link active" href="index.html">Ścieżka pracy</a>
+    <a class="nav-link" href="index.html">Ścieżka pracy</a>
 <a class="nav-link" href="rozklad_materialu.html">Rozkład materiału</a>
 <a class="nav-link" href="adaptacja_programu.html">Adaptacja programu</a>
 <a class="nav-link" href="materialy_i_linki.html">Materiały i linki</a>
-<a class="nav-link" href="podstawy_prawne.html">Podstawy prawne</a>
+<a class="nav-link active" href="podstawy_prawne.html">Podstawy prawne</a>
     <a class="nav-link primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Katalog podstaw programowych</a>
   </div>
 </nav>
 <main id="main_content">
   <section class="hero">
     <p class="eyebrow">ZSZ5 · rok szkolny 2026/2027</p>
-    <h2>Od podstawy programowej do wymagań na oceny</h2>
-    <p>Przewodnik porządkuje pracę nauczyciela: od obowiązkowych treści podstawy programowej, przez program nauczania i rozkład materiału, po wymagania edukacyjne, sposoby sprawdzania osiągnięć i ocenę ucznia.</p>
+    <h2>Podstawy prawne i źródła</h2>
+    <p>Najważniejsze akty i odniesienia potrzebne przy pracy nad programem nauczania, wymaganiami edukacyjnymi i ocenianiem.</p>
     <div class="hero-actions">
       <a class="nav-link" href="rozklad_materialu.html">Przejdź do rozkładu materiału</a>
       <a class="nav-link" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon XLSX</a>
@@ -120,48 +120,12 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--gold);outline-offse
   </section>
   
 <section class="section">
-  <h3>Ścieżka pracy</h3>
-  <p>Praca nauczyciela zaczyna się od podstawy programowej, ale nie kończy się na jej przeczytaniu. Trzeba przełożyć ją na program nauczania, rozkład materiału, wymagania edukacyjne i konkretne sposoby sprawdzania osiągnięć uczniów.</p>
-  <div class="process-lab" aria-label="Ścieżka od podstawy programowej do oceny ucznia">
-    <div class="process-track" role="list">
-      <button class="process-step active" type="button" role="listitem" aria-pressed="true" data-step="1" data-title="Podstawa programowa" data-teacher="Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach." data-output="Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji." data-check="Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa." onclick="setProcessStep(this)">
-        <span class="step-num">1</span><span><strong>Podstawa programowa</strong><small>Co jest obowiązkowe</small></span>
-      </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="2" data-title="Program nauczania" data-teacher="Wybiera program z wydawnictwa, modyfikuje go albo opracowuje własny, ale nadal pilnuje zgodności z podstawą." data-output="Program, który pokazuje sposób realizacji podstawy w danym oddziale." data-check="Program może być adaptowany, jeżeli tempo, kolejność albo dobór ćwiczeń nie pasują do klasy." onclick="setProcessStep(this)">
-        <span class="step-num">2</span><span><strong>Program nauczania</strong><small>Jak realizujemy podstawę</small></span>
-      </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="3" data-title="Rozkład materiału" data-teacher="Przekłada program na działy, tematy, ćwiczenia, powtórzenia, projekty i orientacyjny czas pracy." data-output="Plan pracy na rok lub semestr, który da się realnie wykonać z konkretną klasą." data-check="Rozkład ma pokazywać realizację podstawy, tempo pracy i punkty sprawdzania osiągnięć." onclick="setProcessStep(this)">
-        <span class="step-num">3</span><span><strong>Rozkład materiału</strong><small>Kolejność i tempo pracy</small></span>
-      </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="4" data-title="Wymagania edukacyjne" data-teacher="Opisuje, co uczeń powinien wiedzieć i umieć na poszczególne oceny." data-output="Jasne wymagania na dopuszczającą, dostateczną, dobrą, bardzo dobrą i celującą." data-check="Wymagania mają wynikać z realizowanego programu i podstawy, a nie z ogólnych haseł." onclick="setProcessStep(this)">
-        <span class="step-num">4</span><span><strong>Wymagania edukacyjne</strong><small>Poziomy na oceny</small></span>
-      </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="5" data-title="Sprawdzanie" data-teacher="Dobiera sprawdziany, odpowiedzi, zadania praktyczne, projekty i obserwację pracy ucznia do wcześniej podanych wymagań." data-output="Dowody uczenia się: prace, wypowiedzi, działania praktyczne, wyniki zadań i projekty." data-check="Nie oceniaj tego, czego wcześniej nie było w wymaganiach albo czego nie dało się przećwiczyć." onclick="setProcessStep(this)">
-        <span class="step-num">5</span><span><strong>Sprawdzanie</strong><small>Dowody wiedzy i umiejętności</small></span>
-      </button>
-      <button class="process-step" type="button" role="listitem" aria-pressed="false" data-step="6" data-title="Ocena ucznia" data-teacher="Porównuje osiągnięcia ucznia z wymaganiami edukacyjnymi i zasadami oceniania." data-output="Ocena bieżąca, śródroczna lub roczna, którą da się uzasadnić konkretnymi wymaganiami." data-check="Ocena powinna wynikać z rozpoznanych osiągnięć ucznia, a nie z samego faktu przerobienia tematów." onclick="setProcessStep(this)">
-        <span class="step-num">6</span><span><strong>Ocena ucznia</strong><small>Uzasadniony wynik</small></span>
-      </button>
-    </div>
-    <div class="process-panel" aria-live="polite">
-      <div class="process-panel-head">
-        <span class="eyebrow">aktywny etap</span>
-        <h4><span id="process_step_num">1</span>. <span id="process_title">Podstawa programowa</span></h4>
-      </div>
-      <div class="process-panel-grid">
-        <div><strong>Nauczyciel robi</strong><p id="process_teacher">Sprawdza obowiązkowe cele, treści, efekty kształcenia i kryteria wskazane w przepisach.</p></div>
-        <div><strong>Powstaje</strong><p id="process_output">Lista tego, czego nie można pominąć w danym przedmiocie lub kwalifikacji.</p></div>
-        <div><strong>Trzeba pilnować</strong><p id="process_check">Nie zastępuj podstawy propozycją z podręcznika ani tabelą z wydawnictwa.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="section">
-  <h3>Najważniejsze kroki przed 1 września</h3>
+  <h3>Podstawy prawne i źródła</h3>
   <div class="cards">
-    <div class="card"><h4>1. Sprawdź podstawę</h4><p>Ustal, które elementy podstawy programowej dotyczą Twojego przedmiotu, klasy, zawodu lub kwalifikacji.</p></div>
-    <div class="card"><h4>2. Przygotuj rozkład</h4><p>Rozkład materiału powinien pokazywać tematy, liczbę godzin i elementy podstawy realizowane przy każdym temacie.</p></div>
-    <div class="card"><h4>3. Powiąż wymagania</h4><p>Wymagania edukacyjne i zasady oceniania muszą być jasne dla uczniów i zapisane w pracy nauczyciela od początku roku.</p></div>
+    <div class="card"><h4>Ustawa o systemie oświaty, art. 22a</h4><span class="legal-ref">program nauczania</span><p>Reguluje przedstawianie i dopuszczanie programów nauczania do użytku w szkole. To podstawa dla szkolnej pracy nad programem, z którego wynikają wymagania.</p></div>
+    <div class="card"><h4>Ustawa o systemie oświaty, art. 44b</h4><span class="legal-ref">ocenianie</span><p>Łączy ocenianie z wymaganiami edukacyjnymi wynikającymi z realizowanego programu nauczania i nakłada obowiązek poinformowania uczniów oraz rodziców.</p></div>
+    <div class="card"><h4>Rozporządzenie MEN z 22 lutego 2019 r.</h4><span class="legal-ref">klasyfikowanie i promowanie</span><p>Określa szczegółowe warunki i sposób oceniania, klasyfikowania i promowania uczniów oraz słuchaczy w szkołach publicznych.</p></div>
+    <div class="card"><h4>Rozporządzenie ME z 28 czerwca 2024 r.</h4><span class="legal-ref">zmiany podstawy programowej</span><p>Zmienia podstawę programową kształcenia ogólnego dla liceum ogólnokształcącego, technikum oraz branżowej szkoły II stopnia.</p></div>
   </div>
 </section>
 
