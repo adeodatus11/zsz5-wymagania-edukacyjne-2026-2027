@@ -131,7 +131,9 @@ def main() -> None:
             "Lekcja organizacyjna. Zapoznanie uczniów z wymaganiami edukacyjnymi i zasadami oceniania",
             "piątku 28 sierpnia 2026 r.",
             "sobotę 29 sierpnia 2026 r.",
+            "przed 30 sierpnia 2026 r.",
             "1 września 2026 r.",
+            "po 30 sierpnia wprowadzić go do uporządkowanego dziennika",
             "assets/rozklad-materialu-wzor.png",
             "assets/rozklad-materialu-szablon.png",
             "nr tematu",
@@ -142,11 +144,11 @@ def main() -> None:
         ],
         "ramowe_plany_nauczania.html": [
             "Ramowe plany nauczania",
-            "Wkrótce pojawią się tutaj ramowe plany nauczania",
+            "Ramowe plany nauczania zostaną opublikowane po uporządkowaniu i zatwierdzeniu materiałów",
         ],
         "szkolne_zestawy_programow_nauczania.html": [
             "Szkolne zestawy programów nauczania",
-            "Wkrótce pojawią się tutaj szkolne zestawy programów nauczania",
+            "Szkolne zestawy programów nauczania zostaną opublikowane po uporządkowaniu i zatwierdzeniu materiałów",
         ],
         "adaptacja_programu.html": [
             "2. Adaptacja programu",
@@ -172,6 +174,8 @@ def main() -> None:
         "tabele wygenerowane wcześniej przez AI",
         "Nauczyciel robi",
         "Trzeba pilnować",
+        "Ta sekcja zostanie uzupełniona",
+        "Wkrótce pojawią się tutaj",
         "czystą kartą",
         "Co ma być widoczne",
         "Co uzupełnić przed tabelą",
