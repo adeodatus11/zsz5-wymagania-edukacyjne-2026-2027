@@ -1,6 +1,6 @@
-# Wymagania edukacyjne ZSZ5 2026/2027
+# Przewodnik dla nauczyciela ZSZ5 2026/2027
 
-Repozytorium zawiera statyczną stronę z wymaganiami edukacyjnymi ZSZ5 na rok szkolny 2026/2027 oraz bibliotekę PDF podstaw programowych.
+Repozytorium zawiera statyczną stronę roboczą dla nauczycieli ZSZ5. Obecny widok główny nie publikuje tabel wymagań wygenerowanych przez AI. Na stronie zostaje przewodnik pokazujący drogę od podstawy programowej przez program nauczania i rozkład materiału do wymagań na oceny.
 
 ## Strona
 
@@ -8,15 +8,36 @@ Plik startowy GitHub Pages:
 
 - `index.html`
 
-Główny plik merytoryczny:
+Zapasowy adres wejściowy, obecnie z tą samą treścią:
 
 - `wymagania_edukacyjne_ZSZ5_2026_2027.html`
 
-Strona zawiera:
+Klikalny katalog podstaw programowych:
 
-- wymagania edukacyjne z przedmiotów ogólnokształcących,
-- wymagania edukacyjne z kształcenia zawodowego,
-- bibliotekę PDF podstaw programowych z filtrami według typu szkoły i kategorii.
+- `katalog_podstaw_programowych_ZSZ5_2026_2027.html`
+
+## Co jest widoczne
+
+- przewodnik od podstawy programowej do wymagań na oceny,
+- materiały i linki pomocnicze,
+- sekcja o rozkładzie materiału,
+- sekcja o adaptacji programu,
+- podstawy prawne,
+- link do katalogu podstaw programowych ZSZ5.
+
+## Co zostało schowane
+
+Robocze opracowanie AI z tabelami wymagań dla typów szkół, przedmiotów i zawodów zostało odłożone na branch:
+
+- `codex/opracowanie-ai-podstaw-programowych`
+
+## Generowanie
+
+```bash
+python3 generuj_katalog_podstaw_programowych.py
+python3 generuj_przewodnik_nauczyciela_ZSZ5.py
+python3 scripts/validate_site.py
+```
 
 ## Biblioteka PDF
 
@@ -32,32 +53,3 @@ Podstawy programowe są przechowywane w katalogach:
 Manifest biblioteki:
 
 - `data/podstawy_programowe.json`
-
-## Generowanie
-
-```bash
-python3 generuj_kompletne_wymagania_ogolne.py
-python3 generuj_wymagania_edukacyjne_ZSZ5.py
-python3 scripts/validate_site.py
-```
-
-## GitHub Pages
-
-Rekomendowana konfiguracja:
-
-- repozytorium publiczne,
-- branch: `main`,
-- źródło GitHub Pages: root repozytorium,
-- plik startowy: `index.html`.
-
-## Model wymagań na oceny
-
-Strona nie przypisuje kolejnych punktów podstawy programowej do kolejnych ocen. Każdy wiersz tabeli pokazuje jedno wymaganie lub kryterium z podstawy programowej, a kolumny ocen opisują poziom opanowania tego samego wymagania:
-
-- minimum konieczne i praca z pomocą,
-- samodzielne wykonanie typowego zadania,
-- poprawne stosowanie w typowych sytuacjach,
-- analiza, uzasadnienie i sprawne działanie,
-- samodzielne użycie w nowym lub problemowym kontekście.
-
-To nadal jest opracowanie ZSZ5 przygotowane na podstawie lokalnych PDF podstaw programowych. Przed publikacją szkolną wymaga końcowej recenzji nauczycieli właściwych przedmiotów i zawodów oraz dostosowania do realizowanego programu nauczania w danym oddziale.

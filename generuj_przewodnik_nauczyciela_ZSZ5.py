@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+from __future__ import annotations
+
+import shutil
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent
+OUT = ROOT / "index.html"
+LEGACY_ENTRY = ROOT / "wymagania_edukacyjne_ZSZ5_2026_2027.html"
+
+
+HTML = """<!DOCTYPE html>
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
@@ -264,3 +275,15 @@ function setProcessStep(button){
 </script>
 </body>
 </html>
+"""
+
+
+def main() -> None:
+    OUT.write_text(HTML, encoding="utf-8")
+    shutil.copy2(OUT, LEGACY_ENTRY)
+    print(f"Generated {OUT}")
+    print(f"Generated {LEGACY_ENTRY}")
+
+
+if __name__ == "__main__":
+    main()
