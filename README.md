@@ -12,6 +12,10 @@ Główny plik merytoryczny:
 
 - `wymagania_edukacyjne_ZSZ5_2026_2027.html`
 
+Klikalny katalog podstaw programowych z arkusza:
+
+- `katalog_podstaw_programowych_ZSZ5_2026_2027.html`
+
 Strona zawiera:
 
 - wymagania edukacyjne z przedmiotów ogólnokształcących,
@@ -38,6 +42,7 @@ Manifest biblioteki:
 ```bash
 python3 generuj_kompletne_wymagania_ogolne.py
 python3 generuj_wymagania_edukacyjne_ZSZ5.py
+python3 generuj_katalog_podstaw_programowych.py
 python3 scripts/validate_site.py
 ```
 

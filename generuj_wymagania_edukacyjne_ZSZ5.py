@@ -8,6 +8,7 @@ from pathlib import Path
 
 from pypdf import PdfReader
 
+import generuj_katalog_podstaw_programowych as katalog
 import generuj_kompletne_wymagania_ogolne as og
 
 
@@ -529,6 +530,7 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
         <a href="#bsi_ogolne" onclick="setSchool('bsi');setMode('ogolne')">BS I - ogólne</a>
         <a href="#bsii_ogolne" onclick="setSchool('bsii');setMode('ogolne')">BS II - ogólne</a>
         <a href="#technikum_pdf" onclick="setSchool('technikum');setMode('pdf')">Biblioteka PDF</a>
+        <a href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Katalog podstaw</a>
       </div>
     </div>
     <div class="home-logo-card">
@@ -552,6 +554,11 @@ def render_home_page(total_general: int, total_vocational: int, total_tables: in
     <h3>Przydatne materiały i linki</h3>
     <p>Poniższe linki prowadzą do materiałów, które warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i adaptowaniu programu do realnej pracy z klasą. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
     <div class="home-cards resource-grid">
+      <div class="home-card">
+        <h4>Katalog podstaw programowych ZSZ5</h4>
+        <p>Osobna strona z bezpośrednimi linkami do PDF-ów podstaw programowych, uporządkowana według typu szkoły, obszaru, przedmiotu i zawodu.</p>
+        <a class="resource-link" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog</a>
+      </div>
       <div class="home-card">
         <h4>MEN - materiały dla nauczycieli szkół ponadpodstawowych</h4>
         <p>Pakiet pomocniczy do rozumienia podstawy programowej: preambuła, komentarze, porównania, uzasadnienia i rekomendacje.</p>
@@ -1225,13 +1232,16 @@ def main() -> None:
     html_page, stats = render_page(general_specs, vocational_data, pdf_items)
     OUT.write_text(html_page, encoding="utf-8")
     shutil.copy2(OUT, INDEX)
+    catalog_items = katalog.generate_catalog_page()
     write_reports(stats, vocational_data, pdf_items)
     print(f"Generated {OUT}")
     print(f"Generated {INDEX}")
+    print(f"Generated {katalog.OUT}")
     print(f"Generated {PDF_MANIFEST}")
     print(f"General subjects: {sum(1 for s in stats if s['type'] == 'ogolne')}")
     print(f"Vocational programmes: {sum(1 for s in stats if s['type'] == 'zawodowe')}")
     print(f"PDF files: {len(pdf_items)}")
+    print(f"Catalog items: {len(catalog_items)}")
 
 
 if __name__ == "__main__":
