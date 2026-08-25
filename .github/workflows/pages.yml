@@ -54,7 +54,12 @@ jobs:
           cp *.html public/
           cp CNAME public/
           cp .nojekyll public/
-          cp -R assets data 01_BSI_stopnia 02_BSII_stopnia 03_Technikum public/
+          cp -R assets data public/
+          for dir in 01_BSI_stopnia 02_BSII_stopnia 03_Technikum; do
+            if [ -d "$dir" ]; then
+              cp -R "$dir" public/
+            fi
+          done
           mkdir -p "public/rozkłady materiału przedmiotów"
           cp "rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx" "public/rozkłady materiału przedmiotów/"
           find public \( -name '.DS_Store' -o -name 'Thumbs.db' -o -name '.~lock.*' \) -delete
