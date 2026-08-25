@@ -35,16 +35,11 @@ python3 generuj_przewodnik_nauczyciela_ZSZ5.py
 python3 scripts/validate_site.py
 ```
 
-## Biblioteka PDF
+## Linki do podstaw programowych
 
-Podstawy programowe są przechowywane w katalogach:
+Katalog podstaw programowych nie wymaga lokalnych kopii PDF. Arkusz i strona HTML prowadzą do aktualnych podstaw w Zintegrowanej Platformie Edukacyjnej:
 
-- `01_BSI_stopnia/ogolne`
-- `01_BSI_stopnia/zawodowe`
-- `02_BSII_stopnia/ogolne`
-- `02_BSII_stopnia/zawodowe`
-- `03_Technikum/ogolne`
-- `03_Technikum/zawodowe`
+- `https://zpe.gov.pl/podstawa-programowa`
 
 Manifest biblioteki:
 

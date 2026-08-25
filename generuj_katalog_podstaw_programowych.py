@@ -127,7 +127,7 @@ def catalog_items() -> list[CatalogItem]:
         school, area, title, document_name, legal_basis, local_path, source_url, status = [
             value.strip() for value in padded[:8]
         ]
-        if not school or not area or not local_path:
+        if not school or not area or (not local_path and not source_url):
             continue
         items.append(
             CatalogItem(
@@ -145,7 +145,7 @@ def catalog_items() -> list[CatalogItem]:
 
 
 def render_item(item: CatalogItem, index: int) -> str:
-    missing_class = "" if item.local_exists else " is-missing"
+    missing_class = " is-missing" if not item.local_exists and not item.source_url else ""
     search = " ".join(
         [
             item.school,
@@ -154,22 +154,27 @@ def render_item(item: CatalogItem, index: int) -> str:
             item.document_name,
             item.legal_basis,
             item.local_path,
+            item.source_url,
             item.status,
             item.qualification,
         ]
     )
-    local_action = (
-        f'<a class="btn primary" href="{h(item.local_path)}" target="_blank" rel="noopener">Otwórz lokalny PDF</a>'
-        if item.local_exists
-        else '<span class="btn disabled">Brak pliku lokalnego</span>'
-    )
+    local_action = ""
+    if item.local_exists:
+        local_action = f'<a class="btn" href="{h(item.local_path)}" target="_blank" rel="noopener">Otwórz plik lokalny</a>'
     source_action = (
-        f'<a class="btn" href="{h(item.source_url)}" target="_blank" rel="noopener">Źródło z katalogu</a>'
+        f'<a class="btn primary" href="{h(item.source_url)}" target="_blank" rel="noopener">Otwórz w ZPE</a>'
         if item.source_url
         else ""
     )
     download_action = (
         f'<a class="btn" href="{h(item.local_path)}" download>Pobierz</a>' if item.local_exists else ""
+    )
+    no_action = '<span class="btn disabled">Brak linku</span>' if not local_action and not source_action else ""
+    local_path_row = (
+        f'<div><dt>Plik lokalny</dt><dd><code>{h(item.local_path)}</code></dd></div>'
+        if item.local_path
+        else '<div><dt>Plik lokalny</dt><dd>nie jest przechowywany</dd></div>'
     )
     return f"""
 <article class="catalog-card{missing_class}" data-search="{h(search)}" id="pozycja_{index}">
@@ -178,19 +183,20 @@ def render_item(item: CatalogItem, index: int) -> str:
       <span class="pill area">{h(item.area)}</span>
       {f'<span class="pill qualification">{h(item.qualification)}</span>' if item.qualification else ''}
       <span class="pill status">{h(item.status)}</span>
-      {'' if item.local_exists else '<span class="pill warning">brak w folderze</span>'}
+      {'' if item.local_exists or item.source_url else '<span class="pill warning">brak linku</span>'}
     </div>
     <h3>{h(item.title)}</h3>
     <p>{h(item.document_name)}</p>
     <dl>
       <div><dt>Podstawa prawna</dt><dd>{h(item.legal_basis).replace(chr(10), '<br>')}</dd></div>
-      <div><dt>Plik docelowy</dt><dd><code>{h(item.local_path)}</code></dd></div>
+      {local_path_row}
     </dl>
   </div>
   <div class="catalog-actions">
+    {source_action}
     {local_action}
     {download_action}
-    {source_action}
+    {no_action}
   </div>
 </article>
 """
@@ -228,7 +234,8 @@ def render_page(items: list[CatalogItem]) -> str:
     for item in items:
         grouped[item.school] += 1
     local_count = sum(1 for item in items if item.local_exists)
-    missing_count = len(items) - local_count
+    zpe_count = sum(1 for item in items if "zpe.gov.pl" in item.source_url)
+    missing_count = sum(1 for item in items if not item.local_exists and not item.source_url)
     nav = "\n".join(
         f'<a href="#{h(slug(school))}">{h(school)} <span>{grouped[school]}</span></a>'
         for school in SCHOOL_ORDER
@@ -331,7 +338,7 @@ a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offse
 <main>
   <section class="hero">
     <h2>Bezpośrednie linki do podstaw programowych</h2>
-    <p>Wybierz typ szkoły, znajdź zawód albo przedmiot i otwórz lokalny PDF. Jeżeli pliku lokalnego jeszcze nie ma w folderze, karta pokazuje link źródłowy zapisany w arkuszu.</p>
+    <p>Wybierz typ szkoły, znajdź zawód albo przedmiot i otwórz aktualną podstawę programową w Zintegrowanej Platformie Edukacyjnej. Lokalne kopie PDF nie są wymagane do pracy z katalogiem.</p>
     <div class="hero-actions">
       <a href="wymagania_edukacyjne_ZSZ5_2026_2027.html">Wróć do wymagań edukacyjnych</a>
       <a href="index.html">Strona startowa</a>
@@ -341,8 +348,8 @@ a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offse
   <nav class="quick-nav" aria-label="Szybka nawigacja">{nav}</nav>
   <section class="stats" aria-label="Podsumowanie katalogu">
     <div class="stat"><strong>{len(items)}</strong><span>pozycji z arkusza</span></div>
-    <div class="stat"><strong>{local_count}</strong><span>aktywnych lokalnych PDF-ów</span></div>
-    <div class="stat"><strong>{missing_count}</strong><span>pozycji bez pliku lokalnego</span></div>
+    <div class="stat"><strong>{zpe_count}</strong><span>linków do ZPE</span></div>
+    <div class="stat"><strong>{missing_count}</strong><span>pozycji bez linku lub pliku</span></div>
   </section>
   <div class="tools">
     <div class="tools-inner">
@@ -393,7 +400,7 @@ def main() -> None:
     items = generate_catalog_page()
     print(f"Generated {OUT}")
     print(f"Catalog items: {len(items)}")
-    print(f"Local PDFs: {sum(1 for item in items if item.local_exists)}")
+    print(f"Local files: {sum(1 for item in items if item.local_exists)}")
 
 
 if __name__ == "__main__":

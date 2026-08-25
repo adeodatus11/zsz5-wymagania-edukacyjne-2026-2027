@@ -365,14 +365,13 @@ MATERIALS_BODY = """
   <h3>Przydatne materiały i linki</h3>
   <p>Te materiały warto wykorzystać przy recenzji wymagań, tworzeniu rozkładów materiału i adaptowaniu programu do realnej pracy z klasą. Źródła zewnętrzne są pomocnicze: wiążące pozostają aktualne akty prawne oraz szkolne decyzje nauczycieli i zespołów przedmiotowych.</p>
   <div class="cards resource-grid">
-    <div class="card"><h4>Katalog podstaw programowych ZSZ5</h4><p>Bezpośrednie linki do PDF-ów podstaw programowych uporządkowane według typu szkoły, obszaru, przedmiotu i zawodu.</p><a class="btn primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog</a></div>
+    <div class="card"><h4>Katalog podstaw programowych ZSZ5</h4><p>Bezpośrednie linki do podstaw programowych w ZPE uporządkowane według typu szkoły, obszaru, przedmiotu i zawodu.</p><a class="btn primary" href="katalog_podstaw_programowych_ZSZ5_2026_2027.html">Otwórz katalog</a></div>
     <div class="card"><h4>Szablon rozkładu materiału</h4><p>Plik XLSX z arkuszem wzorcowym i pustym szablonem do pracy nauczyciela.</p><a class="btn" href="rozkłady materiału przedmiotów/rozkład materiału - szablon 2026_2027.xlsx">Otwórz szablon</a></div>
     <div class="card"><h4>MEN - materiały dla nauczycieli szkół ponadpodstawowych</h4><p>Pakiet pomocniczy do rozumienia podstawy programowej: preambuła, komentarze, porównania, uzasadnienia i rekomendacje.</p><a class="btn" href="https://www.gov.pl/web/edukacja/podstawa-programowa--materialy-dla-nauczycieli-szkol-ponadpodstawowych" target="_blank" rel="noopener">Otwórz materiał</a></div>
-    <div class="card"><h4>ORE - podstawa programowa z 28 czerwca 2024 r.</h4><p>Strona ORE porządkująca materiały związane ze zmianami podstawy programowej.</p><a class="btn" href="https://ore.edu.pl/2024/09/podstawa-programowa-z-28-czerwca-2024-r/" target="_blank" rel="noopener">Otwórz materiał</a></div>
-    <div class="card"><h4>ORE - programy nauczania do szkoły ponadpodstawowej</h4><p>Przykładowe programy nauczania pokazujące przejście od podstawy programowej do organizacji pracy w szkole.</p><a class="btn" href="https://ore.edu.pl/2020/04/programy-nauczania-programy-do-szkoly-ponadpodstawowej/" target="_blank" rel="noopener">Otwórz materiał</a></div>
+    <div class="card"><h4>ZPE - podstawa programowa</h4><p>Aktualny punkt wejścia do podstaw programowych dla typów szkół, przedmiotów i kształcenia zawodowego.</p><a class="btn" href="https://zpe.gov.pl/podstawa-programowa" target="_blank" rel="noopener">Otwórz ZPE</a></div>
     <div class="card"><h4>IBE PIB - podstawy programowe i kierunki zmian</h4><p>Miejsce do monitorowania prac nad podstawami programowymi i szerszego kontekstu zmian w edukacji.</p><a class="btn" href="https://ibe.edu.pl/pl/podstawy-programowe" target="_blank" rel="noopener">Otwórz materiał</a></div>
   </div>
-  <p class="source-note">Ostatnie sprawdzenie linków źródłowych: 24 czerwca 2026 r.</p>
+  <p class="source-note">Ostatnie sprawdzenie linków źródłowych: 25 sierpnia 2026 r.</p>
 </section>
 """
 
