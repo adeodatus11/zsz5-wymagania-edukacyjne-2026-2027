@@ -37,9 +37,10 @@ python3 scripts/validate_site.py
 
 ## Linki do podstaw programowych
 
-Katalog podstaw programowych nie wymaga lokalnych kopii PDF. Arkusz i strona HTML prowadzą do aktualnych podstaw w Zintegrowanej Platformie Edukacyjnej:
+Katalog podstaw programowych nie wymaga lokalnych kopii PDF. Arkusz i strona HTML prowadzą do źródeł zewnętrznych:
 
 - `https://zpe.gov.pl/podstawa-programowa`
+- `https://zawodowe.edu.pl/kwalifikacje-w-zawodzie/`
 
 Manifest biblioteki:
 

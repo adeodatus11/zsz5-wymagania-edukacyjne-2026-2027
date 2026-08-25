@@ -48,6 +48,14 @@ def h(value: object) -> str:
     return escape(str(value or ""), quote=True)
 
 
+def source_button_label(url: str) -> str:
+    if "zpe.gov.pl" in url:
+        return "Otwórz w ZPE"
+    if "zawodowe.edu.pl" in url:
+        return "Otwórz w zawodowe.edu.pl"
+    return "Otwórz źródło"
+
+
 def read_shared_strings(zf: zipfile.ZipFile) -> list[str]:
     try:
         root = ET.fromstring(zf.read("xl/sharedStrings.xml"))
@@ -162,11 +170,12 @@ def render_item(item: CatalogItem, index: int) -> str:
     local_action = ""
     if item.local_exists:
         local_action = f'<a class="btn" href="{h(item.local_path)}" target="_blank" rel="noopener">Otwórz plik lokalny</a>'
-    source_action = (
-        f'<a class="btn primary" href="{h(item.source_url)}" target="_blank" rel="noopener">Otwórz w ZPE</a>'
-        if item.source_url
-        else ""
-    )
+    source_action = ""
+    if item.source_url:
+        source_action = (
+            f'<a class="btn primary" href="{h(item.source_url)}" target="_blank" rel="noopener">'
+            f"{h(source_button_label(item.source_url))}</a>"
+        )
     download_action = (
         f'<a class="btn" href="{h(item.local_path)}" download>Pobierz</a>' if item.local_exists else ""
     )
@@ -233,8 +242,9 @@ def render_page(items: list[CatalogItem]) -> str:
     grouped = defaultdict(int)
     for item in items:
         grouped[item.school] += 1
-    local_count = sum(1 for item in items if item.local_exists)
     zpe_count = sum(1 for item in items if "zpe.gov.pl" in item.source_url)
+    zawodowe_count = sum(1 for item in items if "zawodowe.edu.pl" in item.source_url)
+    source_count = sum(1 for item in items if item.source_url)
     missing_count = sum(1 for item in items if not item.local_exists and not item.source_url)
     nav = "\n".join(
         f'<a href="#{h(slug(school))}">{h(school)} <span>{grouped[school]}</span></a>'
@@ -291,7 +301,7 @@ header p{{margin-top:5px;color:var(--muted);font-size:.88rem;max-width:880px}}
 label{{font-size:.78rem;font-weight:850;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}}
 input{{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);box-shadow:0 8px 18px rgba(23,32,51,.04)}}
 #result_status{{font-size:.82rem;color:var(--muted);white-space:nowrap}}
-.stats{{max-width:1236px;margin:14px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}}
+.stats{{max-width:1236px;margin:14px auto 0;padding:0 22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}}
 .stat{{background:var(--paper);border:1px solid rgba(23,32,51,.08);border-radius:8px;padding:14px;text-align:center;box-shadow:0 8px 20px rgba(23,32,51,.06)}}
 .stat strong{{display:block;font-size:1.55rem;color:var(--blue);line-height:1}}
 .stat span{{display:block;margin-top:4px;font-size:.76rem;color:var(--muted);line-height:1.25}}
@@ -338,7 +348,7 @@ a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offse
 <main>
   <section class="hero">
     <h2>Bezpośrednie linki do podstaw programowych</h2>
-    <p>Wybierz typ szkoły, znajdź zawód albo przedmiot i otwórz aktualną podstawę programową w Zintegrowanej Platformie Edukacyjnej. Lokalne kopie PDF nie są wymagane do pracy z katalogiem.</p>
+    <p>Wybierz typ szkoły, znajdź zawód albo przedmiot i otwórz aktualną podstawę programową w źródle zewnętrznym: ZPE dla przedmiotów ogólnych oraz zawodowe.edu.pl dla kształcenia zawodowego. Lokalne kopie PDF nie są wymagane do pracy z katalogiem.</p>
     <div class="hero-actions">
       <a href="wymagania_edukacyjne_ZSZ5_2026_2027.html">Wróć do wymagań edukacyjnych</a>
       <a href="index.html">Strona startowa</a>
@@ -348,7 +358,9 @@ a:focus-visible,input:focus-visible{{outline:3px solid var(--gold);outline-offse
   <nav class="quick-nav" aria-label="Szybka nawigacja">{nav}</nav>
   <section class="stats" aria-label="Podsumowanie katalogu">
     <div class="stat"><strong>{len(items)}</strong><span>pozycji z arkusza</span></div>
-    <div class="stat"><strong>{zpe_count}</strong><span>linków do ZPE</span></div>
+    <div class="stat"><strong>{source_count}</strong><span>linków źródłowych</span></div>
+    <div class="stat"><strong>{zpe_count}</strong><span>linków ZPE</span></div>
+    <div class="stat"><strong>{zawodowe_count}</strong><span>linków zawodowe.edu.pl</span></div>
     <div class="stat"><strong>{missing_count}</strong><span>pozycji bez linku lub pliku</span></div>
   </section>
   <div class="tools">

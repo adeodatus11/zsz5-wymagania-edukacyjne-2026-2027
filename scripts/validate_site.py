@@ -156,7 +156,12 @@ def main() -> None:
             "Otwórz katalog podstaw programowych",
             "katalog_podstaw_programowych_ZSZ5_2026_2027.html",
         ],
-        "materialy_i_linki.html": ["Przydatne materiały i linki", "Katalog podstaw programowych", "ZPE - podstawa programowa"],
+        "materialy_i_linki.html": [
+            "Przydatne materiały i linki",
+            "Katalog podstaw programowych",
+            "ZPE - podstawa programowa",
+            "zawodowe.edu.pl - kwalifikacje w zawodzie",
+        ],
         "podstawy_prawne.html": ["Podstawy prawne i źródła"],
     }
     for page, markers in required_by_page.items():
@@ -236,8 +241,10 @@ def main() -> None:
 
     if "Cukiernik (SPC.01)" not in catalog_html:
         fail("Catalog does not contain Cukiernik (SPC.01)")
-    if "https://zpe.gov.pl/podstawa-programowa/ksztalcenie-zawodowe/branza-spozywcza" not in catalog_html:
-        fail("Catalog does not link Cukiernik (SPC.01) to the ZPE vocational branch")
+    if "https://zawodowe.edu.pl/kwalifikacje-w-zawodzie/spc-01/" not in catalog_html:
+        fail("Catalog does not link Cukiernik (SPC.01) to zawodowe.edu.pl")
+    if "https://zpe.gov.pl/podstawa-programowa/ksztalcenie-zawodowe/" in catalog_html:
+        fail("ZPE vocational branch link remains in catalog")
     if "ore.edu.pl" in catalog_html or "ore.edu.pl" in page_html["materialy_i_linki.html"]:
         fail("ORE link remains in catalog or materials page")
 
